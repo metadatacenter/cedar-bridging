@@ -1,0 +1,12 @@
+{
+  "App": {
+    "Title": "CEDAR",
+    "NavTitle": "CEDAR Bridging",
+    "WindowTitle": "CEDAR Bridging"
+  },
+  "Generic": {
+    "Loading": "Loading..."
+  },
+  "error": {
+  }
+}

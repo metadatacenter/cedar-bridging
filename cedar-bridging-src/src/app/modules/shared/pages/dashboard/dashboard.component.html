@@ -1,0 +1,32 @@
+<app-header></app-header>
+
+<mat-card class="wrapper-card">
+  <mat-card-content class="flex-container">
+
+    <mat-card class="dash-card" [routerLink]="'/doi/datacite/'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">health_and_safety</mat-icon>
+        </div>
+        <mat-card-title>
+          Create Datacite DOI Form
+        </mat-card-title>
+        <mat-card-subtitle>Just a demo link, should arrive from CEDAR directly</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card class="dash-card"
+              [routerLink]="'/doi/datacite/https%3A%2F%2Frepo.metadatacenter.orgx%2Ftemplate-instances%2F667ce828-c89a-4c9e-97e4-49623323efb5'">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="avatar-image" color="error">account_circle</mat-icon>
+        </div>
+        <mat-card-title>
+          Continue Datacite DOI Form
+        </mat-card-title>
+        <mat-card-subtitle>Just a demo link, should arrive from CEDAR directly</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+  </mat-card-content>
+</mat-card>
