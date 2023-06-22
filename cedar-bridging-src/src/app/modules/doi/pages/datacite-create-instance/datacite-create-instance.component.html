@@ -1,1 +1,12 @@
 <app-header title="Datacite Create Instance"></app-header>
+
+<p>CEDAR Embeddable Editor Embedded from HERE</p>
+<hr/>
+<ng-container *ngIf="ceeConfig != null">
+  <cedar-embeddable-editor
+    [config]="ceeConfig"
+    [templateObject]="template"
+  ></cedar-embeddable-editor>
+</ng-container>
+<hr/>
+<p>CEDAR Embeddable Editor Embedded until HERE</p>
