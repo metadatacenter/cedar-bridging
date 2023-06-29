@@ -1,9 +1,11 @@
+const CEDAR_DOMAIN_BASE = '.metadatacenter.org/'
 export const environment = {
   production: true,
-  apiUrl: 'https://bridge.metadatacenter.org/',
-  cedarUrl: 'https://cedar.metadatacenter.org/',
-  appUrl: 'https://bridging.metadatacenter.org/',
-  keycloakUrl: 'https://auth.metadatacenter.org/',
-  defaultLanguage: 'en',
-  fallbackLanguage: 'en'
+  cedarUrl: 'https://cedar' + CEDAR_DOMAIN_BASE,
+  appUrl: 'https://bridging' + CEDAR_DOMAIN_BASE,
+  bridgeUrl: 'https://bridge' + CEDAR_DOMAIN_BASE,
+  terminologyUrl: 'https://terminology' + CEDAR_DOMAIN_BASE,
+  terminologyProxyUrl: 'https://terminology' + CEDAR_DOMAIN_BASE,
+  keycloakUrl: 'https://auth' + CEDAR_DOMAIN_BASE
+
 };

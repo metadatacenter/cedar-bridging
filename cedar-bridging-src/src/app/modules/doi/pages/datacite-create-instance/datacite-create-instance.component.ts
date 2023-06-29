@@ -4,9 +4,12 @@ import {CedarPageComponent} from '../../../shared/components/base/cedar-page-com
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {UiService} from '../../../../services/ui.service';
 import {KeycloakService} from "keycloak-angular";
+import {Observable} from "rxjs";
+import {DataCiteCreateDOIStartResponse} from "../../../shared/model/datacite-create-doi-start-response.model";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'datacite-create-instance',
@@ -14,6 +17,10 @@ import {KeycloakService} from "keycloak-angular";
   styleUrls: ['./datacite-create-instance.component.scss']
 })
 export class DataciteCreateInstanceComponent extends CedarPageComponent implements OnInit {
+
+  public sourceArtifactId: string | null = null;
+  public ceeConfig: object = {};
+  public template: object | null = null;
 
   constructor(
     localSettings: LocalSettingsService,
@@ -28,8 +35,33 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
     super(localSettings, translateService, notify, router, route, keycloak, uiService);
   }
 
+  getDataCiteStartResponse(): Observable<HttpResponse<DataCiteCreateDOIStartResponse>> {
+    const url = environment.bridgeUrl + 'datacite/create-doi?source_artifact_id=' +
+      encodeURIComponent(this.sourceArtifactId ?? '');
+    return this.http.get<DataCiteCreateDOIStartResponse>(
+      url, {observe: 'response'});
+  }
+
   override ngOnInit() {
     super.ngOnInit();
+
+    this.sourceArtifactId = this.route.snapshot.paramMap.get('sourceArtifactId');
+
+    this.ceeConfig = {
+      "ceeConfig": {
+        "showSampleTemplateLinks": false,
+        "terminologyProxyUrl": environment.terminologyProxyUrl,
+        "collapseStaticComponents": false
+      },
+      "cedarUrl": environment.cedarUrl,
+      "terminologyUrl": environment.terminologyProxyUrl
+    }
+
+    const req = this.getDataCiteStartResponse();
+    req.subscribe((response: HttpResponse<DataCiteCreateDOIStartResponse>) => {
+      this.template = response.body?.dataCiteTemplate ?? null;
+    });
+
   }
 
 }
