@@ -21,6 +21,8 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
   public sourceArtifactId: string | null = null;
   public ceeConfig: object = {};
   public template: object | null = null;
+  public folderId: string | null = '';
+  public operation: string = 'Create'
 
   constructor(
     localSettings: LocalSettingsService,
@@ -46,6 +48,7 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
     super.ngOnInit();
 
     this.sourceArtifactId = this.route.snapshot.paramMap.get('sourceArtifactId');
+    this.folderId = this.route.snapshot.queryParamMap.get('folderId');
 
     this.ceeConfig = {
       "ceeConfig": {

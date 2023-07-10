@@ -5,4 +5,11 @@
     [config]="ceeConfig"
     [templateObject]="template"
   ></cedar-embeddable-editor>
+  <app-doi-requester *ngIf="sourceArtifactId != null"
+    [sourceArtifactId]="sourceArtifactId"
+  ></app-doi-requester>
+  <app-cancel *ngIf="folderId != null"
+    [operation]="operation"
+    [folderId]="folderId"
+  ></app-cancel>
 </ng-container>

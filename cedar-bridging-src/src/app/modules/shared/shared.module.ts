@@ -8,6 +8,8 @@ import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {MaterialModule} from '../../modules/material-module';
 import {HeaderComponent} from "./components/header/header.component";
 import {ClipboardModule} from "@angular/cdk/clipboard";
+import { DoiRequesterComponent } from './components/doi-requester/doi-requester.component';
+import { CancelComponent } from './components/cancel/cancel.component';
 
 @NgModule({
   imports: [
@@ -23,16 +25,20 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
     SpinnerComponent,
     DashboardComponent,
     HeaderComponent,
+    DoiRequesterComponent,
+    CancelComponent,
   ],
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    TranslateModule,
-    SpinnerComponent,
-    HeaderComponent,
-  ]
+    exports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        TranslateModule,
+        SpinnerComponent,
+        HeaderComponent,
+        DoiRequesterComponent,
+        CancelComponent,
+    ]
 })
 export class SharedModule {
 }

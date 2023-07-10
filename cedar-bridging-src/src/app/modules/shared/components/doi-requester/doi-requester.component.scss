@@ -1,0 +1,25 @@
+.flex-container-doi-requester {
+  display:inline-block;
+  align-items: center;
+  justify-content: right;
+  margin-top: 20px;
+  float: right;
+
+  .flex-child1 {
+    flex: 1 100%;
+  }
+
+  .flex-child2 {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.create-doi-button {
+  padding: 8px 20px !important;
+  font-size: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+  margin-right: 17px;
+}
+
