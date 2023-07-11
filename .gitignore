@@ -7,7 +7,7 @@ dist/
 /bazel-out
 
 # Node
-node_modules/
+cedar-bridging-src/node_modules/
 npm-debug.log
 yarn-error.log
 

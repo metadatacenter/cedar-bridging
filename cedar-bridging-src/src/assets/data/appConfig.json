@@ -1,0 +1,8 @@
+{
+  "cedarUrl": "https://cedar.{{cedarDomain}}/",
+  "appUrl": "https://bridging.{{cedarDomain}}/",
+  "bridgeUrl": "https://bridge.{{cedarDomain}}/",
+  "terminologyUrl": "https://terminology.{{cedarDomain}}/",
+  "terminologyProxyUrl": "https://terminologyProxyUrl.{{cedarDomain}}/",
+  "keycloakUrl": "https://auth.{{cedarDomain}}/"
+}
