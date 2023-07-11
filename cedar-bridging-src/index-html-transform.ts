@@ -6,7 +6,7 @@ export default (targetOptions: TargetOptions, indexHtml: string) => {
   // but that does not work
   // This is a workaround for now
   if (targetOptions.target === 'serve') {
-    indexHtml = indexHtml.replace('https://component.metadatacenter.org/', 'https://component.metadatacenter.orgx/');
+    indexHtml = indexHtml.replaceAll('metadatacenter.org', 'metadatacenter.orgx');
   }
 
   return indexHtml;

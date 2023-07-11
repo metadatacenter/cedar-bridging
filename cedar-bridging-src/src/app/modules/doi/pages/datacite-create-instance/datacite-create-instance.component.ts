@@ -9,7 +9,7 @@ import {UiService} from '../../../../services/ui.service';
 import {KeycloakService} from "keycloak-angular";
 import {Observable} from "rxjs";
 import {DataCiteCreateDOIStartResponse} from "../../../shared/model/datacite-create-doi-start-response.model";
-import {environment} from "../../../../../environments/environment";
+import {globalAppConfig} from "../../../../../environments/global-app-config";
 
 @Component({
   selector: 'datacite-create-instance',
@@ -36,7 +36,7 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
   }
 
   getDataCiteStartResponse(): Observable<HttpResponse<DataCiteCreateDOIStartResponse>> {
-    const url = environment.bridgeUrl + 'datacite/create-doi?source_artifact_id=' +
+    const url = globalAppConfig.bridgeUrl + 'datacite/create-doi?source_artifact_id=' +
       encodeURIComponent(this.sourceArtifactId ?? '');
     return this.http.get<DataCiteCreateDOIStartResponse>(
       url, {observe: 'response'});
@@ -50,11 +50,11 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
     this.ceeConfig = {
       "ceeConfig": {
         "showSampleTemplateLinks": false,
-        "terminologyProxyUrl": environment.terminologyProxyUrl,
+        "terminologyProxyUrl": globalAppConfig.terminologyProxyUrl,
         "collapseStaticComponents": false
       },
-      "cedarUrl": environment.cedarUrl,
-      "terminologyUrl": environment.terminologyProxyUrl
+      "cedarUrl": globalAppConfig.cedarUrl,
+      "terminologyUrl": globalAppConfig.terminologyProxyUrl
     }
 
     const req = this.getDataCiteStartResponse();
