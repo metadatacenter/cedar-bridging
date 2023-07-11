@@ -1,23 +1,43 @@
 .flex-container-doi-requester {
-  display:inline-block;
+  display: flex;
   align-items: center;
-  justify-content: right;
-  margin-bottom: 20px;
+  margin-top: 60px;
   float: right;
-
-  .flex-child1 {
-    flex: 1 100%;
-  }
-
-  .flex-child2 {
-    width: 170px;
-    text-align: right;
-    margin-right: 17px;
-  }
 }
 
+.flex-child1 {
+  margin-bottom: 50px;
+}
+
+.notify-container {
+  position: relative;
+}
+
+.create-doi-button,
 .metadata-cancel-button {
-  padding: 8px 50px !important;
+  padding: 8px 40px !important;
   font-size: 16px;
   font-weight: 400;
+  margin: 20px;
+}
+
+.notify-container .notify-progress,
+.notify-container .notify-success,
+.notify-container .notify-error {
+  position: absolute;
+  bottom: 100%;
+  right: -120px;
+  width: auto;
+  white-space: nowrap;
+  display: flex;
+}
+
+.notify-container .notify-progress .close,
+.notify-container .notify-success .close,
+.notify-container .notify-error .close {
+  margin-left: 5px;
+}
+
+.notify-progress {
+  margin-right: 10px;
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DoiRequestorComponent } from './doi-requester.component';
+import { DoiRequesterComponent } from './doi-requester.component';
 
 describe('DoiRequestorComponent', () => {
-  let component: DoiRequestorComponent;
-  let fixture: ComponentFixture<DoiRequestorComponent>;
+  let component: DoiRequesterComponent;
+  let fixture: ComponentFixture<DoiRequesterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DoiRequestorComponent ]
+      declarations: [ DoiRequesterComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DoiRequestorComponent);
+    fixture = TestBed.createComponent(DoiRequesterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

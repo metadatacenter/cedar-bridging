@@ -8,15 +8,11 @@ import {DOCUMENT} from "@angular/common";
 })
 export class CancelComponent {
   @Input() operation: string = '';
-  @Input() folderId: string = '';
   window: any;
   constructor(@Inject(DOCUMENT) private _document:any) {
     this.window = this._document.defaultView;
   }
   cancel() {
-    if(this.operation === 'Create') {
-      this.window.opener.location.href = "https://cedar.metadatacenter.orgx/dashboard?folderId=" + encodeURIComponent(this.folderId);
-    }
     self.close();
   }
 }
