@@ -4,12 +4,6 @@
 
 export const environment = {
   production: false,
-  cedarUrl: '',
-  appUrl: '',
-  bridgeUrl: '',
-  terminologyUrl: '',
-  terminologyProxyUrl: '',
-  keycloakUrl: ''
 };
 
 /*
