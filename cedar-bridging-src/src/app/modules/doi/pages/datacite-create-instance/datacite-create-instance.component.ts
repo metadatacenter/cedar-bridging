@@ -22,6 +22,7 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
   public ceeConfig: object = {};
   public template: object | null = null;
   public operation: string = 'Create'
+  public draftDoi: object | null = null;
 
   constructor(
     localSettings: LocalSettingsService,
@@ -61,6 +62,7 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
     const req = this.getDataCiteStartResponse();
     req.subscribe((response: HttpResponse<DataCiteCreateDOIStartResponse>) => {
       this.template = response.body?.dataCiteTemplate ?? null;
+      this.draftDoi = response.body?.draftDoi ?? null;
     });
 
   }

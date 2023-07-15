@@ -3,6 +3,7 @@ import {Observable, Subscription} from "rxjs";
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
 import {MessageHandlerService} from "../../../../services/message-handler.service";
+import {globalAppConfig} from "../../../../../environments/global-app-config";
 
 @Component({
   selector: 'app-doi-requester',
@@ -14,6 +15,7 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
   private static readonly SUCCESS_MESSAGE_TIMEOUT = 5000;
 
   @Input() sourceArtifactId: string = '';
+  @Input() state: string = '';
 
   httpPostSubscription = new Subscription();
 
@@ -76,8 +78,8 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
   }
 
   private httpRequest(): Observable<any> {
-    const url = environment.bridgeUrl + 'datacite/create-doi?source_artifact_id=' +
-      encodeURIComponent(this.sourceArtifactId ?? '');
+    const url = globalAppConfig.bridgeUrl + 'datacite/create-doi?source_artifact_id=' +
+      encodeURIComponent(this.sourceArtifactId ?? '') + '&state=publish';
 
     //TODO: how to get the datacite instance metadata?
     const cee: any = document.querySelector('cedar-embeddable-editor');
