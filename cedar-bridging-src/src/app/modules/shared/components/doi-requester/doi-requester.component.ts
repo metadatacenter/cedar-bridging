@@ -56,9 +56,10 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
           const returnedErrorMessage = error['error']['errorMessage'];
           let splitErrorMessage = "";
           if (returnedErrorMessage != null) {
-            splitErrorMessage = returnedErrorMessage.split(":")[1];
+            splitErrorMessage = returnedErrorMessage.split(":").slice(1).join(":").trim();
+            console.log(splitErrorMessage);
           }
-          this.errorMessage = "Error Creating A DOI: " + splitErrorMessage;
+          this.errorMessage = "Error Creating A DOI - " + splitErrorMessage;
 
           if (typeof error === 'object' && error.hasOwnProperty('message')) {
             this.messageHandlerService.errorObject(error['message'], error);

@@ -13,6 +13,10 @@
   position: relative;
 }
 
+.error-present {
+  transform: translateY(100px);
+}
+
 .create-doi-button,
 .metadata-cancel-button {
   padding: 8px 20px !important;
