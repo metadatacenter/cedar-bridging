@@ -6,7 +6,7 @@
           <mat-spinner [diameter]="16" class="notify-progress-icon"></mat-spinner>{{progressMessage}}
         </div>
         <div *ngIf="showSuccess" class="notify-success">{{successMessage}}
-          <button type="button" class="close" (click)="clearSuccess()">
+          <button type="button" class="close close-left-top" (click)="clearSuccess()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -20,6 +20,6 @@
     </ng-container>
   </div>
   <div class="flex-child2">
-    <button mat-raised-button color="primary" class="save-doi-button" (click)="saveDoi($event)">Save</button>
+    <button mat-raised-button color="primary" class="save-doi-button" (click)="saveDoi($event)">Save Draft</button>
   </div>
 </div>

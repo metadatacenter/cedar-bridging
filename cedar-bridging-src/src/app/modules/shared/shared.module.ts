@@ -11,6 +11,7 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
 import { DoiRequesterComponent } from './components/doi-requester/doi-requester.component';
 import { CancelComponent } from './components/cancel/cancel.component';
 import { DoiSaverComponent } from './components/doi-saver/doi-saver.component';
+import {SharedErrorService} from "../../services/shared-error.service";
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { DoiSaverComponent } from './components/doi-saver/doi-saver.component';
         DoiRequesterComponent,
         CancelComponent,
         DoiSaverComponent,
-    ]
+    ],
+  providers: [SharedErrorService],
 })
 export class SharedModule {
 }

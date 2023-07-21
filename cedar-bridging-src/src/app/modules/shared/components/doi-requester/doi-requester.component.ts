@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common
 import {environment} from "../../../../../environments/environment";
 import {MessageHandlerService} from "../../../../services/message-handler.service";
 import {globalAppConfig} from "../../../../../environments/global-app-config";
+import {SharedErrorService} from "../../../../services/shared-error.service";
 
 @Component({
   selector: 'app-doi-requester',
@@ -26,7 +27,7 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
   successMessage = '';
   errorMessage = '';
 
-  constructor(private httpClient: HttpClient, private messageHandlerService: MessageHandlerService) {
+  constructor(private httpClient: HttpClient, private messageHandlerService: MessageHandlerService, private sharedErrorService: SharedErrorService) {
   }
 
   ngOnInit(): void {
@@ -52,6 +53,7 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
           this.clearProgress();
           this.clearSuccess();
           this.showError = true;
+          this.sharedErrorService.updateShowError(this.showError);
 
           const returnedErrorMessage = error['error']['errorMessage'];
           let splitErrorMessage = "";
@@ -112,6 +114,7 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
   clearError(): void {
     this.showError = false;
     this.errorMessage = '';
+    this.sharedErrorService.updateShowError(false);
   }
 
   stopPropagation(event: any): void {

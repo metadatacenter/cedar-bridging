@@ -5,13 +5,15 @@
     [config]="ceeConfig"
     [templateObject]="template"
   ></cedar-embeddable-editor>
-  <app-doi-saver *ngIf="sourceArtifactId != null"
-    [sourceArtifactId]="sourceArtifactId"
-  ></app-doi-saver>
-  <app-doi-requester *ngIf="sourceArtifactId != null"
-    [sourceArtifactId]="sourceArtifactId"
-  ></app-doi-requester>
-  <app-cancel
-    [operation]="operation">
-  </app-cancel>
+  <div class="button-container" [ngClass]="{'move-buttons-down': showError}">
+    <app-doi-saver *ngIf="sourceArtifactId != null"
+     [sourceArtifactId]="sourceArtifactId"
+    ></app-doi-saver>
+    <app-doi-requester *ngIf="sourceArtifactId != null"
+      [sourceArtifactId]="sourceArtifactId"
+    ></app-doi-requester>
+    <app-cancel
+      [operation]="operation">
+    </app-cancel>
+  </div>
 </ng-container>

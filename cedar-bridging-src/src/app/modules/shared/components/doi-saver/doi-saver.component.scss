@@ -14,12 +14,8 @@
   position: relative;
 }
 
-.error-present {
-  transform: translateY(100px);
-}
-
 .save-doi-button{
-  padding: 8px 40px !important;
+  padding: 8px 20px !important;
   font-size: 16px;
   font-weight: 400;
   margin: 20px;
@@ -40,8 +36,16 @@
 .notify-container .notify-success .close,
 .notify-container .notify-error .close {
   margin-left: 5px;
+  margin-top:0px !important;
 }
 
 .notify-progress {
   margin-right: 10px;
+}
+
+.close-left-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
 }

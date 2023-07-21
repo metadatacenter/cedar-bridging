@@ -10,6 +10,7 @@ import {KeycloakService} from "keycloak-angular";
 import {Observable} from "rxjs";
 import {DataCiteCreateDOIStartResponse} from "../../../shared/model/datacite-create-doi-start-response.model";
 import {globalAppConfig} from "../../../../../environments/global-app-config";
+import {SharedErrorService} from "../../../../services/shared-error.service";
 
 @Component({
   selector: 'datacite-create-instance',
@@ -23,6 +24,7 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
   public template: object | null = null;
   public operation: string = 'Create'
   public draftDoi: object | null = null;
+  public showError:boolean = false;
 
   constructor(
     localSettings: LocalSettingsService,
@@ -32,10 +34,15 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
     route: ActivatedRoute,
     keycloak: KeycloakService,
     uiService: UiService,
-    private http: HttpClient
+    private http: HttpClient,
+    private sharedErrorService: SharedErrorService
   ) {
     super(localSettings, translateService, notify, router, route, keycloak, uiService);
+    this.sharedErrorService.showErrorChange.subscribe((showError:boolean) =>{
+      this.showError = showError;
+    });
   }
+
 
   getDataCiteStartResponse(): Observable<HttpResponse<DataCiteCreateDOIStartResponse>> {
     const url = globalAppConfig.bridgeUrl + 'datacite/create-doi?source_artifact_id=' +
