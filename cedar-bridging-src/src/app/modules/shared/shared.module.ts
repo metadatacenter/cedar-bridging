@@ -10,6 +10,7 @@ import {HeaderComponent} from "./components/header/header.component";
 import {ClipboardModule} from "@angular/cdk/clipboard";
 import { DoiRequesterComponent } from './components/doi-requester/doi-requester.component';
 import { CancelComponent } from './components/cancel/cancel.component';
+import { DoiSaverComponent } from './components/doi-saver/doi-saver.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { CancelComponent } from './components/cancel/cancel.component';
     HeaderComponent,
     DoiRequesterComponent,
     CancelComponent,
+    DoiSaverComponent,
   ],
     exports: [
         CommonModule,
@@ -38,6 +40,7 @@ import { CancelComponent } from './components/cancel/cancel.component';
         HeaderComponent,
         DoiRequesterComponent,
         CancelComponent,
+        DoiSaverComponent,
     ]
 })
 export class SharedModule {

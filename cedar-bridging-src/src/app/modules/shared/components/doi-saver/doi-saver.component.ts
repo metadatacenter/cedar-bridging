@@ -1,21 +1,18 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
-import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
-import {environment} from "../../../../../environments/environment";
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {MessageHandlerService} from "../../../../services/message-handler.service";
 import {globalAppConfig} from "../../../../../environments/global-app-config";
 
 @Component({
-  selector: 'app-doi-requester',
-  templateUrl: './doi-requester.component.html',
-  styleUrls: ['./doi-requester.component.scss']
+  selector: 'app-doi-saver',
+  templateUrl: './doi-saver.component.html',
+  styleUrls: ['./doi-saver.component.scss']
 })
-export class DoiRequesterComponent implements OnInit, OnDestroy{
-  // Number of milliseconds to display the submission success message
+export class DoiSaverComponent implements OnInit, OnDestroy{
   private static readonly SUCCESS_MESSAGE_TIMEOUT = 5000;
 
   @Input() sourceArtifactId: string = '';
-  // @Input() state: string = '';
 
   httpPostSubscription = new Subscription();
 
@@ -32,7 +29,7 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
   }
 
-  createDoi(event:any): void {
+  saveDoi(event:any): void {
     this.httpPostSubscription.add(
       this.httpRequest().subscribe(
         (data: any) => {
@@ -40,7 +37,7 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
             this.clearProgress();
             this.clearError();
             this.showSuccess = true;
-            this.successMessage = 'DOI created successfully! The DOI is:  ' + data.body.doiName;
+            this.successMessage = 'Draft DOI saved successfully! The DOI is:  ' + data.body.doiName;
             this.messageHandlerService.traceObject('Data received from the server:', data);
           } else {
             this.clearSuccess();
@@ -59,7 +56,7 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
             splitErrorMessage = returnedErrorMessage.split(":").slice(1).join(":").trim();
             console.log(splitErrorMessage);
           }
-          this.errorMessage = "Error Creating A DOI - " + splitErrorMessage;
+          this.errorMessage = "Error Saving A Draft DOI - " + splitErrorMessage;
 
           if (typeof error === 'object' && error.hasOwnProperty('message')) {
             this.messageHandlerService.errorObject(error['message'], error);
@@ -70,7 +67,7 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
           if (this.showSuccess) {
             setTimeout(() => {
               this.clearSuccess();
-            }, DoiRequesterComponent.SUCCESS_MESSAGE_TIMEOUT);
+            }, DoiSaverComponent.SUCCESS_MESSAGE_TIMEOUT);
           }
         }
       )
@@ -80,8 +77,9 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
 
   private httpRequest(): Observable<any> {
     const url = globalAppConfig.bridgeUrl + 'datacite/create-doi?source_artifact_id=' +
-      encodeURIComponent(this.sourceArtifactId ?? '') + '&state=publish';
+      encodeURIComponent(this.sourceArtifactId ?? '') + '&state=draft';
 
+    //TODO: how to get the datacite instance metadata?
     const cee: any = document.querySelector('cedar-embeddable-editor');
     const meta = cee.currentMetadata;
     const body = meta;
@@ -121,5 +119,5 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
   ngOnDestroy(): void {
     this.httpPostSubscription.unsubscribe();
   }
-}
 
+}
