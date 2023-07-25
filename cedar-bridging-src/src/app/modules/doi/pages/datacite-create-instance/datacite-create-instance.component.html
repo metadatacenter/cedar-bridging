@@ -4,6 +4,7 @@
   <cedar-embeddable-editor
     [config]="ceeConfig"
     [templateObject]="template"
+    [instanceObject]="existingDataCiteMetadata"
   ></cedar-embeddable-editor>
   <div class="button-container" [ngClass]="{'move-buttons-down': showError}">
     <app-doi-saver *ngIf="sourceArtifactId != null"

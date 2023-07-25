@@ -24,6 +24,7 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
   public template: object | null = null;
   public operation: string = 'Create'
   public draftDoi: object | null = null;
+  public existingDataCiteMetadata: object | null = null;
   public showError:boolean = false;
 
   constructor(
@@ -70,6 +71,7 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
     req.subscribe((response: HttpResponse<DataCiteCreateDOIStartResponse>) => {
       this.template = response.body?.dataCiteTemplate ?? null;
       this.draftDoi = response.body?.draftDoi ?? null;
+      this.existingDataCiteMetadata = response.body?.existingDataCiteMetadata ?? null;
     });
 
   }
