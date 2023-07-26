@@ -2,11 +2,18 @@
   margin-right: 8px;
 }
 
-//.button-container {
-//  display: flex;
-//  align-items: center;
-//  justify-content: space-between;
-//}
+.draft-doi-container {
+  background-color: #f0f0f0;
+  padding: 8px;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-right: 80px;
+  margin-left:80px
+}
+
+.draft-doi-label {
+  font-weight: bold;
+}
 
 .move-buttons-down {
   transform: translateY(100px);

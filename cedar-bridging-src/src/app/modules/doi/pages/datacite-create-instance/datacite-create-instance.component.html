@@ -1,5 +1,8 @@
 <app-header title="Datacite Create Instance"></app-header>
 
+<div class="draft-doi-container" *ngIf="draftDoi">
+  <p class="draft-doi-label">A Draft DOI Exists: https://doi.org/{{draftDoi}}. Please update your metadata based on it.</p>
+</div>
 <ng-container *ngIf="ceeConfig != null">
   <cedar-embeddable-editor
     [config]="ceeConfig"
