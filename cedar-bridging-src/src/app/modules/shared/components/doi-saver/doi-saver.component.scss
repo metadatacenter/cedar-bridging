@@ -1,7 +1,7 @@
 .flex-container-doi-requester {
   display: flex;
   align-items: center;
-  margin-top: 59px;
+  margin-top: 49px;
   margin-right: 30px;
   float: right;
 }
@@ -30,22 +30,18 @@
   width: auto;
   white-space: nowrap;
   display: flex;
+  pre{
+    margin:0;
+  }
 }
 
 .notify-container .notify-progress .close,
 .notify-container .notify-success .close,
 .notify-container .notify-error .close {
   margin-left: 5px;
-  margin-top:0px !important;
 }
 
 .notify-progress {
   margin-right: 10px;
 }
 
-.close-left-top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(-50%, -50%);
-}

@@ -1,7 +1,7 @@
 .flex-container-doi-requester {
   display: flex;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 50px;
   float: right;
 }
 
@@ -13,8 +13,7 @@
   position: relative;
 }
 
-.create-doi-button,
-.metadata-cancel-button {
+.create-doi-button{
   padding: 8px 20px !important;
   font-size: 16px;
   font-weight: 400;
@@ -30,6 +29,9 @@
   width: auto;
   white-space: nowrap;
   display: flex;
+  pre{
+    margin:0;
+  }
 }
 
 .notify-container .notify-progress .close,

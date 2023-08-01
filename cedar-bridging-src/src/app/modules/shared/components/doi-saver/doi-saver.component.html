@@ -6,13 +6,13 @@
           <mat-spinner [diameter]="16" class="notify-progress-icon"></mat-spinner>{{progressMessage}}
         </div>
         <div *ngIf="showSuccess" class="notify-success">{{successMessage}}
-          <button type="button" class="close close-left-top" (click)="clearSuccess()">
+          <button type="button" class="close close-right-top" (click)="clearSuccess()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div *ngIf="showError" class="notify-error">
           <pre>{{errorMessage}}</pre>
-          <button type="button" class="close" (click)="clearError()">
+          <button type="button" class="close close-right-top" (click)="clearError()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>

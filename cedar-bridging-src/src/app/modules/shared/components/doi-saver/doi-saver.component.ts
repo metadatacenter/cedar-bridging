@@ -56,7 +56,6 @@ export class DoiSaverComponent implements OnInit, OnDestroy{
           let splitErrorMessage = "";
           if (returnedErrorMessage != null) {
             splitErrorMessage = returnedErrorMessage.split(":").slice(1).join(":").trim();
-            console.log(splitErrorMessage);
           }
           this.errorMessage = "Error Saving A Draft DOI - " + splitErrorMessage;
 
