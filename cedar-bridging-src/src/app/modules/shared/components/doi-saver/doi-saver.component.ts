@@ -53,11 +53,7 @@ export class DoiSaverComponent implements OnInit, OnDestroy{
           this.sharedErrorService.updateShowError(this.showError);
 
           const returnedErrorMessage = error['error']['errorMessage'];
-          let splitErrorMessage = "";
-          if (returnedErrorMessage != null) {
-            splitErrorMessage = returnedErrorMessage.split(":").slice(1).join(":").trim();
-          }
-          this.errorMessage = "Error Saving A Draft DOI - " + splitErrorMessage;
+          this.errorMessage = "Error Saving A Draft DOI - " + returnedErrorMessage;
 
           if (typeof error === 'object' && error.hasOwnProperty('message')) {
             this.messageHandlerService.errorObject(error['message'], error);
