@@ -1,0 +1,38 @@
+.flex-container-doi-requester {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  float: right;
+}
+
+.notify-container {
+  position: relative;
+}
+
+.metadata-cancel-button {
+  padding: 8px 40px !important;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 20px;
+}
+
+.notify-container .notify-progress,
+.notify-container .notify-success,
+.notify-container .notify-error {
+  position: absolute;
+  bottom: 100%;
+  right: -120px;
+  width: auto;
+  white-space: nowrap;
+  display: flex;
+}
+
+.notify-container .notify-progress .close,
+.notify-container .notify-success .close,
+.notify-container .notify-error .close {
+  margin-left: 5px;
+}
+
+.notify-progress {
+  margin-right: 10px;
+}
