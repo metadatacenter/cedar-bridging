@@ -8,6 +8,10 @@ import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {MaterialModule} from '../../modules/material-module';
 import {HeaderComponent} from "./components/header/header.component";
 import {ClipboardModule} from "@angular/cdk/clipboard";
+import { DoiRequesterComponent } from './components/doi-requester/doi-requester.component';
+import { CancelComponent } from './components/cancel/cancel.component';
+import { DoiSaverComponent } from './components/doi-saver/doi-saver.component';
+import {SharedErrorService} from "../../services/shared-error.service";
 
 @NgModule({
   imports: [
@@ -23,16 +27,23 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
     SpinnerComponent,
     DashboardComponent,
     HeaderComponent,
+    DoiRequesterComponent,
+    CancelComponent,
+    DoiSaverComponent,
   ],
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    TranslateModule,
-    SpinnerComponent,
-    HeaderComponent,
-  ]
+    exports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        TranslateModule,
+        SpinnerComponent,
+        HeaderComponent,
+        DoiRequesterComponent,
+        CancelComponent,
+        DoiSaverComponent,
+    ],
+  providers: [SharedErrorService],
 })
 export class SharedModule {
 }

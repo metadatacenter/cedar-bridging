@@ -1,3 +1,23 @@
 .button-row button {
   margin-right: 8px;
 }
+
+.draft-doi-container {
+  background-color: #d4edda;
+  padding: 8px;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-right: 4.55%;
+  margin-left:4.55%;
+}
+
+.draft-doi-label {
+  //font-weight: bold;
+  font-size: 16px;
+  color: #155724;
+}
+
+.move-buttons-down {
+  transform: translateY(100px);
+}
+

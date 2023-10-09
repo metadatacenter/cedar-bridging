@@ -1,0 +1,26 @@
+<div [ngClass]="{'error-present': showError}" class="flex-container-doi-requester">
+  <div class="flex-child1">
+    <ng-container *ngIf="showProgress || showSuccess || showError">
+      <div class="notify-container">
+        <div *ngIf="showProgress" class="notify-progress">
+          <mat-spinner [diameter]="16" class="notify-progress-icon"></mat-spinner>{{progressMessage}}
+        </div>
+        <div *ngIf="showSuccess" class="notify-success">{{successMessage}}
+          <button type="button" class="close" (click)="clearSuccess()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div *ngIf="showError" class="notify-error">
+          <pre>{{errorMessage}}</pre>
+          <button type="button" class="close close-right-top" (click)="clearError()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="flex-child2">
+    <button mat-raised-button color="primary" class="create-doi-button" (click)="createDoi($event)">Create DOI</button>
+  </div>
+</div>
+
