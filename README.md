@@ -11,7 +11,7 @@ CEDAR Bridging, the frontend application designed for requesting Digital Object 
 
 ## Getting Started
 
-First, Navigate to the cedar-bridging-src directory:
+First, navigate to the cedar-bridging-src directory:
 ```shell
 $ cd <...>/<clone directory>/cedar-bridging/cedar-bridging-src
 ```
