@@ -5,9 +5,12 @@ CEDAR Bridging, the frontend application designed for requesting Digital Object 
 
 ## Features
 
-- **User-Friendly Interface:** CEDAR Bridging integrates the [Cedar Embeddable Editor](https://github.com/metadatacenter/cedar-embeddable-editor)(CEE) to render the CEDAR DataCite templates. The image below showcases the initial interface when a user is creating a DOI for a template or instance.
+**User-Friendly Interface:**  
+CEDAR Bridging integrates the [Cedar Embeddable Editor](https://github.com/metadatacenter/cedar-embeddable-editor)(CEE) to render the CEDAR DataCite templates. The image below showcases the initial interface when a user is creating a DOI for a template or instance.
+![Initial Interface](cedar-bridging-dist/assets/images/initial_interface.png)   
 
-![Initial Interface](cedar-bridging-dist/assets/images/initial_interface.png)
+If a draft has been previously saved, a notification will appear at the top of the page, allowing users to resume editing the pre-saved metadata.
+![Initial Interface](cedar-bridging-dist/assets/images/draft_DOI_existing_notification.png)
 
 ## Getting Started
 
