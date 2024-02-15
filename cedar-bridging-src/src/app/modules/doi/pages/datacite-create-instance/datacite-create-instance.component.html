@@ -3,6 +3,9 @@
 <div class="draft-doi-container" *ngIf="draftDoi">
   <p class="draft-doi-label">A draft DOI exists: https://doi.org/{{draftDoi}}. Please continue editing your metadata based on this draft.</p>
 </div>
+<div class="error-doi-container" *ngIf="doiAlreadyExists">
+  <p class="error-doi-label">A DOI already exists: <a href="{{existingDoi}}" target="_blank">{{existingDoi}}</a>. An artifact can only have one DOI.</p>
+</div>
 <ng-container *ngIf="template !== null">
   <cedar-embeddable-editor
     [config]="ceeConfig"

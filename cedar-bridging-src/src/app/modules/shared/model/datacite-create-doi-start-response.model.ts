@@ -3,5 +3,6 @@ export interface DataCiteCreateDOIStartResponse {
   sourceArtifact: object;
   dataCiteTemplate: object;
   existingDataCiteMetadata: object | null
-  draftDoi: object | null
+  draftDoi: object | null,
+  errorKey: string
 }
