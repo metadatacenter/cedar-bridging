@@ -24,8 +24,10 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
   public template: object | null = null;
   public operation: string = 'Create'
   public draftDoi: object | null = null;
+  public doiAlreadyExists = false;
+  public existingDoi: string | null = null;
   public existingDataCiteMetadata: object | null = null;
-  public showError:boolean = false;
+  public showError: boolean = false;
 
   constructor(
     localSettings: LocalSettingsService,
@@ -39,7 +41,7 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
     private sharedErrorService: SharedErrorService
   ) {
     super(localSettings, translateService, notify, router, route, keycloak, uiService);
-    this.sharedErrorService.showErrorChange.subscribe((showError:boolean) =>{
+    this.sharedErrorService.showErrorChange.subscribe((showError: boolean) => {
       this.showError = showError;
     });
   }
@@ -60,14 +62,16 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
     this.ceeConfig = {
       "terminologyIntegratedSearchUrl": globalAppConfig.terminologyProxyUrl,
     }
-
     const req = this.getDataCiteStartResponse();
     req.subscribe((response: HttpResponse<DataCiteCreateDOIStartResponse>) => {
-      this.template = response.body?.dataCiteTemplate ?? null;
-      this.draftDoi = response.body?.draftDoi ?? null;
-      this.existingDataCiteMetadata = response.body?.existingDataCiteMetadata ?? null;
-    });
-
+        this.template = response.body?.dataCiteTemplate ?? null;
+        this.draftDoi = response.body?.draftDoi ?? null;
+        this.existingDataCiteMetadata = response.body?.existingDataCiteMetadata ?? null;
+      },
+      (response) => {
+        this.doiAlreadyExists = response.error?.errorKey === 'doiAlreadyExists' ?? false;
+        this.existingDoi = response.error?.parameters?.doi ?? null;
+      });
   }
 
 }
