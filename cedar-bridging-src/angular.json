@@ -93,7 +93,8 @@
           "options": {
             "browserTarget": "cedar-bridging:build",
             "port": 4340,
-            "disableHostCheck": true
+            "disableHostCheck": true,
+            "host": "0.0.0.0"
           },
           "configurations": {
             "production": {
