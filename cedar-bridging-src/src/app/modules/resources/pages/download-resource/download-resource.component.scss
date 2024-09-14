@@ -1,0 +1,94 @@
+@use '@angular/material' as mat;
+@import '../../../../../themes/custom-theme.scss';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.wrapper-card {
+  background-color: mat.get-color-from-palette(mat.$indigo-palette, 100) !important;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.flex-container {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: left;
+  flex-wrap: wrap;
+
+  .dash-card {
+    cursor: pointer;
+    margin: 5px;
+    width: 300px;
+    height: 120px;
+  }
+}
+
+.example-card {
+  max-width: 350px;
+  margin: 8px;
+  background-color: mat.get-color-from-palette($ik40-primary, 500) !important;
+  color: mat.get-color-from-palette($ik40-primary, A700) !important;;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+img.big-image {
+  cursor: pointer;
+}
+
+mat-card-content {
+  padding-bottom: 65px;
+
+  p {
+    text-align: center;
+  }
+}
+
+mat-card-footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.wrapper-bg {
+  background-color: mat.get-color-from-palette($ik40-primary, 400) !important
+}
+
+.szekely-title {
+  font-size: 19px;
+}
+
+.image-container {
+  position: relative;
+}
+
+.big-image {
+  width: 100%;
+  height: auto;
+}
+
+.overlay-date {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 36pt;
+  font-weight: bold;
+  user-select: none;
+  width:95%;
+  text-align: center;
+
+  span {
+    font-size: 12pt;
+  }
+}
+
+@media (max-width: 768px) {
+  .overlay-date {
+    top: 50%;
+  }
+}

@@ -1,0 +1,48 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$ik40-primary: mat.define-palette((
+  50: #e8eaf6,
+  100: #c5cae9,
+  200: #9fa8da,
+  300: #7986cb,
+  400: #376c94, // blue
+  500: #f8e2bb, // IK yellow
+  600: #E08022, // IK orange
+  700: #e51616, // IK red
+  800: #283593,
+  900: #1a237e,
+  A100: #8c9eff,
+  A200: #536dfe,
+  A400: #3d5afe,
+  A700: #470c0d, // IK brown
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff,
+  )
+));
+
+$ik40-accent: mat.define-palette($ik40-primary, A200);
+$ik40-warning: mat.define-palette($ik40-primary, A200);
+
+$ik40-theme: mat.define-light-theme((
+  color: (
+    primary: $ik40-primary,
+    accent: $ik40-accent,
+    warn: $ik40-warning
+  )
+));
+
+@include mat.all-component-themes($ik40-theme);

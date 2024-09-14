@@ -14,6 +14,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {initializeKeycloak} from "./init/keycloak-init.factory";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import {AppConfigService} from "./services/app-config.service";
+import {ResourcesModule} from "./modules/resources/resources.module";
 import 'cedar-embeddable-editor/cedar-embeddable-editor.js';
 
 
@@ -40,6 +41,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     SnotifyModule,
     SharedModule,
     DoiModule,
+    ResourcesModule,
     MaterialModule,
     HttpClientModule,
     KeycloakAngularModule,
