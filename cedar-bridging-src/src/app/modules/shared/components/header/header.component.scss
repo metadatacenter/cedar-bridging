@@ -1,6 +1,13 @@
 @use '@angular/material' as mat;
+@import '../../../../../themes/custom-theme.scss';
 
 a {
   color: mat.get-color-from-palette(mat.$indigo-palette, 50);
   text-decoration: none;
+}
+
+.cedar-title {
+  width: 100%;
+  cursor: pointer;
+  color: mat.get-color-from-palette($download-primary, default-contrast);
 }

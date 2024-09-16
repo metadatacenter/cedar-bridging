@@ -34,7 +34,7 @@ export class HeaderComponent extends CedarBase implements OnInit {
   }
 
   openCEDARPage() {
-    this.uiService.openUrlInBlank(globalAppConfig.cedarUrl);
+    this.uiService.openUrl(globalAppConfig.cedarUrl);
   }
 
   openLogout() {

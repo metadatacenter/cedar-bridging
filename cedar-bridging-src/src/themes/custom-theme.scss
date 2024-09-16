@@ -1,21 +1,22 @@
 @use '@angular/material' as mat;
+
 @include mat.core();
 
-$ik40-primary: mat.define-palette((
+$download-primary: mat.define-palette((
   50: #e8eaf6,
   100: #c5cae9,
   200: #9fa8da,
   300: #7986cb,
-  400: #376c94, // blue
-  500: #f8e2bb, // IK yellow
-  600: #E08022, // IK orange
-  700: #e51616, // IK red
+  400: #e9e9e9, // Download background
+  500: #fefefe, // Download box bg
+  600: #E08022, // Download orange
+  700: #e51616, // Download red
   800: #283593,
   900: #1a237e,
   A100: #8c9eff,
-  A200: #536dfe,
-  A400: #3d5afe,
-  A700: #470c0d, // IK brown
+  A200: #ff0000,
+  A400: #294444, // Download header
+  A700: #247d8c, // Download button
   contrast: (
     50: #000000,
     100: #000000,
@@ -34,15 +35,23 @@ $ik40-primary: mat.define-palette((
   )
 ));
 
-$ik40-accent: mat.define-palette($ik40-primary, A200);
-$ik40-warning: mat.define-palette($ik40-primary, A200);
+$download-accent: mat.define-palette($download-primary, A200);
+$download-warning: mat.define-palette($download-primary, A200);
+$download-header: mat.define-palette($download-primary, A400);
+$download-button: mat.define-palette($download-primary, A700);
 
-$ik40-theme: mat.define-light-theme((
+$download-theme: mat.define-light-theme((
   color: (
-    primary: $ik40-primary,
-    accent: $ik40-accent,
-    warn: $ik40-warning
+    primary: $download-primary,
+    accent: $download-accent,
+    warn: $download-warning,
+    header: $download-header
   )
 ));
 
-@include mat.all-component-themes($ik40-theme);
+@include mat.all-component-themes($download-theme);
+
+.custom-header-toolbar {
+  background-color: mat.get-color-from-palette($download-header);
+  color: mat.get-color-from-palette($download-header, default-contrast);  // Ensures proper text color contrast
+}

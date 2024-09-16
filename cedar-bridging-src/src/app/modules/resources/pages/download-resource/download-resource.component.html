@@ -1,9 +1,40 @@
 <app-header title="Download Resource"></app-header>
 
+<mat-card class="wrapper-title-card wrapper-bg">
+  <mat-card-content class="flex-container">
+    <h1>1) Quick Download</h1>
+  </mat-card-content>
+</mat-card>
+
 <mat-card class="wrapper-card wrapper-bg">
   <mat-card-content class="flex-container">
+    <mat-card class="wizard-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Quick Download</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="imagePath + quickDownloadImageUrl" class="big-image">
+      <mat-card-content>
+        <p>Download the resource instantly with default settings.</p>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-card-actions>
+          <button mat-button (click)="quickDownload()">Download</button>
+        </mat-card-actions>
+      </mat-card-footer>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
 
-    <mat-card class="example-card">
+<mat-card class="wrapper-title-card wrapper-bg">
+  <mat-card-content class="flex-container">
+    <h1>or 2) Customize Download</h1>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="wrapper-card wrapper-bg">
+  <mat-card-content class="flex-container">
+    <mat-card class="wizard-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>1) File format</mat-card-title>
@@ -22,7 +53,7 @@
       </mat-card-footer>
     </mat-card>
 
-    <mat-card class="example-card">
+    <mat-card class="wizard-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>2) Include template</mat-card-title>
@@ -40,7 +71,7 @@
       </mat-card-footer>
     </mat-card>
 
-    <mat-card class="example-card">
+    <mat-card class="wizard-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>3) Download format</mat-card-title>
@@ -58,7 +89,7 @@
       </mat-card-footer>
     </mat-card>
 
-    <mat-card class="example-card">
+    <mat-card class="wizard-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>4) Show/download</mat-card-title>
@@ -76,7 +107,7 @@
       </mat-card-footer>
     </mat-card>
 
-    <mat-card class="example-card">
+    <mat-card class="wizard-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>5) {{ actionTitle }}</mat-card-title>
@@ -92,7 +123,7 @@
       </mat-card-footer>
     </mat-card>
 
-    <mat-card class="example-card">
+    <mat-card class="wizard-card">
     </mat-card>
 
   </mat-card-content>

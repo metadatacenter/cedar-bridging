@@ -54,6 +54,8 @@ export class DownloadResourceComponent extends CedarPageComponent implements OnI
   public actionImageUrl: string = '';
   public actionLinkText: string = '';
 
+  public quickDownloadImageUrl: string = '';
+
 
   constructor(
     localSettings: LocalSettingsService,
@@ -178,6 +180,8 @@ export class DownloadResourceComponent extends CedarPageComponent implements OnI
 
     this.actionTitle = this.deliverSubtitle;
     this.actionLinkText = 'Click to ' + this.actionTitle;
+
+    this.quickDownloadImageUrl = 'action-quick.png';
   }
 
   pickDeliverDownload() {
@@ -209,5 +213,9 @@ export class DownloadResourceComponent extends CedarPageComponent implements OnI
 
   pickPackageTemplateAsWell() {
     this.updatePackage('with-template');
+  }
+
+  quickDownload() {
+
   }
 }
