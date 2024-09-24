@@ -19,6 +19,7 @@ body {
   padding-top: 0;
   padding-bottom: 0;
   background-color: mat.get-color-from-palette($download-primary, A700) !important;
+  color: mat.get-color-from-palette($download-primary, 400) !important;
 }
 
 .flex-container {

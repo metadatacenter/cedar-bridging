@@ -1,35 +1,27 @@
 import {Injectable} from '@angular/core';
-import {environment} from "../../environments/environment";
+import {globalAppConfig} from "../../environments/global-app-config";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestApiUrlService {
 
-  private readonly API_URL: string;
+  private readonly API_RESOURCE_URL: string;
 
   constructor() {
-    this.API_URL = environment.apiUrl;
+    this.API_RESOURCE_URL = globalAppConfig.resourceUrl;
   }
 
-  private base() {
-    return `${this.API_URL}`;
+  private resourceBase() {
+    return `${this.API_RESOURCE_URL}`;
   }
 
-  private templates() {
-    return `${this.base()}templates`;
+  private resourceTemplates() {
+    return `${this.resourceBase()}templates`;
   }
 
-  private templateInstances() {
-    return `${this.base()}template-instances`;
-  }
-
-  public template(templateId: string) {
-    return `${this.templates()}/${encodeURIComponent(templateId)}`;
-  }
-
-  public templateInstance(instanceId: string) {
-    return `${this.templateInstances()}/${encodeURIComponent(instanceId)}`;
+  public downloadTemplate(templateId: string) {
+    return `${this.resourceTemplates()}/${encodeURIComponent(templateId)}/download?download=true`;
   }
 
 }

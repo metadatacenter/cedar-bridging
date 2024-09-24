@@ -8,10 +8,11 @@ import {SnotifyService} from "ng-alt-snotify";
 import {ActivatedRoute, Router} from "@angular/router";
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
-import {HttpClient, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {SharedErrorService} from "../../../../services/shared-error.service";
 import {Observable} from "rxjs";
 import {globalAppConfig} from "../../../../../environments/global-app-config";
+import {RestApiUrlService} from "../../../../services/rest-api-url.service";
 
 @Component({
   selector: 'download-resource',
@@ -66,7 +67,8 @@ export class DownloadResourceComponent extends CedarPageComponent implements OnI
     keycloak: KeycloakService,
     uiService: UiService,
     private http: HttpClient,
-    private sharedErrorService: SharedErrorService
+    private sharedErrorService: SharedErrorService,
+    private restApiUrlService: RestApiUrlService
   ) {
     super(localSettings, translateService, notify, router, route, keycloak, uiService);
     this.sharedErrorService.showErrorChange.subscribe((showError: boolean) => {
@@ -216,6 +218,44 @@ export class DownloadResourceComponent extends CedarPageComponent implements OnI
   }
 
   quickDownload() {
+    const downloadUrl = this.restApiUrlService.downloadTemplate(this.sourceArtifactId ?? '');
+
+    const headers = new HttpHeaders({
+      'Accept': `application/x-yaml`, // Use API key if necessary: 'x-api-key': apiKey
+    });
+
+    this.http.post(downloadUrl, {}, {
+      headers: headers,
+      responseType: 'blob',
+      observe: 'response'
+    }).subscribe((response: HttpResponse<Blob>) => {
+      if (response.body) {
+        // Extract the filename from the 'Content-Disposition' header
+        const contentDisposition = response.headers.get('Content-Disposition');
+        let fileName = 'downloaded_file.yaml'; // Default file name
+
+        if (contentDisposition) {
+          // Use a regular expression to extract the filename
+          const matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(contentDisposition);
+          if (matches && matches[1]) {
+            fileName = matches[1].replace(/['"]/g, ''); // Remove any quotes around the filename
+          }
+        }
+
+        // Create a URL for the blob and trigger the download
+        const blob = response.body;
+        const downloadUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = fileName;
+        a.click();
+        window.URL.revokeObjectURL(downloadUrl); // Clean up the blob URL
+      } else {
+        console.error('Response body is null');
+      }
+    }, error => {
+      console.error('Download failed', error); // Handle error
+    });
 
   }
 }
