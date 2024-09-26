@@ -1,5 +1,4 @@
 import {DownloadArtifactAvailableResponse} from "../../../shared/model/download-artifact-available-response.model";
-import {DownloadArtifactWizardState} from "../../../shared/model/download-artifact-wizard-state.model";
 import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
 import {Component, OnInit} from "@angular/core";
 import {LocalSettingsService} from "../../../../services/local-settings.service";
@@ -35,28 +34,7 @@ export class DownloadResourceComponent extends CedarPageComponent implements OnI
   public templateAccessible: boolean | null = null;
   public downloadUri: string | null = null;
 
-  public wizardState: DownloadArtifactWizardState = new DownloadArtifactWizardState();
-
   public imagePath: string = '../../../assets/images/download/';
-
-  public serializationFormatSubtitle: string = '';
-  public serializationFormatImageUrl: string = '';
-
-  public packageSubtitle: string = '';
-  public packageImageUrl: string = '';
-
-  public downloadFormatSubtitle: string = '';
-  public downloadFormatImageUrl: string = '';
-
-  public deliverSubtitle: string = ''
-  public deliverImageUrl: string = '';
-
-  public actionTitle: string = '';
-  public actionImageUrl: string = '';
-  public actionLinkText: string = '';
-
-  public quickDownloadImageUrl: string = '';
-
 
   constructor(
     localSettings: LocalSettingsService,
@@ -74,10 +52,6 @@ export class DownloadResourceComponent extends CedarPageComponent implements OnI
     this.sharedErrorService.showErrorChange.subscribe((showError: boolean) => {
       this.showError = showError;
     });
-    this.updateSerializationFormat('json');
-    this.updatePackage('instance');
-    this.updateDownloadFormat('raw');
-    this.updateDeliver('download');
   }
 
   getArtifactAvailableResponse(): Observable<HttpResponse<DownloadArtifactAvailableResponse>> {
@@ -109,122 +83,25 @@ export class DownloadResourceComponent extends CedarPageComponent implements OnI
       });
   }
 
-  updateSerializationFormat(format: 'json' | 'yaml' | 'yamlc') {
-    this.wizardState.serializationFormat = format;
-
-    switch (format) {
-      case 'json':
-        this.serializationFormatSubtitle = 'JSON Schema';
-        this.serializationFormatImageUrl = 'serialization-json-schema.png'; // example image
-        break;
-      case 'yaml':
-        this.serializationFormatSubtitle = 'YAML';
-        this.serializationFormatImageUrl = 'serialization-yaml.png'; // example image
-        break;
-      case 'yamlc':
-        this.serializationFormatSubtitle = 'Compact YAML';
-        this.serializationFormatImageUrl = 'serialization-yaml-compact.png'; // example image
-        break;
+  quickDownload(format: string) {
+    let downloadUrl: string | null = null
+    if (this.sourceArtifactId !== null) {
+      if (this.sourceArtifactId.indexOf('template-fields') !== -1) {
+        downloadUrl = this.restApiUrlService.downloadTemplateField(this.sourceArtifactId);
+      } else if (this.sourceArtifactId.indexOf('template-elements') !== -1) {
+        downloadUrl = this.restApiUrlService.downloadTemplateElement(this.sourceArtifactId);
+      } else if (this.sourceArtifactId.indexOf('template-instances') !== -1) {
+        downloadUrl = this.restApiUrlService.downloadTemplateInstance(this.sourceArtifactId);
+      } else if (this.sourceArtifactId.indexOf('templates') !== -1) {
+        downloadUrl = this.restApiUrlService.downloadTemplate(this.sourceArtifactId);
+      }
     }
-  }
-
-  pickJSON() {
-    this.updateSerializationFormat('json');
-  }
-
-  pickYAML() {
-    this.updateSerializationFormat('yaml');
-  }
-
-  pickYAMLCompact() {
-    this.updateSerializationFormat('yamlc');
-  }
-
-  updateDownloadFormat(format: 'raw' | 'zip') {
-    this.wizardState.downloadFormat = format;
-
-    switch (format) {
-      case 'raw':
-        this.downloadFormatSubtitle = 'Raw';
-        this.downloadFormatImageUrl = 'download-raw.png'; // example image
-        break;
-      case 'zip':
-        this.downloadFormatSubtitle = 'Zip';
-        this.downloadFormatImageUrl = 'download-zip.png'; // example image
-        break;
-    }
-  }
-
-  pickRaw() {
-    this.updateDownloadFormat('raw');
-  }
-
-  pickZip() {
-    this.updateDownloadFormat('zip');
-  }
-
-
-  updateDeliver(deliver: 'download' | 'in-browser') {
-    this.wizardState.deliver = deliver;
-
-    switch (deliver) {
-      case 'download':
-        this.deliverSubtitle = 'Download and Save';
-        this.deliverImageUrl = 'deliver-download.png';
-        this.actionImageUrl = 'action-download.png';
-        break;
-      case 'in-browser':
-        this.deliverSubtitle = 'Show in Browser';
-        this.deliverImageUrl = 'deliver-in-browser.png';
-        this.actionImageUrl = 'action-in-browser.png';
-        break;
-    }
-
-    this.actionTitle = this.deliverSubtitle;
-    this.actionLinkText = 'Click to ' + this.actionTitle;
-
-    this.quickDownloadImageUrl = 'action-quick.png';
-  }
-
-  pickDeliverDownload() {
-    this.updateDeliver('download');
-  }
-
-  pickDeliverInBrowser() {
-    this.updateDeliver('in-browser');
-  }
-
-  updatePackage(packageContent: 'instance' | 'with-template') {
-    this.wizardState.packageContent = packageContent;
-
-    switch (packageContent) {
-      case 'instance':
-        this.packageSubtitle = 'Just the Instance';
-        this.packageImageUrl = 'package-instance.png';
-        break;
-      case 'with-template':
-        this.packageSubtitle = 'Include the Template';
-        this.packageImageUrl = 'package-with-template.png';
-        break;
-    }
-  }
-
-  pickPackageJustInstance() {
-    this.updatePackage('instance');
-  }
-
-  pickPackageTemplateAsWell() {
-    this.updatePackage('with-template');
-  }
-
-  quickDownload() {
-    const downloadUrl = this.restApiUrlService.downloadTemplate(this.sourceArtifactId ?? '');
 
     const headers = new HttpHeaders({
-      'Accept': `application/x-yaml`, // Use API key if necessary: 'x-api-key': apiKey
+      'Accept': `application/x-yaml`,
     });
 
-    this.http.post(downloadUrl, {}, {
+    this.http.post(downloadUrl ?? '', {}, {
       headers: headers,
       responseType: 'blob',
       observe: 'response'

@@ -8,47 +8,19 @@
 
 <mat-card class="wrapper-card wrapper-bg">
   <mat-card-content class="flex-container">
+
     <mat-card class="wizard-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Quick Download</mat-card-title>
+        <mat-card-title>Quick Download JSON</mat-card-title>
       </mat-card-header>
-      <img mat-card-image [src]="imagePath + quickDownloadImageUrl" class="big-image">
+      <img mat-card-image [src]="imagePath + 'serialization-json-schema.png'" class="big-image">
       <mat-card-content>
         <p>Download the resource instantly with default settings.</p>
       </mat-card-content>
       <mat-card-footer>
         <mat-card-actions>
-          <button mat-button (click)="quickDownload()">Download</button>
-        </mat-card-actions>
-      </mat-card-footer>
-    </mat-card>
-  </mat-card-content>
-</mat-card>
-
-<mat-card class="wrapper-title-card wrapper-bg">
-  <mat-card-content class="flex-container">
-    <h1>or 2) Customize Download</h1>
-  </mat-card-content>
-</mat-card>
-
-<mat-card class="wrapper-card wrapper-bg">
-  <mat-card-content class="flex-container">
-    <mat-card class="wizard-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>1) File format</mat-card-title>
-        <mat-card-subtitle>{{ serializationFormatSubtitle }}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image [src]="imagePath + serializationFormatImageUrl" class="big-image">
-      <mat-card-content>
-        <p>Choose the format that you want the source file to be in:</p>
-      </mat-card-content>
-      <mat-card-footer>
-        <mat-card-actions>
-          <button mat-button (click)="pickJSON()">JSON Schema</button>
-          <button mat-button (click)="pickYAML()">YAML</button>
-          <button mat-button (click)="pickYAMLCompact()">Compact YAML</button>
+          <button mat-button (click)="quickDownload('json')">Download</button>
         </mat-card-actions>
       </mat-card-footer>
     </mat-card>
@@ -56,17 +28,15 @@
     <mat-card class="wizard-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>2) Include template</mat-card-title>
-        <mat-card-subtitle>{{ packageSubtitle }}</mat-card-subtitle>
+        <mat-card-title>Quick Download YAML</mat-card-title>
       </mat-card-header>
-      <img mat-card-image [src]="imagePath + packageImageUrl" class="big-image">
+      <img mat-card-image [src]="imagePath + 'serialization-yaml.png'" class="big-image">
       <mat-card-content>
-        <p>Choose whether you also want the template to be included with the instance:</p>
+        <p>Download the resource instantly with default settings.</p>
       </mat-card-content>
       <mat-card-footer>
         <mat-card-actions>
-          <button mat-button (click)="pickPackageJustInstance()">Just the instance</button>
-          <button mat-button (click)="pickPackageTemplateAsWell()">Include the template</button>
+          <button mat-button (click)="quickDownload('yaml')">Download</button>
         </mat-card-actions>
       </mat-card-footer>
     </mat-card>
@@ -74,56 +44,17 @@
     <mat-card class="wizard-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>3) Download format</mat-card-title>
-        <mat-card-subtitle>{{ downloadFormatSubtitle }}</mat-card-subtitle>
+        <mat-card-title>Quick Download Compact YAML</mat-card-title>
       </mat-card-header>
-      <img mat-card-image [src]="imagePath + downloadFormatImageUrl" class="big-image">
+      <img mat-card-image [src]="imagePath + 'serialization-yaml-compact.png'" class="big-image">
       <mat-card-content>
-        <p>Choose the format that you want to download:</p>
+        <p>Download the resource instantly with default settings.</p>
       </mat-card-content>
       <mat-card-footer>
         <mat-card-actions>
-          <button mat-button (click)="pickRaw()">Raw</button>
-          <button mat-button (click)="pickZip()">Zip</button>
+          <button mat-button (click)="quickDownload('yamlc')">Download</button>
         </mat-card-actions>
       </mat-card-footer>
-    </mat-card>
-
-    <mat-card class="wizard-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>4) Show/download</mat-card-title>
-        <mat-card-subtitle>{{ deliverSubtitle }}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image [src]="imagePath + deliverImageUrl" class="big-image">
-      <mat-card-content>
-        <p>How do you want your content to be delivered:</p>
-      </mat-card-content>
-      <mat-card-footer>
-        <mat-card-actions>
-          <button mat-button (click)="pickDeliverDownload()">Download and Save</button>
-          <button mat-button (click)="pickDeliverInBrowser()">Show in Browser</button>
-        </mat-card-actions>
-      </mat-card-footer>
-    </mat-card>
-
-    <mat-card class="wizard-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>5) {{ actionTitle }}</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image [src]="imagePath + actionImageUrl" class="big-image">
-      <mat-card-content>
-        <p>&nbsp;</p>
-      </mat-card-content>
-      <mat-card-footer>
-        <mat-card-actions>
-          <button mat-button>{{ actionLinkText }}</button>
-        </mat-card-actions>
-      </mat-card-footer>
-    </mat-card>
-
-    <mat-card class="wizard-card">
     </mat-card>
 
   </mat-card-content>
