@@ -87,18 +87,25 @@ export class DownloadResourceComponent extends CedarPageComponent implements OnI
     let downloadUrl: string | null = null
     if (this.sourceArtifactId !== null) {
       if (this.sourceArtifactId.indexOf('template-fields') !== -1) {
-        downloadUrl = this.restApiUrlService.downloadTemplateField(this.sourceArtifactId);
+        downloadUrl = this.restApiUrlService.downloadTemplateField(this.sourceArtifactId, format === 'yamlc');
       } else if (this.sourceArtifactId.indexOf('template-elements') !== -1) {
-        downloadUrl = this.restApiUrlService.downloadTemplateElement(this.sourceArtifactId);
+        downloadUrl = this.restApiUrlService.downloadTemplateElement(this.sourceArtifactId, format === 'yamlc');
       } else if (this.sourceArtifactId.indexOf('template-instances') !== -1) {
-        downloadUrl = this.restApiUrlService.downloadTemplateInstance(this.sourceArtifactId);
+        downloadUrl = this.restApiUrlService.downloadTemplateInstance(this.sourceArtifactId, format === 'yamlc');
       } else if (this.sourceArtifactId.indexOf('templates') !== -1) {
-        downloadUrl = this.restApiUrlService.downloadTemplate(this.sourceArtifactId);
+        downloadUrl = this.restApiUrlService.downloadTemplate(this.sourceArtifactId, format === 'yamlc');
       }
     }
 
+    var accept = '*/*'
+    if (format == 'json') {
+      accept='application/json';
+    } else if (format == 'yaml' || format == 'yamlc') {
+      accept='application/x-yaml';
+    }
+
     const headers = new HttpHeaders({
-      'Accept': `application/x-yaml`,
+      'Accept': accept,
     });
 
     this.http.post(downloadUrl ?? '', {}, {

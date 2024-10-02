@@ -32,20 +32,20 @@ export class RestApiUrlService {
     return `${this.resourceBase()}template-instances`;
   }
 
-  public downloadTemplate(templateId: string) {
-    return `${this.resourceTemplates()}/${encodeURIComponent(templateId)}/download?download=true`;
+  public downloadTemplate(templateId: string, compact:boolean) {
+    return `${this.resourceTemplates()}/${encodeURIComponent(templateId)}/download?compact=${compact}`;
   }
 
-  public downloadTemplateField(templateId: string) {
-    return `${this.resourceTemplateFields()}/${encodeURIComponent(templateId)}/download?download=true`;
+  public downloadTemplateField(templateId: string, compact:boolean) {
+    return `${this.resourceTemplateFields()}/${encodeURIComponent(templateId)}/download?compact=${compact}`;
   }
 
-  public downloadTemplateElement(templateId: string) {
-    return `${this.resourceTemplateElements()}/${encodeURIComponent(templateId)}/download?download=true`;
+  public downloadTemplateElement(templateId: string, compact:boolean) {
+    return `${this.resourceTemplateElements()}/${encodeURIComponent(templateId)}/download?compact=${compact}`;
   }
 
-  public downloadTemplateInstance(templateId: string) {
-    return `${this.resourceTemplateInstances()}/${encodeURIComponent(templateId)}/download?download=true`;
+  public downloadTemplateInstance(templateId: string, compact:boolean) {
+    return `${this.resourceTemplateInstances()}/${encodeURIComponent(templateId)}/download?compact=${compact}`;
   }
 
 }
