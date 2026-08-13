@@ -72,9 +72,6 @@ MIT
 @ngx-translate/http-loader
 MIT
 
-@org.metadatacenter/cedar-embeddable-editor
-ISC
-
 base64-js
 MIT
 The MIT License (MIT)
@@ -99,6 +96,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
+
+cedar-embeddable-editor
+ISC
 
 js-sha256
 MIT
