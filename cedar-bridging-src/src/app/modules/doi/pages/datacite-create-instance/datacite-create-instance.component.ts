@@ -60,7 +60,8 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
     this.sourceArtifactId = this.route.snapshot.paramMap.get('sourceArtifactId');
 
     this.ceeConfig = {
-      "terminologyIntegratedSearchUrl": globalAppConfig.terminologyProxyUrl,
+      "terminologyBaseUrl": globalAppConfig.terminologyBaseUrl,
+      "bridgeBaseUrl": globalAppConfig.bridgeUrl,
     }
     const req = this.getDataCiteStartResponse();
     req.subscribe((response: HttpResponse<DataCiteCreateDOIStartResponse>) => {
