@@ -2,7 +2,6 @@
   "cedarUrl": "https://cedar.{{cedarDomain}}/",
   "appUrl": "https://bridging.{{cedarDomain}}/",
   "bridgeUrl": "https://bridge.{{cedarDomain}}/",
-  "terminologyUrl": "https://terminology.{{cedarDomain}}/",
-  "terminologyProxyUrl": "https://terminology.{{cedarDomain}}/bioportal/integrated-search",
+  "terminologyBaseUrl": "https://terminology.{{cedarDomain}}/",
   "keycloakUrl": "https://auth.{{cedarDomain}}/"
 }
