@@ -26,7 +26,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
-    "cedar-embeddable-editor": "2.0.1",
+    "cedar-embeddable-editor": "npm:@org.metadatacenter/cedar-embeddable-editor@2.0.2-dev.20260824.48283fb",
     "keycloak-angular": "^13.0.0",
     "keycloak-js": "^21.0.1",
     "ng-alt-snotify": "^15.2.9",
