@@ -1,7 +1,7 @@
 
 # CEDAR Bridging
 
-CEDAR Bridging, the frontend application designed for requesting Digital Object Identifiers (DOIs) for templates and instances. It empowers users to fill out CEDAR DataCite templates, supplying essential details about templates or instances to generate DOIs. This component is an essential part of the comprehensive CEDAR application. For documentation access, please click [here](https://github.com/metadatacenter/cedar-docs/wiki).
+CEDAR Bridging, the frontend application designed for requesting Digital Object Identifiers (DOIs) for templates and instances. It empowers users to fill out CEDAR DataCite templates, supplying essential details about templates or instances to generate DOIs. This component is an essential part of the comprehensive CEDAR application. CEDAR documentation is at [metadatacenter.org](https://metadatacenter.org/).
 
 ## Features
 
