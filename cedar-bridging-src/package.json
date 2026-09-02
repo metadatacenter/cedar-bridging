@@ -12,6 +12,11 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  "allowScripts": {
+    "esbuild@0.17.8": true,
+    "fsevents@2.3.3": true,
+    "nice-napi@1.0.2": true
+  },
   "dependencies": {
     "@angular/animations": "^15.2.4",
     "@angular/cdk": "^15.2.4",
