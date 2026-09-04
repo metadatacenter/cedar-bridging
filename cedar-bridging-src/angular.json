@@ -38,6 +38,11 @@
                 "glob": "{*loader.js,*adapter.js,bundles/*.js}",
                 "input": "node_modules/@webcomponents/webcomponentsjs/",
                 "output": "node_modules/@webcomponents/webcomponentsjs"
+              },
+              {
+                "glob": "cedar-embeddable-editor.js",
+                "input": "node_modules/cedar-embeddable-editor/",
+                "output": "node_modules/cedar-embeddable-editor"
               }
             ],
             "styles": [

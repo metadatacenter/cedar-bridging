@@ -14,7 +14,6 @@ import {provideTranslateHttpLoader} from "@ngx-translate/http-loader";
 import {initializeKeycloak} from "./init/keycloak-init.factory";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import {AppConfigService} from "./services/app-config.service";
-import 'cedar-embeddable-editor/cedar-embeddable-editor.js';
 
 
 
