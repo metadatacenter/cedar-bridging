@@ -1,26 +1,34 @@
 <app-header title="Describe your artifact using this DataCite form to request a DOI"></app-header>
 
-<div class="draft-doi-container" *ngIf="draftDoi">
-  <p class="draft-doi-label">A draft DOI exists: https://doi.org/{{draftDoi}}. Please continue editing your metadata based on this draft.</p>
-</div>
-<div class="error-doi-container" *ngIf="doiAlreadyExists">
-  <p class="error-doi-label">A DOI already exists: <a href="{{existingDoi}}" target="_blank">{{existingDoi}}</a>. An artifact can only have one DOI.</p>
-</div>
-<ng-container *ngIf="template !== null">
+@if (draftDoi) {
+  <div class="draft-doi-container">
+    <p class="draft-doi-label">A draft DOI exists: https://doi.org/{{draftDoi}}. Please continue editing your metadata based on this draft.</p>
+  </div>
+}
+@if (doiAlreadyExists) {
+  <div class="error-doi-container">
+    <p class="error-doi-label">A DOI already exists: <a href="{{existingDoi}}" target="_blank">{{existingDoi}}</a>. An artifact can only have one DOI.</p>
+  </div>
+}
+@if (template !== null) {
   <cedar-embeddable-editor
     [config]="ceeConfig"
     [templateObject]="template"
     [instanceObject]="existingDataCiteMetadata"
   ></cedar-embeddable-editor>
   <div class="button-container" [ngClass]="{'move-buttons-down': showError}">
-    <app-doi-saver *ngIf="sourceArtifactId != null"
-     [sourceArtifactId]="sourceArtifactId"
-    ></app-doi-saver>
-    <app-doi-requester *ngIf="sourceArtifactId != null"
-      [sourceArtifactId]="sourceArtifactId"
-    ></app-doi-requester>
+    @if (sourceArtifactId != null) {
+      <app-doi-saver
+        [sourceArtifactId]="sourceArtifactId"
+      ></app-doi-saver>
+    }
+    @if (sourceArtifactId != null) {
+      <app-doi-requester
+        [sourceArtifactId]="sourceArtifactId"
+      ></app-doi-requester>
+    }
     <app-cancel
       [operation]="operation">
     </app-cancel>
   </div>
-</ng-container>
+}

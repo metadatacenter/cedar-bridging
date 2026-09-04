@@ -91,17 +91,17 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "cedar-bridging:build",
+            "buildTarget": "cedar-bridging:build",
             "port": 4340,
             "disableHostCheck": true,
             "host": "0.0.0.0"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cedar-bridging:build:production"
+              "buildTarget": "cedar-bridging:build:production"
             },
             "development": {
-              "browserTarget": "cedar-bridging:build:development"
+              "buildTarget": "cedar-bridging:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -109,7 +109,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cedar-bridging:build"
+            "buildTarget": "cedar-bridging:build"
           }
         },
         "test": {
@@ -137,5 +137,31 @@
   },
   "cli": {
     "analytics": false
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
   }
 }

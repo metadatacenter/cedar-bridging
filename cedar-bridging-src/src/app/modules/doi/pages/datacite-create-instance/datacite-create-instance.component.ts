@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CedarPageComponent} from '../../../shared/components/base/cedar-page-component.component';
 import {TranslateService} from '@ngx-translate/core';
@@ -15,7 +15,9 @@ import {SharedErrorService} from "../../../../services/shared-error.service";
 @Component({
   selector: 'datacite-create-instance',
   templateUrl: './datacite-create-instance.component.html',
-  styleUrls: ['./datacite-create-instance.component.scss']
+  styleUrls: ['./datacite-create-instance.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class DataciteCreateInstanceComponent extends CedarPageComponent implements OnInit {
 
@@ -70,7 +72,7 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
         this.existingDataCiteMetadata = response.body?.existingDataCiteMetadata ?? null;
       },
       (response) => {
-        this.doiAlreadyExists = response.error?.errorKey === 'doiAlreadyExists' ?? false;
+        this.doiAlreadyExists = response.error?.errorKey === 'doiAlreadyExists';
         this.existingDoi = response.error?.parameters?.doi ?? null;
       });
   }
