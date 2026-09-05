@@ -17,11 +17,18 @@
     </script>
     <script type="text/javascript" src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
   </div>
-  <script>
-    window.cedarDomain = "metadatacenter.org";
-  </script>
   <!-- load the webcomponents loader, which injects the necessary polyfill bundle -->
   <script type="text/javascript" src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <!-- load the component -->
+  <!--
+    Copied as an asset and loaded by tag, rather than imported by app.module or
+    listed in angular.json's `scripts`. An import puts 2.2 MB of editor into this
+    application's own bundle, and a `scripts` entry is re-minified by this build,
+    which drops the static initializers in CEE's esbuild bundle and leaves the
+    custom element unregistered. The file arrives minified; nothing here needs to
+    touch it.
+  -->
+  <script type="text/javascript" src="node_modules/cedar-embeddable-editor/cedar-embeddable-editor.js"></script>
 </head>
 <body class="mat-typography">
 <app-root></app-root>

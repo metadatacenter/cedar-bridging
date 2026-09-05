@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {MessageHandlerService} from "../../../../services/message-handler.service";
@@ -8,7 +8,9 @@ import {SharedErrorService} from "../../../../services/shared-error.service";
 @Component({
   selector: 'app-doi-saver',
   templateUrl: './doi-saver.component.html',
-  styleUrls: ['./doi-saver.component.scss']
+  styleUrls: ['./doi-saver.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class DoiSaverComponent implements OnInit, OnDestroy{
   private static readonly SUCCESS_MESSAGE_TIMEOUT = 5000;

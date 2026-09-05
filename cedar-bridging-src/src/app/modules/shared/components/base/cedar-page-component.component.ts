@@ -4,11 +4,13 @@ import {CedarBase} from './cedar-base.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {KeycloakService} from "keycloak-angular";
-import {Component} from "@angular/core";
+import {Component, ChangeDetectionStrategy} from "@angular/core";
 import {UiService} from "../../../../services/ui.service";
 
 @Component({
-  template: ''
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export abstract class CedarPageComponent extends CedarBase {
 

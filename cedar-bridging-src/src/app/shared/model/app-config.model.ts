@@ -1,3 +1,5 @@
+import {environment} from '../../../environments/environment';
+
 export class AppConfig {
   appUrl: string = '';
   cedarUrl: string = '';
@@ -7,7 +9,7 @@ export class AppConfig {
   loaded: boolean = false;
 
   init(appConfig: AppConfig) {
-    const domain = (window as any).cedarDomain;
+    const domain = environment.cedarDomain;
     this.appUrl = appConfig.appUrl.replace('{{cedarDomain}}', domain);
     this.cedarUrl = appConfig.cedarUrl.replace('{{cedarDomain}}', domain);
     this.bridgeUrl = appConfig.bridgeUrl.replace('{{cedarDomain}}', domain);

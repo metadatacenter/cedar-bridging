@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
 
-@import 'styles/roboto.scss';
-@import 'styles/material-icons.scss';
+@use 'styles/roboto';
+@use 'styles/material-icons';
 
 html, body {
   height: 100%;
@@ -14,7 +14,7 @@ body {
 }
 
 .wrapper-card {
-  background-color: mat.get-color-from-palette(mat.$indigo-palette, 50) !important;
+  background-color: mat.m2-get-color-from-palette(mat.$m2-indigo-palette, 50) !important;
   padding-top: 16px;
   padding-bottom: 16px;
 }

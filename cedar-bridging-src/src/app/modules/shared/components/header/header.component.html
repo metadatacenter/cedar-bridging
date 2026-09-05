@@ -3,8 +3,12 @@
     <mat-icon>park</mat-icon>
   </button>
   <div style="width:100%">
-    <a [routerLink]="'/'"><ng-container *ngIf="!title">CEDAR Bridging</ng-container>
-      <ng-container *ngIf="title">{{title}}</ng-container></a>
+    <a [routerLink]="'/'">@if (!title) {
+      CEDAR Bridging
+    }
+    @if (title) {
+      {{title}}
+    }</a>
   </div>
 
   <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="User">

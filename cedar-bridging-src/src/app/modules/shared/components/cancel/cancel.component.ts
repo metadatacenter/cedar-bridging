@@ -1,10 +1,11 @@
-import {Component, Input, Inject} from '@angular/core';
-import {DOCUMENT} from "@angular/common";
+import {Component, Input, Inject, DOCUMENT, ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
   selector: 'app-cancel',
   templateUrl: './cancel.component.html',
-  styleUrls: ['./cancel.component.scss']
+  styleUrls: ['./cancel.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class CancelComponent {
   @Input() operation: string = '';
