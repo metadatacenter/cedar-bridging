@@ -1,0 +1,336 @@
+{
+  "schema": 1,
+  "findings": {
+    "4eba393d579006a415bc": {
+      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
+      "rule": "spacing",
+      "property": "margin-right",
+      "value": "8px",
+      "count": 1
+    },
+    "b629ac0fb829b12d1b54": {
+      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
+      "rule": "color",
+      "property": "background-color",
+      "value": "#d4edda",
+      "count": 1
+    },
+    "bf9261bb5441344abd83": {
+      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "8px",
+      "count": 2
+    },
+    "88b65fba1d8796e064ae": {
+      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
+      "rule": "geometry",
+      "property": "border-radius",
+      "value": "5px",
+      "count": 2
+    },
+    "076d4d04f89ff3fb9ca2": {
+      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "20px",
+      "count": 2
+    },
+    "5479f74202b3558940c1": {
+      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "16px",
+      "count": 2
+    },
+    "23e6d72c3034b7b7d131": {
+      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#155724",
+      "count": 1
+    },
+    "128a3c3b1956a7d3353d": {
+      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
+      "rule": "color",
+      "property": "background-color",
+      "value": "#fc4c4c",
+      "count": 1
+    },
+    "a0f732a8ccc829e34aec": {
+      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
+      "rule": "color",
+      "property": "color",
+      "value": "#ffffff",
+      "count": 2
+    },
+    "a270da4238bce37090df": {
+      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
+      "rule": "typography",
+      "property": "font-weight",
+      "value": "bold",
+      "count": 1
+    },
+    "995375bb8f35d5822fdd": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/cancel/cancel.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "50px",
+      "count": 1
+    },
+    "9152aeb749e9a9be64b1": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/cancel/cancel.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "8px 40px !important",
+      "count": 1
+    },
+    "005edde6c5834394572a": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/cancel/cancel.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "16px",
+      "count": 1
+    },
+    "845c55774a96e2265139": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/cancel/cancel.component.scss",
+      "rule": "typography",
+      "property": "font-weight",
+      "value": "400",
+      "count": 1
+    },
+    "aac6c1baeb5bdf72364e": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/cancel/cancel.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "20px",
+      "count": 1
+    },
+    "6c413d6239bdfb9c470f": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/cancel/cancel.component.scss",
+      "rule": "spacing",
+      "property": "margin-left",
+      "value": "5px",
+      "count": 1
+    },
+    "0b358c46447e41c271cf": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/cancel/cancel.component.scss",
+      "rule": "spacing",
+      "property": "margin-right",
+      "value": "10px",
+      "count": 1
+    },
+    "e516096828460224d453": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-requester/doi-requester.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "50px",
+      "count": 1
+    },
+    "059cb7b2d33815467ba6": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-requester/doi-requester.component.scss",
+      "rule": "spacing",
+      "property": "margin-bottom",
+      "value": "50px",
+      "count": 1
+    },
+    "7790016afbaf92ce878b": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-requester/doi-requester.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "8px 20px !important",
+      "count": 1
+    },
+    "622e74cc56156eaae898": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-requester/doi-requester.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "16px",
+      "count": 1
+    },
+    "ce686922942ef2959c94": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-requester/doi-requester.component.scss",
+      "rule": "typography",
+      "property": "font-weight",
+      "value": "400",
+      "count": 1
+    },
+    "8368e122eb21674f158e": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-requester/doi-requester.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "20px",
+      "count": 1
+    },
+    "15026baa8ac018e186fa": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-requester/doi-requester.component.scss",
+      "rule": "spacing",
+      "property": "margin-left",
+      "value": "5px",
+      "count": 1
+    },
+    "d6f34e1bc1f8b3599c87": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-requester/doi-requester.component.scss",
+      "rule": "spacing",
+      "property": "margin-right",
+      "value": "10px",
+      "count": 1
+    },
+    "86d6b9ba5608271edf65": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-saver/doi-saver.component.scss",
+      "rule": "spacing",
+      "property": "margin-top",
+      "value": "49px",
+      "count": 1
+    },
+    "a284fd1c1bc042f5e236": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-saver/doi-saver.component.scss",
+      "rule": "spacing",
+      "property": "margin-right",
+      "value": "30px",
+      "count": 1
+    },
+    "3b9969971aabf5deeca1": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-saver/doi-saver.component.scss",
+      "rule": "spacing",
+      "property": "margin-bottom",
+      "value": "50px",
+      "count": 1
+    },
+    "fae7f603d250eb0ee99a": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-saver/doi-saver.component.scss",
+      "rule": "spacing",
+      "property": "padding",
+      "value": "8px 20px !important",
+      "count": 1
+    },
+    "b1828f91a62f4bdca65a": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-saver/doi-saver.component.scss",
+      "rule": "typography",
+      "property": "font-size",
+      "value": "16px",
+      "count": 1
+    },
+    "6f996e634deceb683a37": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-saver/doi-saver.component.scss",
+      "rule": "typography",
+      "property": "font-weight",
+      "value": "400",
+      "count": 1
+    },
+    "3c8b7e6388ad61b64588": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-saver/doi-saver.component.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "20px",
+      "count": 1
+    },
+    "deb9fcc2a1ed16bb1534": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-saver/doi-saver.component.scss",
+      "rule": "spacing",
+      "property": "margin-left",
+      "value": "5px",
+      "count": 1
+    },
+    "d7fcf6310363f8c5bb64": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/doi-saver/doi-saver.component.scss",
+      "rule": "spacing",
+      "property": "margin-right",
+      "value": "10px",
+      "count": 1
+    },
+    "567deabf62c3fc38784b": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/spinner/spinner.component.html",
+      "rule": "utility-style",
+      "property": "utility-style",
+      "value": "mr-2",
+      "count": 1
+    },
+    "11c8b84425aa70a82555": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/spinner/spinner.component.scss",
+      "rule": "geometry",
+      "property": "z-index",
+      "value": "9010",
+      "count": 1
+    },
+    "c6140844c97f4f62c67b": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/spinner/spinner.component.scss",
+      "rule": "color",
+      "property": "border",
+      "value": "4px solid #f3f3f3",
+      "count": 1
+    },
+    "16e728387974dc38304f": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/spinner/spinner.component.scss",
+      "rule": "color",
+      "property": "border-top",
+      "value": "4px solid #555555",
+      "count": 1
+    },
+    "71c5c9bd3348d4a75d24": {
+      "file": "cedar-bridging-src/src/app/modules/shared/components/spinner/spinner.component.scss",
+      "rule": "geometry",
+      "property": "height",
+      "value": "24px",
+      "count": 1
+    },
+    "05bf80e55fd7bc38cf9e": {
+      "file": "cedar-bridging-src/src/styles.scss",
+      "rule": "spacing",
+      "property": "padding-top",
+      "value": "16px",
+      "count": 1
+    },
+    "6ab340fd7a0504337171": {
+      "file": "cedar-bridging-src/src/styles.scss",
+      "rule": "spacing",
+      "property": "padding-bottom",
+      "value": "16px",
+      "count": 1
+    },
+    "cdb69e339f9676523b67": {
+      "file": "cedar-bridging-src/src/styles.scss",
+      "rule": "spacing",
+      "property": "margin",
+      "value": "5px",
+      "count": 1
+    },
+    "cdf2ae909058149e415e": {
+      "file": "cedar-bridging-src/src/styles.scss",
+      "rule": "geometry",
+      "property": "height",
+      "value": "120px",
+      "count": 1
+    },
+    "90fa1be77aae25aaec2d": {
+      "file": "cedar-bridging-src/src/styles/roboto.scss",
+      "rule": "typography",
+      "property": "font-family",
+      "value": "'Roboto'",
+      "count": 21
+    },
+    "cabdc474ee774557db31": {
+      "file": "cedar-bridging-src/src/styles/roboto.scss",
+      "rule": "typography",
+      "property": "font-weight",
+      "value": "300",
+      "count": 7
+    },
+    "a2a72d9fb34de6ea7c17": {
+      "file": "cedar-bridging-src/src/styles/roboto.scss",
+      "rule": "typography",
+      "property": "font-weight",
+      "value": "400",
+      "count": 7
+    },
+    "f87142736ee65b85c137": {
+      "file": "cedar-bridging-src/src/styles/roboto.scss",
+      "rule": "typography",
+      "property": "font-weight",
+      "value": "500",
+      "count": 7
+    }
+  },
+  "exceptions": {},
+  "policy": 2
+}

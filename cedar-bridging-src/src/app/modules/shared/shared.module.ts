@@ -1,3 +1,4 @@
+import {CedarIconDirective} from './directives/cedar-icon.directive';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -15,6 +16,7 @@ import {SharedErrorService} from "../../services/shared-error.service";
 
 @NgModule({
   imports: [
+    CedarIconDirective,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -32,6 +34,7 @@ import {SharedErrorService} from "../../services/shared-error.service";
     DoiSaverComponent,
   ],
     exports: [
+    CedarIconDirective,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
