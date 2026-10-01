@@ -21,7 +21,7 @@ body {
 }
 
 .wrapper-card {
-  background-color: tokens.$surface-canvas !important;
+  background-color: tokens.$surface-subtle !important;
   padding-top: 16px;
   padding-bottom: 16px;
 }
@@ -52,7 +52,7 @@ mat-icon.cedar-icon {
 }
 mat-icon.cedar-icon > svg { display: block; }
 
-button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) solid var(--cedar-focus-ring-color); outline-offset: var(--cedar-focus-ring-offset); }
+button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) solid var(--cedar-color-primary); outline-offset: var(--cedar-focus-ring-offset); }
 
 .mat-toolbar.mat-primary :focus-visible { outline-color: var(--cedar-color-on-primary); }
 
