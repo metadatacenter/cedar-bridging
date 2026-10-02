@@ -1,3 +1,4 @@
+@use "@org.metadatacenter/cedar-design-tokens/spacing";
 .button-row button {
   margin-right: 8px;
 }
@@ -7,8 +8,8 @@
   padding: 8px;
   border-radius: 5px;
   margin-top: 20px;
-  margin-right: 4.55%;
-  margin-left: 4.55%;
+  @include spacing.apply(margin-right, inset-status-panel);
+  @include spacing.apply(margin-left, inset-status-panel);
 
   .draft-doi-label {
     font-size: 16px;
@@ -16,14 +17,13 @@
   }
 }
 
-
 .error-doi-container {
   background-color: #fc4c4c;
   padding: 8px;
   border-radius: 5px;
   margin-top: 20px;
-  margin-right: 4.55%;
-  margin-left: 4.55%;
+  @include spacing.apply(margin-right, inset-status-panel);
+  @include spacing.apply(margin-left, inset-status-panel);
 
   .error-doi-label {
     font-size: 16px;
@@ -39,4 +39,3 @@
 .move-buttons-down {
   transform: translateY(100px);
 }
-
