@@ -40,3 +40,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# browser suite
+browser/node_modules/
+browser/test-results/
+browser/playwright-report/

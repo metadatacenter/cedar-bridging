@@ -1,0 +1,214 @@
+{
+  "schema": 1,
+  "repo": "cedar-bridging",
+  "browserHelper": "browser/tests/surface-contracts.generated.mjs",
+  "surfaces": [
+    {
+      "id": "bridging.dashboard",
+      "name": "Dashboard",
+      "section": "Bridging",
+      "source": [
+        {
+          "file": "cedar-bridging-src/src/app/app-routing.module.ts",
+          "anchor": "path: ''"
+        },
+        {
+          "file": "cedar-bridging-src/src/app/modules/shared/pages/dashboard/dashboard.component.ts",
+          "anchor": "export class DashboardComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "dashboard-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 toolbar title typography tracks the header title at 0.0125em, 0.25px at the 20px heading size."
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "Material's M2 level-1 elevation draws the dashboard's DOI card with this shadow colour."
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "Material's M2 level-1 elevation draws the dashboard's DOI card with this shadow colour."
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.1px",
+          "reason": "Material's M2 subtitle-2 typography tracks the DOI card's subtitle at 0.0071em, 0.1px at 14px."
+        }
+      ]
+    },
+    {
+      "id": "bridging.datacite-doi",
+      "name": "DataCite DOI",
+      "section": "Bridging",
+      "source": [
+        {
+          "file": "cedar-bridging-src/src/app/modules/doi/doi-routing.module.ts",
+          "anchor": "path: 'doi/datacite/:sourceArtifactId'"
+        },
+        {
+          "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.ts",
+          "anchor": "export class DataciteCreateInstanceComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "datacite-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 toolbar title typography tracks the header title at 0.0125em, 0.25px at the 20px heading size."
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "Material's M2 level-2 elevation draws each raised DOI action button with this shadow colour."
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "Material's M2 level-2 elevation draws each raised DOI action button with this shadow colour."
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button typography tracks the raised DOI action labels at 0.0893em, 1.25px at the 14px body size."
+        }
+      ]
+    },
+    {
+      "id": "bridging.cee",
+      "name": "CEE",
+      "section": "Bridging",
+      "parent": "bridging.datacite-doi",
+      "source": [
+        {
+          "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.html",
+          "anchor": "<cedar-embeddable-editor"
+        }
+      ]
+    },
+    {
+      "id": "bridging.draft-doi",
+      "name": "Draft DOI Exists",
+      "section": "Bridging",
+      "parent": "bridging.datacite-doi",
+      "source": [
+        {
+          "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.html",
+          "anchor": "class=\"draft-doi-container\""
+        }
+      ],
+      "contract": "page",
+      "scenario": "draft-doi-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 toolbar title typography tracks the header title at 0.0125em, 0.25px at the 20px heading size."
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "Material's M2 level-2 elevation draws each raised DOI action button with this shadow colour."
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "Material's M2 level-2 elevation draws each raised DOI action button with this shadow colour."
+        },
+        {
+          "property": "letter-spacing",
+          "value": "1.25px",
+          "reason": "Material's M2 button typography tracks the raised DOI action labels at 0.0893em, 1.25px at the 14px body size."
+        }
+      ]
+    },
+    {
+      "id": "bridging.doi-exists",
+      "name": "DOI Already Exists",
+      "section": "Bridging",
+      "parent": "bridging.datacite-doi",
+      "source": [
+        {
+          "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.html",
+          "anchor": "class=\"error-doi-container\""
+        }
+      ],
+      "contract": "page",
+      "scenario": "doi-exists-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "letter-spacing",
+          "value": "0.25px",
+          "reason": "Material's M2 toolbar title typography tracks the header title at 0.0125em, 0.25px at the 20px heading size."
+        }
+      ]
+    },
+    {
+      "id": "bridging.user-menu",
+      "name": "User Menu",
+      "section": "Bridging",
+      "source": [
+        {
+          "file": "cedar-bridging-src/src/app/modules/shared/components/header/header.component.html",
+          "anchor": "<mat-menu #menu=\"matMenu\">"
+        }
+      ],
+      "contract": "page",
+      "scenario": "user-menu",
+      "selector": ".mat-mdc-menu-panel",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "Material's M2 level-8 elevation draws the user menu panel with this shadow colour."
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "Material's M2 level-8 elevation draws the user menu panel with this shadow colour."
+        },
+        {
+          "property": "font-size",
+          "value": "16px",
+          "reason": "Material's M2 body-1 typography sets the user menu's item labels at 16px; the theme's typography config overrides only the card and toolbar levels."
+        },
+        {
+          "property": "letter-spacing",
+          "value": "0.5px",
+          "reason": "Material's M2 body-1 typography tracks the user menu's item labels at 0.03125em, 0.5px at 16px."
+        }
+      ]
+    }
+  ]
+}
