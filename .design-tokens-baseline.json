@@ -22,13 +22,6 @@
       "value": "20px",
       "count": 2
     },
-    "11c8b84425aa70a82555": {
-      "file": "cedar-bridging-src/src/app/modules/shared/components/spinner/spinner.component.scss",
-      "rule": "geometry",
-      "property": "z-index",
-      "value": "9010",
-      "count": 1
-    },
     "128a3c3b1956a7d3353d": {
       "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
       "rule": "color",
@@ -41,13 +34,6 @@
       "rule": "spacing",
       "property": "margin-left",
       "value": "5px",
-      "count": 1
-    },
-    "16e728387974dc38304f": {
-      "file": "cedar-bridging-src/src/app/modules/shared/components/spinner/spinner.component.scss",
-      "rule": "color",
-      "property": "border-top",
-      "value": "4px solid #555555",
       "count": 1
     },
     "23e6d72c3034b7b7d131": {
@@ -83,13 +69,6 @@
       "rule": "typography",
       "property": "font-size",
       "value": "16px",
-      "count": 1
-    },
-    "71c5c9bd3348d4a75d24": {
-      "file": "cedar-bridging-src/src/app/modules/shared/components/spinner/spinner.component.scss",
-      "rule": "geometry",
-      "property": "height",
-      "value": "24px",
       "count": 1
     },
     "7790016afbaf92ce878b": {
@@ -174,13 +153,6 @@
       "rule": "color",
       "property": "background-color",
       "value": "#d4edda",
-      "count": 1
-    },
-    "c6140844c97f4f62c67b": {
-      "file": "cedar-bridging-src/src/app/modules/shared/components/spinner/spinner.component.scss",
-      "rule": "color",
-      "property": "border",
-      "value": "4px solid #f3f3f3",
       "count": 1
     },
     "cdb69e339f9676523b67": {

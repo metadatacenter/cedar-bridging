@@ -4,7 +4,6 @@ import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
-import {SpinnerComponent} from './components/spinner/spinner.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {MaterialModule} from '../../modules/material-module';
 import {HeaderComponent} from "./components/header/header.component";
@@ -26,7 +25,6 @@ import {SharedErrorService} from "../../services/shared-error.service";
     ClipboardModule,
   ],
   declarations: [
-    SpinnerComponent,
     DashboardComponent,
     HeaderComponent,
     DoiRequesterComponent,
@@ -40,7 +38,6 @@ import {SharedErrorService} from "../../services/shared-error.service";
         ReactiveFormsModule,
         RouterModule,
         TranslateModule,
-        SpinnerComponent,
         HeaderComponent,
         DoiRequesterComponent,
         CancelComponent,
