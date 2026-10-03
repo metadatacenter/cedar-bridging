@@ -180,35 +180,13 @@
           "anchor": "<mat-menu #menu=\"matMenu\">"
         }
       ],
-      "contract": "page",
+      "contract": "menu",
       "scenario": "user-menu",
       "selector": ".mat-mdc-menu-panel",
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "Material's M2 level-8 elevation draws the user menu panel with this shadow colour."
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "Material's M2 level-8 elevation draws the user menu panel with this shadow colour."
-        },
-        {
-          "property": "font-size",
-          "value": "16px",
-          "reason": "Material's M2 body-1 typography sets the user menu's item labels at 16px; the theme's typography config overrides only the card and toolbar levels."
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.5px",
-          "reason": "Material's M2 body-1 typography tracks the user menu's item labels at 0.03125em, 0.5px at 16px."
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     }
   ]
 }

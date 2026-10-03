@@ -2,6 +2,7 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
 @use '@org.metadatacenter/cedar-design-tokens/tokens' as tokens;
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
 
 @use '@org.metadatacenter/cedar-design-tokens/fonts/regular';
 @use '@org.metadatacenter/cedar-design-tokens/fonts/medium';
@@ -73,6 +74,25 @@ textarea.mat-mdc-input-element {
   resize: none;
 }
 
-.mat-mdc-menu-item mat-icon {
-  color: var(--cedar-color-primary);
+// The user menu takes the shared menu text, colours and shadow. The overrides are declared on the
+// panel rather than the page, so a theme set on the panel reaches every label and icon inside it.
+.mat-mdc-menu-panel {
+  @include patterns.menu-text;
+  @include mat.menu-overrides((
+    container-color: var(--cedar-surface-raised),
+    container-shape: var(--cedar-radius),
+    container-elevation-shadow: tokens.$shadow-overlay,
+    item-label-text-color: var(--cedar-color-primary),
+    item-label-text-font: var(--cedar-font-family),
+    item-label-text-size: var(--cedar-font-size),
+    item-label-text-weight: var(--cedar-font-weight-regular),
+    item-label-text-line-height: var(--cedar-control-line-height-default),
+    item-label-text-tracking: normal,
+    item-icon-color: var(--cedar-color-primary),
+  ));
+}
+
+// A menu item is a button, and a button takes the browser's control font unless it is given one.
+.mat-mdc-menu-panel .mat-mdc-menu-item {
+  @include patterns.menu-text;
 }
