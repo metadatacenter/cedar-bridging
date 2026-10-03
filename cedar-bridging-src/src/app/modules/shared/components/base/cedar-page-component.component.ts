@@ -32,11 +32,5 @@ export abstract class CedarPageComponent extends CedarBase {
     this.keycloak.loadUserProfile().then(data => {
       this.keycloakUserProfile = data;
     }).catch(error => console.log(error));
-    clearTimeout(this.uiService.healthCheckTimeout);
-    clearTimeout(this.uiService.redisQueueCountTimeout);
-  }
-
-
-  private preDataIsLoaded() {
   }
 }

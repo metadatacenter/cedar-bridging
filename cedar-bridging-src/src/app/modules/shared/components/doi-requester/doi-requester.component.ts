@@ -1,7 +1,6 @@
-import {Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
-import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
-import {environment} from "../../../../../environments/environment";
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {MessageHandlerService} from "../../../../services/message-handler.service";
 import {globalAppConfig} from "../../../../../environments/global-app-config";
 import {SharedErrorService} from "../../../../services/shared-error.service";
@@ -13,7 +12,7 @@ import {SharedErrorService} from "../../../../services/shared-error.service";
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
-export class DoiRequesterComponent implements OnInit, OnDestroy{
+export class DoiRequesterComponent implements OnDestroy{
   // Number of milliseconds to display the submission success message
   private static readonly SUCCESS_MESSAGE_TIMEOUT = 5000;
 
@@ -30,9 +29,6 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
   errorMessage = '';
 
   constructor(private httpClient: HttpClient, private messageHandlerService: MessageHandlerService, private sharedErrorService: SharedErrorService) {
-  }
-
-  ngOnInit(): void {
   }
 
   createDoi(event:any): void {

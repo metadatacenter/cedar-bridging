@@ -16,7 +16,7 @@
     [templateObject]="template"
     [instanceObject]="existingDataCiteMetadata"
   ></cedar-embeddable-editor>
-  <div class="button-container" [ngClass]="{'move-buttons-down': showError}">
+  <div [ngClass]="{'move-buttons-down': showError}">
     @if (sourceArtifactId != null) {
       <app-doi-saver
         [sourceArtifactId]="sourceArtifactId"
@@ -27,8 +27,6 @@
         [sourceArtifactId]="sourceArtifactId"
       ></app-doi-requester>
     }
-    <app-cancel
-      [operation]="operation">
-    </app-cancel>
+    <app-cancel></app-cancel>
   </div>
 }

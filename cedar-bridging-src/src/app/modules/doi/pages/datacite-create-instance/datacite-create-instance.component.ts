@@ -24,7 +24,6 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
   public sourceArtifactId: string | null = null;
   public ceeConfig: object = {};
   public template: object | null = null;
-  public operation: string = 'Create'
   public draftDoi: object | null = null;
   public doiAlreadyExists = false;
   public existingDoi: string | null = null;
