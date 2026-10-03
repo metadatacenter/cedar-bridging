@@ -1,11 +1,8 @@
 @use "@org.metadatacenter/cedar-design-tokens/spacing";
-.button-row button {
-  margin-right: 8px;
-}
 
 .draft-doi-container {
   background-color: #d4edda;
-  padding: 8px;
+  padding: var(--cedar-space-2);
   border-radius: 5px;
   margin-top: 20px;
   @include spacing.apply(margin-right, inset-status-panel);
@@ -19,7 +16,7 @@
 
 .error-doi-container {
   background-color: #fc4c4c;
-  padding: 8px;
+  padding: var(--cedar-space-2);
   border-radius: 5px;
   margin-top: 20px;
   @include spacing.apply(margin-right, inset-status-panel);
