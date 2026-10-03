@@ -22,25 +22,11 @@
       "value": "20px",
       "count": 2
     },
-    "128a3c3b1956a7d3353d": {
-      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
-      "rule": "color",
-      "property": "background-color",
-      "value": "#fc4c4c",
-      "count": 1
-    },
     "15026baa8ac018e186fa": {
       "file": "cedar-bridging-src/src/app/modules/shared/components/doi-requester/doi-requester.component.scss",
       "rule": "spacing",
       "property": "margin-left",
       "value": "5px",
-      "count": 1
-    },
-    "23e6d72c3034b7b7d131": {
-      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
-      "rule": "color",
-      "property": "color",
-      "value": "#155724",
       "count": 1
     },
     "3b9969971aabf5deeca1": {
@@ -56,13 +42,6 @@
       "property": "margin",
       "value": "20px",
       "count": 1
-    },
-    "5479f74202b3558940c1": {
-      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
-      "rule": "typography",
-      "property": "font-size",
-      "value": "16px",
-      "count": 2
     },
     "622e74cc56156eaae898": {
       "file": "cedar-bridging-src/src/app/modules/shared/components/doi-requester/doi-requester.component.scss",
@@ -92,13 +71,6 @@
       "value": "49px",
       "count": 1
     },
-    "88b65fba1d8796e064ae": {
-      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
-      "rule": "geometry",
-      "property": "border-radius",
-      "value": "5px",
-      "count": 2
-    },
     "9152aeb749e9a9be64b1": {
       "file": "cedar-bridging-src/src/app/modules/shared/components/cancel/cancel.component.scss",
       "rule": "spacing",
@@ -111,20 +83,6 @@
       "rule": "spacing",
       "property": "margin-top",
       "value": "50px",
-      "count": 1
-    },
-    "a0f732a8ccc829e34aec": {
-      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
-      "rule": "color",
-      "property": "color",
-      "value": "#ffffff",
-      "count": 2
-    },
-    "a270da4238bce37090df": {
-      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
-      "rule": "typography",
-      "property": "font-weight",
-      "value": "bold",
       "count": 1
     },
     "a284fd1c1bc042f5e236": {
@@ -146,13 +104,6 @@
       "rule": "typography",
       "property": "font-size",
       "value": "16px",
-      "count": 1
-    },
-    "b629ac0fb829b12d1b54": {
-      "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss",
-      "rule": "color",
-      "property": "background-color",
-      "value": "#d4edda",
       "count": 1
     },
     "cdb69e339f9676523b67": {
