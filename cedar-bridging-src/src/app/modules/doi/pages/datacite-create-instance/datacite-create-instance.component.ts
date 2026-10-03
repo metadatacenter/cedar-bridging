@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CedarPageComponent} from '../../../shared/components/base/cedar-page-component.component';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {UiService} from '../../../../services/ui.service';
 import {KeycloakService} from "keycloak-angular";
@@ -31,7 +30,6 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
   public showError: boolean = false;
 
   constructor(
-    localSettings: LocalSettingsService,
     translateService: TranslateService,
     notify: SnotifyService,
     router: Router,
@@ -41,7 +39,7 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
     private http: HttpClient,
     private sharedErrorService: SharedErrorService
   ) {
-    super(localSettings, translateService, notify, router, route, keycloak, uiService);
+    super(translateService, notify, router, route, keycloak, uiService);
     this.sharedErrorService.showErrorChange.subscribe((showError: boolean) => {
       this.showError = showError;
     });
