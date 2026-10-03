@@ -2,3 +2,25 @@ a {
   color: var(--cedar-color-on-primary);
   text-decoration: none;
 }
+
+// The title takes the room between the two buttons. Material keeps a toolbar on one line, so a long
+// title ran past the edge of a phone's screen and the whole page scrolled sideways. It wraps instead.
+.header-title {
+  width: 100%;
+  min-width: 0;
+  white-space: normal;
+  line-height: var(--cedar-line-height-heading);
+}
+
+// The toolbar grows to fit a wrapped title rather than holding Material's fixed height. Around the
+// 48px buttons, its padding keeps a one-line title at Material's 64px, and at its 56px on a phone.
+mat-toolbar {
+  height: auto;
+  padding-block: var(--cedar-space-2);
+}
+
+@media (max-width: 599px) {
+  mat-toolbar {
+    padding-block: var(--cedar-space-1);
+  }
+}
