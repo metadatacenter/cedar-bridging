@@ -23,29 +23,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 toolbar title typography tracks the header title at 0.0125em, 0.25px at the 20px heading size."
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "Material's M2 level-1 elevation draws the dashboard's DOI card with this shadow colour."
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "Material's M2 level-1 elevation draws the dashboard's DOI card with this shadow colour."
-        },
-        {
-          "property": "letter-spacing",
-          "value": "0.1px",
-          "reason": "Material's M2 subtitle-2 typography tracks the DOI card's subtitle at 0.0071em, 0.1px at 14px."
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "bridging.datacite-doi",
@@ -67,29 +45,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 toolbar title typography tracks the header title at 0.0125em, 0.25px at the 20px heading size."
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "Material's M2 level-2 elevation draws each raised DOI action button with this shadow colour."
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "Material's M2 level-2 elevation draws each raised DOI action button with this shadow colour."
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button typography tracks the raised DOI action labels at 0.0893em, 1.25px at the 14px body size."
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "bridging.cee",
@@ -120,29 +76,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 toolbar title typography tracks the header title at 0.0125em, 0.25px at the 20px heading size."
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "Material's M2 level-2 elevation draws each raised DOI action button with this shadow colour."
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "Material's M2 level-2 elevation draws each raised DOI action button with this shadow colour."
-        },
-        {
-          "property": "letter-spacing",
-          "value": "1.25px",
-          "reason": "Material's M2 button typography tracks the raised DOI action labels at 0.0893em, 1.25px at the 14px body size."
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "bridging.doi-exists",
@@ -161,14 +95,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "letter-spacing",
-          "value": "0.25px",
-          "reason": "Material's M2 toolbar title typography tracks the header title at 0.0125em, 0.25px at the 20px heading size."
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "bridging.user-menu",
