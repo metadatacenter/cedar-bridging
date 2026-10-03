@@ -95,10 +95,11 @@ textarea.mat-mdc-input-element {
   resize: none;
 }
 
-// The user menu takes the shared menu text, colours and shadow. The overrides are declared on the
-// panel rather than the page, so a theme set on the panel reaches every label and icon inside it.
+// The user menu takes the shared menu surface: its text, colours, ruled edge, inset and shadow. The
+// overrides are declared on the panel rather than the page, so a theme set on the panel reaches
+// every label and icon inside it.
 .mat-mdc-menu-panel {
-  @include patterns.menu-text;
+  @include patterns.menu-surface;
   @include mat.menu-overrides((
     container-color: var(--cedar-surface-raised),
     container-shape: var(--cedar-radius),
@@ -113,7 +114,12 @@ textarea.mat-mdc-input-element {
   ));
 }
 
+.mat-mdc-menu-panel .mat-mdc-menu-content {
+  padding: 0;
+}
+
 // A menu item is a button, and a button takes the browser's control font unless it is given one.
+// Its rows take the shared control height and padding.
 .mat-mdc-menu-panel .mat-mdc-menu-item {
-  @include patterns.menu-text;
+  @include patterns.menu-item;
 }
