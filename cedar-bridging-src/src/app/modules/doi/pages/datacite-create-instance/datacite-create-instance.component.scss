@@ -4,14 +4,14 @@
 // The notice clears every margin, so each box's placement comes after it.
 .draft-doi-container {
   @include patterns.notice(success, $boxed: true);
-  margin-top: 20px;
+  margin-top: var(--cedar-space-4);
   @include spacing.apply(margin-right, inset-status-panel);
   @include spacing.apply(margin-left, inset-status-panel);
 }
 
 .error-doi-container {
   @include patterns.notice(error, $boxed: true);
-  margin-top: 20px;
+  margin-top: var(--cedar-space-4);
   @include spacing.apply(margin-right, inset-status-panel);
   @include spacing.apply(margin-left, inset-status-panel);
 

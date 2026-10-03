@@ -1,12 +1,12 @@
 .flex-container-doi-requester {
   display: flex;
   align-items: center;
-  margin-top: 50px;
+  margin-top: var(--cedar-space-6);
   float: right;
 }
 
 .flex-child1 {
-  margin-bottom: 50px;
+  margin-bottom: var(--cedar-space-6);
 }
 
 .notify-container {
@@ -14,10 +14,10 @@
 }
 
 .create-doi-button{
-  padding: 8px 20px !important;
-  font-size: 16px;
+  padding: var(--cedar-space-2) var(--cedar-space-4);
+  font-size: var(--cedar-font-size);
   font-weight: var(--cedar-font-weight-regular);
-  margin: 20px;
+  margin: var(--cedar-space-4);
 }
 
 .notify-container .notify-progress,
@@ -37,9 +37,9 @@
 .notify-container .notify-progress .close,
 .notify-container .notify-success .close,
 .notify-container .notify-error .close {
-  margin-left: 5px;
+  margin-left: var(--cedar-space-1);
 }
 
 .notify-progress {
-  margin-right: 10px;
+  margin-right: var(--cedar-space-2);
 }

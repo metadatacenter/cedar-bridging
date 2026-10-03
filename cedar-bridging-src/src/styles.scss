@@ -35,7 +35,7 @@ body {
 
   .dash-card {
     cursor: pointer;
-    margin: 5px;
+    margin: tokens.$space-1;
     width: 300px;
     height: 120px;
   }
