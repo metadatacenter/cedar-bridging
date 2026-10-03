@@ -72,7 +72,7 @@ button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) s
 .mat-toolbar.mat-primary :focus-visible { outline-color: var(--cedar-color-on-primary); }
 
 @include mat.card-overrides((
-  title-text-size: tokens.$font-size-heading,
+  title-text-size: tokens.$font-size-large,
   title-text-weight: tokens.$font-weight-medium,
   subtitle-text-size: tokens.$font-size,
   subtitle-text-color: tokens.$text-muted,
@@ -85,7 +85,7 @@ button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) s
   protected-focus-container-elevation-shadow: tokens.$shadow-overlay,
   protected-pressed-container-elevation-shadow: tokens.$shadow-overlay,
 ));
-@include mat.toolbar-overrides((title-text-size: tokens.$font-size-heading, title-text-weight: tokens.$font-weight-medium));
+@include mat.toolbar-overrides((title-text-size: tokens.$font-size-large, title-text-weight: tokens.$font-weight-medium));
 
 @include motion.reduced-motion;
 
