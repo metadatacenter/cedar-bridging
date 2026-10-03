@@ -29,13 +29,6 @@
       "value": "20px",
       "count": 2
     },
-    "0b358c46447e41c271cf": {
-      "file": "cedar-bridging-src/src/app/modules/shared/components/cancel/cancel.component.scss",
-      "rule": "spacing",
-      "property": "margin-right",
-      "value": "10px",
-      "count": 1
-    },
     "11c8b84425aa70a82555": {
       "file": "cedar-bridging-src/src/app/modules/shared/components/spinner/spinner.component.scss",
       "rule": "geometry",
@@ -99,13 +92,6 @@
       "value": "16px",
       "count": 2
     },
-    "567deabf62c3fc38784b": {
-      "file": "cedar-bridging-src/src/app/modules/shared/components/spinner/spinner.component.html",
-      "rule": "utility-style",
-      "property": "utility-style",
-      "value": "mr-2",
-      "count": 1
-    },
     "622e74cc56156eaae898": {
       "file": "cedar-bridging-src/src/app/modules/shared/components/doi-requester/doi-requester.component.scss",
       "rule": "typography",
@@ -118,13 +104,6 @@
       "rule": "spacing",
       "property": "padding-bottom",
       "value": "16px",
-      "count": 1
-    },
-    "6c413d6239bdfb9c470f": {
-      "file": "cedar-bridging-src/src/app/modules/shared/components/cancel/cancel.component.scss",
-      "rule": "spacing",
-      "property": "margin-left",
-      "value": "5px",
       "count": 1
     },
     "6f996e634deceb683a37": {
