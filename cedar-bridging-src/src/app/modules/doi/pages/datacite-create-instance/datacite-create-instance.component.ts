@@ -1,3 +1,4 @@
+import { resourceSelector } from "../../../../resource-address";
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CedarPageComponent} from '../../../shared/components/base/cedar-page-component.component';
@@ -48,7 +49,7 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
 
   getDataCiteStartResponse(): Observable<HttpResponse<DataCiteCreateDOIStartResponse>> {
     const url = globalAppConfig.bridgeUrl + 'datacite/create-doi?source_artifact_id=' +
-      encodeURIComponent(this.sourceArtifactId ?? '');
+      encodeURIComponent(resourceSelector(this.sourceArtifactId ?? ''));
     return this.http.get<DataCiteCreateDOIStartResponse>(
       url, {observe: 'response'});
   }

@@ -1,3 +1,4 @@
+import { resourceSelector } from "../../../../resource-address";
 import {Component, Input, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
@@ -73,7 +74,7 @@ export class DoiSaverComponent implements OnDestroy{
 
   private httpRequest(): Observable<any> {
     const url = globalAppConfig.bridgeUrl + 'datacite/create-doi?source_artifact_id=' +
-      encodeURIComponent(this.sourceArtifactId ?? '') + '&state=draft';
+      encodeURIComponent(resourceSelector(this.sourceArtifactId ?? '')) + '&state=draft';
 
     //TODO: how to get the datacite instance metadata?
     const cee: any = document.querySelector('cedar-embeddable-editor');

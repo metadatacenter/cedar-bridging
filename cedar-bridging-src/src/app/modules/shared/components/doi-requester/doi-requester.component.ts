@@ -1,3 +1,4 @@
+import { resourceSelector } from "../../../../resource-address";
 import {Component, Input, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
@@ -75,7 +76,7 @@ export class DoiRequesterComponent implements OnDestroy{
 
   private httpRequest(): Observable<any> {
     const url = globalAppConfig.bridgeUrl + 'datacite/create-doi?source_artifact_id=' +
-      encodeURIComponent(this.sourceArtifactId ?? '') + '&state=publish';
+      encodeURIComponent(resourceSelector(this.sourceArtifactId ?? '')) + '&state=publish';
 
     const cee: any = document.querySelector('cedar-embeddable-editor');
     const meta = cee.currentMetadata;
