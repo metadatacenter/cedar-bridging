@@ -5,6 +5,7 @@ import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {MessageHandlerService} from "../../../../services/message-handler.service";
 import {globalAppConfig} from "../../../../../environments/global-app-config";
 import {SharedErrorService} from "../../../../services/shared-error.service";
+import { serverErrorText } from '../../util/server-error';
 
 @Component({
   selector: 'app-doi-requester',
@@ -54,8 +55,7 @@ export class DoiRequesterComponent implements OnDestroy{
           this.showError = true;
           this.sharedErrorService.updateShowError(this.showError);
 
-          const returnedErrorMessage = error['error']['errorMessage'];
-          this.errorMessage = "Error Creating A DOI - " + returnedErrorMessage;
+          this.errorMessage = "Error Creating A DOI - " + serverErrorText(error);
 
           if (typeof error === 'object' && error.hasOwnProperty('message')) {
             this.messageHandlerService.errorObject(error['message'], error);
