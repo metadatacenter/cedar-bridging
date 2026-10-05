@@ -102,6 +102,9 @@ function terminology(route) {
   });
 }
 
+/** A status the bridge answers with by failing the request, as a network failure would. */
+export const NETWORK_FAILURE = 'a network failure';
+
 // This signs the page in and answers the services. Each entry of `bridge` identifies a path under
 // the bridge and gives a function of the request that returns a status and a body. The bridge
 // answers any other path with a 404.
@@ -116,6 +119,7 @@ export async function signedIn(page, bridge = {}) {
     if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors(request) });
     const answer = bridge[new URL(request.url()).pathname.slice(1)];
     const [status, body] = answer ? answer(request) : [404, {}];
+    if (status === NETWORK_FAILURE) return route.abort('failed');
     return route.fulfill({ status, headers: cors(request), json: body });
   });
 }

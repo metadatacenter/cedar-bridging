@@ -10,6 +10,11 @@
     <p class="error-doi-label">A DOI already exists: <a href="{{existingDoi}}" target="_blank">{{existingDoi}}</a>. An artifact can only have one DOI.</p>
   </div>
 }
+@if (openError) {
+  <div class="error-doi-container">
+    <p class="error-doi-label">{{openError}}</p>
+  </div>
+}
 @if (template !== null) {
   <cedar-embeddable-editor
     [config]="ceeConfig"

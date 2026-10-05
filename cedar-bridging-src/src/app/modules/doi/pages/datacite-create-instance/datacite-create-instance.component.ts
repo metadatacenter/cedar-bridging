@@ -11,6 +11,7 @@ import {Observable} from "rxjs";
 import {DataCiteCreateDOIStartResponse} from "../../../shared/model/datacite-create-doi-start-response.model";
 import {globalAppConfig} from "../../../../../environments/global-app-config";
 import {SharedErrorService} from "../../../../services/shared-error.service";
+import {serverErrorText} from "../../../shared/util/server-error";
 
 @Component({
   selector: 'datacite-create-instance',
@@ -27,6 +28,8 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
   public draftDoi: object | null = null;
   public doiAlreadyExists = false;
   public existingDoi: string | null = null;
+  // Why the form could not be opened, when the reason is anything but a DOI the artifact already has.
+  public openError: string | null = null;
   public existingDataCiteMetadata: object | null = null;
   public showError: boolean = false;
 
@@ -72,6 +75,7 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
       (response) => {
         this.doiAlreadyExists = response.error?.errorKey === 'doiAlreadyExists';
         this.existingDoi = response.error?.parameters?.doi ?? null;
+        this.openError = this.doiAlreadyExists ? null : 'Error Opening The DataCite Form - ' + serverErrorText(response);
       });
   }
 
