@@ -1,8 +1,8 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon" [routerLink]="'/'" aria-label="Home">
+  <button mat-icon-button [routerLink]="'/'" aria-label="Home">
     <mat-icon cedarIcon="home"></mat-icon>
   </button>
-  <div style="width:100%">
+  <div class="header-title">
     <a [routerLink]="'/'">@if (!title) {
       CEDAR Bridging
     }
@@ -15,10 +15,6 @@
     <mat-icon cedarIcon="user"></mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/profile">
-      <mat-icon cedarIcon="user"></mat-icon>
-      <span>Profile</span>
-    </button>
     <button mat-menu-item (click)="openCEDARPage()">
       <mat-icon cedarIcon="home"></mat-icon>
       <span>CEDAR</span>

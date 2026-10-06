@@ -1,4 +1,4 @@
-<div [ngClass]="{'error-present': showError}" class="flex-container-doi-requester">
+<div class="flex-container-doi-requester">
   <div class="flex-child1">
     @if (showProgress || showSuccess || showError) {
       <div class="notify-container">
@@ -9,7 +9,7 @@
         }
         @if (showSuccess) {
           <div class="notify-success">{{successMessage}}
-            <button type="button" class="close close-right-top" (click)="clearSuccess()">
+            <button type="button" class="close" (click)="clearSuccess()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -17,7 +17,7 @@
         @if (showError) {
           <div class="notify-error">
             <pre>{{errorMessage}}</pre>
-            <button type="button" class="close close-right-top" (click)="clearError()">
+            <button type="button" class="close" (click)="clearError()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -25,7 +25,7 @@
       </div>
     }
   </div>
-  <div class="flex-child2">
+  <div>
     <button mat-raised-button color="primary" class="save-doi-button" (click)="saveDoi($event)">Save Draft</button>
   </div>
 </div>

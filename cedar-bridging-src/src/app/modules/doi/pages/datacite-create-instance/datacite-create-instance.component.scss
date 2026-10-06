@@ -1,38 +1,23 @@
+@use "@org.metadatacenter/cedar-design-tokens/patterns";
 @use "@org.metadatacenter/cedar-design-tokens/spacing";
-.button-row button {
-  margin-right: 8px;
-}
 
+// The notice clears every margin, so each box's placement comes after it.
 .draft-doi-container {
-  background-color: #d4edda;
-  padding: 8px;
-  border-radius: 5px;
-  margin-top: 20px;
+  @include patterns.notice(success, $boxed: true);
+  margin-top: var(--cedar-space-4);
   @include spacing.apply(margin-right, inset-status-panel);
   @include spacing.apply(margin-left, inset-status-panel);
-
-  .draft-doi-label {
-    font-size: 16px;
-    color: #155724;
-  }
 }
 
 .error-doi-container {
-  background-color: #fc4c4c;
-  padding: 8px;
-  border-radius: 5px;
-  margin-top: 20px;
+  @include patterns.notice(error, $boxed: true);
+  margin-top: var(--cedar-space-4);
   @include spacing.apply(margin-right, inset-status-panel);
   @include spacing.apply(margin-left, inset-status-panel);
 
-  .error-doi-label {
-    font-size: 16px;
-    color: #ffffff;
-
-    a {
-      color: #ffffff;
-      font-weight: bold;
-    }
+  .error-doi-label a {
+    color: inherit;
+    font-weight: var(--cedar-font-weight-medium);
   }
 }
 

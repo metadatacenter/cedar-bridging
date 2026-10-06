@@ -1,4 +1,4 @@
-import {Component, Input, Inject, DOCUMENT, ChangeDetectionStrategy} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
   selector: 'app-cancel',
@@ -8,11 +8,6 @@ import {Component, Input, Inject, DOCUMENT, ChangeDetectionStrategy} from '@angu
   standalone: false
 })
 export class CancelComponent {
-  @Input() operation: string = '';
-  window: any;
-  constructor(@Inject(DOCUMENT) private _document:any) {
-    this.window = this._document.defaultView;
-  }
   cancel() {
     self.close();
   }

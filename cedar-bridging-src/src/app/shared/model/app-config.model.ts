@@ -1,4 +1,5 @@
 import {environment} from '../../../environments/environment';
+import {useDeploymentDomain} from '../../resource-address';
 
 export class AppConfig {
   appUrl: string = '';
@@ -10,6 +11,8 @@ export class AppConfig {
 
   init(appConfig: AppConfig) {
     const domain = environment.cedarDomain;
+    // Identities are minted on repo.<domain>, and only those are addressed in the compact form.
+    useDeploymentDomain(domain);
     this.appUrl = appConfig.appUrl.replace('{{cedarDomain}}', domain);
     this.cedarUrl = appConfig.cedarUrl.replace('{{cedarDomain}}', domain);
     this.bridgeUrl = appConfig.bridgeUrl.replace('{{cedarDomain}}', domain);

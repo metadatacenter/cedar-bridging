@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "repo": "cedar-bridging",
+  "browserHelper": "browser/tests/surface-contracts.generated.mjs",
+  "surfaces": [
+    {
+      "id": "bridging.dashboard",
+      "name": "Dashboard",
+      "section": "Bridging",
+      "source": [
+        {
+          "file": "cedar-bridging-src/src/app/app-routing.module.ts",
+          "anchor": "path: ''"
+        },
+        {
+          "file": "cedar-bridging-src/src/app/modules/shared/pages/dashboard/dashboard.component.ts",
+          "anchor": "export class DashboardComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "dashboard-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "bridging.datacite-doi",
+      "name": "DataCite DOI",
+      "section": "Bridging",
+      "source": [
+        {
+          "file": "cedar-bridging-src/src/app/modules/doi/doi-routing.module.ts",
+          "anchor": "path: 'doi/datacite/:sourceArtifactId'"
+        },
+        {
+          "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.ts",
+          "anchor": "export class DataciteCreateInstanceComponent"
+        }
+      ],
+      "contract": "page",
+      "scenario": "datacite-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "bridging.cee",
+      "name": "CEE",
+      "section": "Bridging",
+      "parent": "bridging.datacite-doi",
+      "source": [
+        {
+          "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.html",
+          "anchor": "<cedar-embeddable-editor"
+        }
+      ]
+    },
+    {
+      "id": "bridging.draft-doi",
+      "name": "Draft DOI Exists",
+      "section": "Bridging",
+      "parent": "bridging.datacite-doi",
+      "source": [
+        {
+          "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.html",
+          "anchor": "class=\"draft-doi-container\""
+        }
+      ],
+      "contract": "page",
+      "scenario": "draft-doi-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "bridging.doi-exists",
+      "name": "DOI Already Exists",
+      "section": "Bridging",
+      "parent": "bridging.datacite-doi",
+      "source": [
+        {
+          "file": "cedar-bridging-src/src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.html",
+          "anchor": "class=\"error-doi-container\""
+        }
+      ],
+      "contract": "page",
+      "scenario": "doi-exists-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "bridging.user-menu",
+      "name": "User Menu",
+      "section": "Bridging",
+      "source": [
+        {
+          "file": "cedar-bridging-src/src/app/modules/shared/components/header/header.component.html",
+          "anchor": "<mat-menu #menu=\"matMenu\">"
+        }
+      ],
+      "contract": "menu",
+      "scenario": "user-menu",
+      "selector": ".mat-mdc-menu-panel",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    }
+  ]
+}

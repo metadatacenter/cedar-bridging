@@ -1,0 +1,7 @@
+{
+  "cedarUrl": "https://cedar.example.test/",
+  "appUrl": "https://bridging.example.test/",
+  "bridgeUrl": "https://bridge.example.test/",
+  "terminologyBaseUrl": "https://terminology.example.test/",
+  "keycloakUrl": "https://auth.example.test/"
+}

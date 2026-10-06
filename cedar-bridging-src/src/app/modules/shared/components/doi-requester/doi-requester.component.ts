@@ -1,10 +1,11 @@
-import {Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import { resourceSelector } from "../../../../resource-address";
+import {Component, Input, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
-import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
-import {environment} from "../../../../../environments/environment";
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {MessageHandlerService} from "../../../../services/message-handler.service";
 import {globalAppConfig} from "../../../../../environments/global-app-config";
 import {SharedErrorService} from "../../../../services/shared-error.service";
+import { serverErrorText } from '../../util/server-error';
 
 @Component({
   selector: 'app-doi-requester',
@@ -13,7 +14,7 @@ import {SharedErrorService} from "../../../../services/shared-error.service";
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
-export class DoiRequesterComponent implements OnInit, OnDestroy{
+export class DoiRequesterComponent implements OnDestroy{
   // Number of milliseconds to display the submission success message
   private static readonly SUCCESS_MESSAGE_TIMEOUT = 5000;
 
@@ -30,9 +31,6 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
   errorMessage = '';
 
   constructor(private httpClient: HttpClient, private messageHandlerService: MessageHandlerService, private sharedErrorService: SharedErrorService) {
-  }
-
-  ngOnInit(): void {
   }
 
   createDoi(event:any): void {
@@ -57,8 +55,7 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
           this.showError = true;
           this.sharedErrorService.updateShowError(this.showError);
 
-          const returnedErrorMessage = error['error']['errorMessage'];
-          this.errorMessage = "Error Creating A DOI - " + returnedErrorMessage;
+          this.errorMessage = "Error Creating A DOI - " + serverErrorText(error);
 
           if (typeof error === 'object' && error.hasOwnProperty('message')) {
             this.messageHandlerService.errorObject(error['message'], error);
@@ -79,7 +76,7 @@ export class DoiRequesterComponent implements OnInit, OnDestroy{
 
   private httpRequest(): Observable<any> {
     const url = globalAppConfig.bridgeUrl + 'datacite/create-doi?source_artifact_id=' +
-      encodeURIComponent(this.sourceArtifactId ?? '') + '&state=publish';
+      encodeURIComponent(resourceSelector(this.sourceArtifactId ?? '')) + '&state=publish';
 
     const cee: any = document.querySelector('cedar-embeddable-editor');
     const meta = cee.currentMetadata;

@@ -1,11 +1,26 @@
 @use '@org.metadatacenter/cedar-design-tokens/motion';
 /* You can add global styles to this file, and also import other style files */
+@use 'sass:map';
+@use 'sass:meta';
 @use '@angular/material' as mat;
 @use '@org.metadatacenter/cedar-design-tokens/tokens' as tokens;
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
 
-@use 'styles/roboto';
+@use '@org.metadatacenter/cedar-design-tokens/fonts/regular';
+@use '@org.metadatacenter/cedar-design-tokens/fonts/medium';
+
+// Every type level keeps the font's own spacing. Material's M2 levels each add letter spacing of
+// their own, so the toolbar title, the card subtitle, the button labels and the menu set the same
+// font four different ways.
+$typography: mat.m2-define-typography-config($font-family: tokens.$font-family-string);
+@each $level, $settings in $typography {
+  @if meta.type-of($settings) == 'map' {
+    $typography: map.set($typography, $level, letter-spacing, normal);
+  }
+}
+
 @include mat.core();
-@include mat.all-component-themes(mat.m2-define-light-theme((color: (primary: mat.m2-define-palette(tokens.$brand-primary), accent: mat.m2-define-palette(tokens.$brand-accent)), typography: mat.m2-define-typography-config($font-family: tokens.$font-family-string))));
+@include mat.all-component-themes(mat.m2-define-light-theme((color: (primary: mat.m2-define-palette(tokens.$brand-primary), accent: mat.m2-define-palette(tokens.$brand-accent)), typography: $typography)));
 
 @import '@org.metadatacenter/cedar-design-tokens/custom-properties.css';
 @import '@org.metadatacenter/cedar-design-tokens/icon-contract.css';
@@ -22,8 +37,8 @@ body {
 
 .wrapper-card {
   background-color: tokens.$surface-subtle !important;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: tokens.$space-4;
+  padding-bottom: tokens.$space-4;
 }
 
 .flex-container {
@@ -34,7 +49,7 @@ body {
 
   .dash-card {
     cursor: pointer;
-    margin: 5px;
+    margin: tokens.$space-1;
     width: 300px;
     height: 120px;
   }
@@ -57,12 +72,20 @@ button:focus-visible, a:focus-visible { outline: var(--cedar-focus-ring-width) s
 .mat-toolbar.mat-primary :focus-visible { outline-color: var(--cedar-color-on-primary); }
 
 @include mat.card-overrides((
-  title-text-size: tokens.$font-size-heading,
+  title-text-size: tokens.$font-size-large,
   title-text-weight: tokens.$font-weight-medium,
   subtitle-text-size: tokens.$font-size,
   subtitle-text-color: tokens.$text-muted,
+  elevated-container-elevation: tokens.$shadow-overlay,
 ));
-@include mat.toolbar-overrides((title-text-size: tokens.$font-size-heading, title-text-weight: tokens.$font-weight-medium));
+// A raised button floats like a menu, in every state, rather than climbing Material's M2 elevations.
+@include mat.button-overrides((
+  protected-container-elevation-shadow: tokens.$shadow-overlay,
+  protected-hover-container-elevation-shadow: tokens.$shadow-overlay,
+  protected-focus-container-elevation-shadow: tokens.$shadow-overlay,
+  protected-pressed-container-elevation-shadow: tokens.$shadow-overlay,
+));
+@include mat.toolbar-overrides((title-text-size: tokens.$font-size-large, title-text-weight: tokens.$font-weight-medium));
 
 @include motion.reduced-motion;
 
@@ -72,6 +95,31 @@ textarea.mat-mdc-input-element {
   resize: none;
 }
 
-.mat-mdc-menu-item mat-icon {
-  color: var(--cedar-color-primary);
+// The user menu takes the shared menu surface: its text, colours, ruled edge, inset and shadow. The
+// overrides are declared on the panel rather than the page, so a theme set on the panel reaches
+// every label and icon inside it.
+.mat-mdc-menu-panel {
+  @include patterns.menu-surface;
+  @include mat.menu-overrides((
+    container-color: var(--cedar-surface-raised),
+    container-shape: var(--cedar-radius),
+    container-elevation-shadow: tokens.$shadow-overlay,
+    item-label-text-color: var(--cedar-color-primary),
+    item-label-text-font: var(--cedar-font-family),
+    item-label-text-size: var(--cedar-font-size),
+    item-label-text-weight: var(--cedar-font-weight-regular),
+    item-label-text-line-height: var(--cedar-control-line-height-default),
+    item-label-text-tracking: normal,
+    item-icon-color: var(--cedar-color-primary),
+  ));
+}
+
+.mat-mdc-menu-panel .mat-mdc-menu-content {
+  padding: 0;
+}
+
+// A menu item is a button, and a button takes the browser's control font unless it is given one.
+// Its rows take the shared control height and padding.
+.mat-mdc-menu-panel .mat-mdc-menu-item {
+  @include patterns.menu-item;
 }

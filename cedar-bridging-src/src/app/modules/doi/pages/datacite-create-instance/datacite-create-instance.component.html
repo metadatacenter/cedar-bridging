@@ -10,13 +10,18 @@
     <p class="error-doi-label">A DOI already exists: <a href="{{existingDoi}}" target="_blank">{{existingDoi}}</a>. An artifact can only have one DOI.</p>
   </div>
 }
+@if (openError) {
+  <div class="error-doi-container">
+    <p class="error-doi-label">{{openError}}</p>
+  </div>
+}
 @if (template !== null) {
   <cedar-embeddable-editor
     [config]="ceeConfig"
     [templateObject]="template"
     [instanceObject]="existingDataCiteMetadata"
   ></cedar-embeddable-editor>
-  <div class="button-container" [ngClass]="{'move-buttons-down': showError}">
+  <div [ngClass]="{'move-buttons-down': showError}">
     @if (sourceArtifactId != null) {
       <app-doi-saver
         [sourceArtifactId]="sourceArtifactId"
@@ -27,8 +32,6 @@
         [sourceArtifactId]="sourceArtifactId"
       ></app-doi-requester>
     }
-    <app-cancel
-      [operation]="operation">
-    </app-cancel>
+    <app-cancel></app-cancel>
   </div>
 }
