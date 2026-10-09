@@ -35,6 +35,15 @@ body {
   color: var(--cedar-text-primary);
 }
 
+// CEDAR has no monospace face: code and preformatted text, such as a DOI service's error, are set in
+// the body font rather than the browser's monospace.
+code,
+pre,
+kbd,
+samp {
+  font-family: inherit;
+}
+
 .wrapper-card {
   background-color: tokens.$surface-subtle !important;
   padding-top: tokens.$space-4;
