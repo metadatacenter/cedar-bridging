@@ -111,7 +111,8 @@ ${e.map((i,a)=>`${a+1}) ${i.toString()}`).join(`
   <path d="M17 16v6" />`},"expand-all":{name:"expand-all",source:"chevrons-up-down",body:`<path d="m7 15 5 5 5-5" />
   <path d="m7 9 5-5 5 5" />`},"collapse-all":{name:"collapse-all",source:"chevrons-down-up",body:`<path d="m7 20 5-5 5 5" />
   <path d="m7 4 5 5 5-5" />`},"chevron-down":{name:"chevron-down",source:"chevron-down",body:'<path d="m6 9 6 6 6-6" />'},"chevron-up":{name:"chevron-up",source:"chevron-up",body:'<path d="m18 15-6-6-6 6" />'},"chevron-left":{name:"chevron-left",source:"chevron-left",body:'<path d="m15 18-6-6 6-6" />'},"chevron-right":{name:"chevron-right",source:"chevron-right",body:'<path d="m9 18 6-6-6-6" />'},back:{name:"back",source:"arrow-left",body:`<path d="m12 19-7-7 7-7" />
-  <path d="M19 12H5" />`},"panel-left":{name:"panel-left",source:"panel-left",body:`<rect width="18" height="18" x="3" y="3" rx="2" />
+  <path d="M19 12H5" />`},"go-to":{name:"go-to",source:"arrow-right",body:`<path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />`},"panel-left":{name:"panel-left",source:"panel-left",body:`<rect width="18" height="18" x="3" y="3" rx="2" />
   <path d="M9 3v18" />`},"panel-right":{name:"panel-right",source:"panel-right",body:`<rect width="18" height="18" x="3" y="3" rx="2" />
   <path d="M15 3v18" />`},settings:{name:"settings",source:"settings",body:`<path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
   <circle cx="12" cy="12" r="3" />`},preview:{name:"preview",source:"eye",body:`<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
