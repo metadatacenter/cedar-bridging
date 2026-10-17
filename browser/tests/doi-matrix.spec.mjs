@@ -20,10 +20,21 @@ const started = (answer = {}) => [200, {
   ...answer,
 }];
 
-/** What the page says about a failed request, as `serverErrorText` words it. */
+/**
+ * What the page says about a failed request, as `serverErrorText` words it. A failure of a service behind
+ * the bridge is reported by that service's status, as it was before the bridge explained it.
+ */
 const said = (status, body) =>
   status === NETWORK_FAILURE ? 'the server could not be reached'
-    : body?.message ?? body?.errorMessage ?? `the server answered with status ${status}`;
+    : body?.errorKey === 'upstreamServerError'
+      ? `the server answered with status ${body.parameters?.upstreamStatusCode ?? status}`
+      : body?.message ?? body?.errorMessage ?? `the server answered with status ${status}`;
+
+/** The bridge's error body for a service behind it that failed. */
+const upstreamFailure = (statusCode, message, parameters = {}) => ({
+  status: statusCode === 404 ? 'NOT_FOUND' : 'BAD_GATEWAY', statusCode, errorKey: 'upstreamServerError',
+  errorReasonKey: null, message, parameters, objects: {},
+});
 
 // The bridge answers the opening GET and the action's POST at one path. Each request it receives is
 // kept, so a test can say what the page asked for.
@@ -50,6 +61,8 @@ const OPENINGS = {
   404: [404, {}],
   409: [409, { errorKey: 'somethingElse', message: 'The artifact is locked' }],
   500: [500, { message: 'The bridge could not reach DataCite' }],
+  'a resource read the bridge relays': [404, upstreamFailure(404,
+    `The resource server answered HTTP 404 when asked for the template ${sourceArtifactId}.`)],
   [NETWORK_FAILURE]: [NETWORK_FAILURE, null],
 };
 
@@ -88,6 +101,10 @@ const OUTCOMES = {
   409: [409, { errorKey: 'doiAlreadyExists', message: `The template(${sourceArtifactId}) already has a DOI: ${doi}` }],
   '500 with a message': [500, { message: 'DataCite is unavailable' }],
   '500 without a message': [500, {}],
+  'DataCite refusing the registration': [409, upstreamFailure(409, 'DataCite refused the request with HTTP 409.',
+    { upstreamStatusCode: 409, upstreamService: 'DataCite' })],
+  'DataCite failing': [502, upstreamFailure(502, 'DataCite failed with HTTP 500.',
+    { upstreamStatusCode: 500, upstreamService: 'DataCite' })],
   [NETWORK_FAILURE]: [NETWORK_FAILURE, null],
 };
 
