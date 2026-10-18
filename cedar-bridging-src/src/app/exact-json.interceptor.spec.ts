@@ -37,6 +37,12 @@ describe('Exact artifact HTTP JSON', () => {
     const error = await read;
     expect(error.status).toBe(412); expect(error.error).toEqual({message: 'Conflict'});
   });
+  it('keeps a non-JSON failure body attached to its HTTP status', async () => {
+    const read = firstValueFrom(http.get('/artifact')).catch(error => error);
+    backend.expectOne('/artifact').flush('<html>Unavailable</html>', {status: 503, statusText: 'Unavailable'});
+    const error = await read;
+    expect(error.status).toBe(503); expect(error.error).toBe('<html>Unavailable</html>');
+  });
   it('permits JSON arrays and preserves explicitly requested text', async () => {
     const list = firstValueFrom(http.get('/list')); backend.expectOne('/list').flush('[1,2]'); expect(await list).toEqual([1,2]);
     const text = firstValueFrom(http.get('/text', {responseType: 'text'})); backend.expectOne('/text').flush('not JSON'); expect(await text).toBe('not JSON');

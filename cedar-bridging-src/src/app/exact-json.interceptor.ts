@@ -24,7 +24,9 @@ export const exactJsonInterceptor: HttpInterceptorFn = (request, next) => {
     }),
     catchError(error => {
       if (error instanceof HttpErrorResponse && typeof error.error === 'string') {
-        try { return throwError(() => new HttpErrorResponse({error: parse(error.error), headers: error.headers,
+        try {
+          const body = parse(error.error);
+          return throwError(() => new HttpErrorResponse({error: body, headers: error.headers,
           status: error.status, statusText: error.statusText, url: error.url ?? undefined})); }
         catch { /* Keep non-JSON error bodies and HTTP status intact. */ }
       }
