@@ -5,7 +5,7 @@ import {JsonSourcePolicy} from 'cedar-model-typescript-library/policy';
 // Parse raw JSON before HttpClient can round source numbers. A wrapper permits array/scalar replies
 // while the shared artifact parser continues to require an object and reject duplicate keys.
 function parse(source: string): unknown {
-  if (!source.trim()) return null;
+  if (source === '') return null;
   const wrapper = JsonSourcePolicy.parse('{"value":' + source + '}');
   if (Object.keys(wrapper).length !== 1) throw new SyntaxError('Unexpected trailing JSON content');
   return wrapper['value'];

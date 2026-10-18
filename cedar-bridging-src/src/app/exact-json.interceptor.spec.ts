@@ -24,7 +24,7 @@ describe('Exact artifact HTTP JSON', () => {
     outgoing.flush('{}'); await write;
   });
   it('rejects duplicate decoded keys and incomplete JSON', async () => {
-    for (const source of ['{"a":1,"\\u0061":2}', '1,"extra":2', '{} {}']) {
+    for (const source of ['{"a":1,"\\u0061":2}', '1,"extra":2', '{} {}', '\u00a0', '   ']) {
       const read = firstValueFrom(http.get('/artifact')).catch(error => error);
       backend.expectOne('/artifact').flush(source);
       const error = await read;
