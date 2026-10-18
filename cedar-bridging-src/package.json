@@ -31,7 +31,7 @@
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
-    "cedar-embeddable-editor": "npm:@org.metadatacenter/cedar-embeddable-editor@2.0.24-dev.20261018.426bfa6",
+    "cedar-embeddable-editor": "npm:@org.metadatacenter/cedar-embeddable-editor@2.0.24-dev.20261018.da1705a",
     "cedar-model-typescript-library": "npm:@org.metadatacenter/cedar-model-typescript-library@1.0.20-dev.20261018.4b1e3eb",
     "keycloak-angular": "^13.0.0",
     "keycloak-js": "^21.0.1",
