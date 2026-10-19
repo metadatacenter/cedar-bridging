@@ -1,6 +1,6 @@
 
 --------------------------------------------------------------------------------
-Package: cedar-model-typescript-library
+Package: @org.metadatacenter/cedar-model-typescript-library
 License: "BSD-2-Clause"
 
 Copyright (c) 2026, The Board of Trustees of Leland Stanford Junior University
