@@ -1,3 +1,4 @@
+import {exactJsonInterceptor} from './exact-json.interceptor';
 import {APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
@@ -7,7 +8,7 @@ import {SnotifyModule, SnotifyService, ToastDefaults} from "ng-alt-snotify";
 import {SharedModule} from "./modules/shared";
 import {DoiModule} from "./modules/doi/doi.module";
 import {MaterialModule} from "./modules/material-module";
-import {provideHttpClient, withInterceptorsFromDi, withXhr} from "@angular/common/http";
+import {provideHttpClient, withInterceptors, withInterceptorsFromDi, withXhr} from "@angular/common/http";
 import {TranslateModule} from "@ngx-translate/core";
 import {provideTranslateHttpLoader} from "@ngx-translate/http-loader";
 import {initializeKeycloak} from "./init/keycloak-init.factory";
@@ -38,7 +39,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     TranslateModule.forRoot(),
   ],
   providers: [
-    provideHttpClient(withXhr(), withInterceptorsFromDi()),
+    provideHttpClient(withXhr(), withInterceptors([exactJsonInterceptor]), withInterceptorsFromDi()),
     provideTranslateHttpLoader(),
     SnotifyService,
     {
