@@ -30,21 +30,6 @@ $theme: mat.m2-define-light-theme((color: (primary: mat.m2-define-palette(tokens
 @include mat.menu-theme($theme);
 @include mat.progress-spinner-theme($theme);
 @include mat.toolbar-theme($theme);
-// The CEE release this page embeds, 2.0.29, reads these components' tokens from the page. Custom
-// properties inherit through its shadow root, and that release does not bind every token it reads
-// on its own host, so without these themes some of its fields would change here, the outlined
-// placeholder among them. They can go once the embedded CEE binds its own tokens.
-@include mat.autocomplete-theme($theme);
-@include mat.checkbox-theme($theme);
-@include mat.chips-theme($theme);
-@include mat.datepicker-theme($theme);
-@include mat.expansion-theme($theme);
-@include mat.form-field-theme($theme);
-@include mat.list-theme($theme);
-@include mat.paginator-theme($theme);
-@include mat.radio-theme($theme);
-@include mat.select-theme($theme);
-@include mat.tooltip-theme($theme);
 
 @import '@org.metadatacenter/cedar-design-tokens/custom-properties.css';
 @import '@org.metadatacenter/cedar-design-tokens/icon-contract.css';
