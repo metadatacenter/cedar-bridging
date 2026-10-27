@@ -1,7 +1,7 @@
 {
   "name": "cedar-bridging",
   "license": "BSD-2-Clause",
-  "version": "2.9.30-SNAPSHOT",
+  "version": "2.9.31-SNAPSHOT",
   "publishConfig": {
     "registry": "https://nexus.bmir.stanford.edu/repository/npm-cedar/"
   },
@@ -30,8 +30,8 @@
     "@angular/router": "^22.2.0",
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
-    "cedar-embeddable-editor": "npm:@org.metadatacenter/cedar-embeddable-editor@2.0.31-dev.20261027.4d0e91c",
-    "cedar-model-typescript-library": "npm:@org.metadatacenter/cedar-model-typescript-library@1.0.26-dev.20261027.72d9ee4",
+    "cedar-embeddable-editor": "2.0.30",
+    "cedar-model-typescript-library": "npm:@org.metadatacenter/cedar-model-typescript-library@1.0.26-dev.20261027.g72d9ee465715.t1331",
     "keycloak-angular": "^13.0.0",
     "keycloak-js": "^21.0.1",
     "ng-alt-snotify": "^17.0.0",
@@ -43,7 +43,7 @@
     "@angular/build": "22.2.4",
     "@angular/cli": "22.2.4",
     "@angular/compiler-cli": "^22.2.0",
-    "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20261026.d1c349d9",
+    "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20261027.gd1c349d922c0.t1331",
     "@vitest/browser-playwright": "^4.1.11",
     "istanbul-lib-instrument": "^6.0.3",
     "playwright": "^1.63.0",
