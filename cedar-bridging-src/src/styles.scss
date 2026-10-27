@@ -131,13 +131,6 @@ textarea.mat-mdc-input-element {
     item-label-text-line-height: var(--cedar-control-line-height-default),
     item-label-text-tracking: normal,
     item-icon-color: var(--cedar-color-primary),
-    // The shared menu-item padding below ties on specificity with Material's rule for items that
-    // hold an icon, so the inline inset is set here as well, where it does not depend on which
-    // stylesheet comes later in the document.
-    item-leading-spacing: var(--cedar-space-3),
-    item-trailing-spacing: var(--cedar-space-3),
-    item-with-icon-leading-spacing: var(--cedar-space-3),
-    item-with-icon-trailing-spacing: var(--cedar-space-3),
   ));
 }
 
