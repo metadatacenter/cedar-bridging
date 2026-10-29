@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {TranslateModule} from '@ngx-translate/core';
+import {TranslatePipe} from '@ngx-translate/core';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {MaterialModule} from '../../modules/material-module';
 import {HeaderComponent} from "./components/header/header.component";
@@ -20,7 +20,7 @@ import {SharedErrorService} from "../../services/shared-error.service";
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    TranslateModule,
+    TranslatePipe,
     MaterialModule,
     ClipboardModule,
   ],
@@ -37,7 +37,7 @@ import {SharedErrorService} from "../../services/shared-error.service";
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        TranslateModule,
+        TranslatePipe,
         HeaderComponent,
         DoiRequesterComponent,
         CancelComponent,
