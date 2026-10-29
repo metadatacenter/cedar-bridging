@@ -1,6 +1,5 @@
 import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {KeycloakService} from "keycloak-angular";
 import {UiService} from "../../../../services/ui.service";
@@ -24,13 +23,12 @@ export class HeaderComponent extends CedarBase implements OnInit {
 
   constructor(
     translateService: TranslateService,
-    notify: SnotifyService,
     router: Router,
     route: ActivatedRoute,
     keycloak: KeycloakService,
     uiService: UiService
   ) {
-    super(translateService, notify, router, route, keycloak, uiService);
+    super(translateService, router, route, keycloak, uiService);
   }
 
   openCEDARPage() {
