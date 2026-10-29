@@ -4,12 +4,11 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {SnotifyModule, SnotifyService, ToastDefaults} from "ng-alt-snotify";
 import {SharedModule} from "./modules/shared";
 import {DoiModule} from "./modules/doi/doi.module";
 import {MaterialModule} from "./modules/material-module";
 import {provideHttpClient, withInterceptors, withInterceptorsFromDi, withXhr} from "@angular/common/http";
-import {TranslateModule} from "@ngx-translate/core";
+import {provideTranslateService} from "@ngx-translate/core";
 import {provideTranslateHttpLoader} from "@ngx-translate/http-loader";
 import {initializeKeycloak} from "./init/keycloak-init.factory";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
@@ -31,21 +30,14 @@ const appInitializerFn = (appConfig: AppConfigService) => {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SnotifyModule,
     SharedModule,
     DoiModule,
     MaterialModule,
     KeycloakAngularModule,
-    TranslateModule.forRoot(),
   ],
   providers: [
     provideHttpClient(withXhr(), withInterceptors([exactJsonInterceptor]), withInterceptorsFromDi()),
-    provideTranslateHttpLoader(),
-    SnotifyService,
-    {
-      provide: 'SnotifyToastConfig',
-      useValue: ToastDefaults
-    },
+    provideTranslateService({loader: provideTranslateHttpLoader()}),
     AppConfigService,
     {
       provide: APP_INITIALIZER,

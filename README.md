@@ -19,15 +19,15 @@ First, navigate to the cedar-bridging-src directory:
 $ cd <...>/<clone directory>/cedar-bridging/cedar-bridging-src
 ```
 
-### Install dependencies
+### Install Dependencies
 
 `npm install --legacy-peer-deps`
 
-### Development server
+### Development Server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4340/`. The application will automatically reload if you change any of the source files.
 
-### Code scaffolding
+### Code Scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
@@ -35,18 +35,19 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-### Running unit tests
+### Running Unit Tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests with Vitest in headless Chromium.
 
-### Running end-to-end tests
+### Running Browser Tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The browser tests in `../browser` drive the built application in Chromium with Playwright. Run
+`ng build` here, then `npm install` and `npm test` in `../browser`.
 
 ## Questions
 
 If you have questions about this repository, please subscribe to the
-[CEDAR Developer Supportmailing list](https://mailman.stanford.edu/mailman/listinfo/cedar-developers).
+[CEDAR Developer Support mailing list](https://mailman.stanford.edu/mailman/listinfo/cedar-developers).
 
 After subscribing, send messages to cedar-developers at lists.stanford.edu.
 

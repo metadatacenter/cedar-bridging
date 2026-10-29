@@ -1,6 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {SnotifyService} from 'ng-alt-snotify';
 import {DatePipe} from '@angular/common';
 import {ActivatedRoute, NavigationExtras, Router, UrlTree} from '@angular/router';
 import {KeycloakService} from "keycloak-angular";
@@ -14,7 +13,6 @@ import {UiService} from "../../../../services/ui.service";
 export abstract class CedarBase implements OnInit {
 
   protected translateService: TranslateService;
-  protected notify: SnotifyService;
   protected datePipe: DatePipe;
   protected router: Router;
   protected route: ActivatedRoute;
@@ -23,14 +21,12 @@ export abstract class CedarBase implements OnInit {
 
   protected constructor(
     translateService: TranslateService,
-    notify: SnotifyService,
     router: Router,
     route: ActivatedRoute,
     keycloak: KeycloakService,
     uiService: UiService
   ) {
     this.translateService = translateService;
-    this.notify = notify;
     this.router = router;
     this.route = route;
     this.keycloak = keycloak;
@@ -39,26 +35,6 @@ export abstract class CedarBase implements OnInit {
   }
 
   abstract ngOnInit(): void;
-
-  public notifyError(errorKey: string) {
-    if (errorKey === undefined) {
-      errorKey = 'generic.error';
-    }
-    this.notify.error(
-      this.translateService.instant(errorKey),
-      {
-        animation: {
-          enter: 'fadeIn',
-          exit: 'fadeOut',
-          time: 400,
-        }
-      }
-    );
-  }
-
-  public notifySuccess(successKey: string) {
-    this.notify.success(this.translateService.instant(successKey));
-  }
 
   protected scrollToTop(): void {
     setTimeout(() => {
