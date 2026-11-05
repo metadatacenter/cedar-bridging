@@ -7,17 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <!-- load the component -->
-  <!--
-    Copied as an asset and loaded by tag, rather than imported by app.module or
-    listed in angular.json's `scripts`. An import puts 2.2 MB of editor into this
-    application's own bundle, and a `scripts` entry is re-minified by this build,
-    which drops the static initializers in CEE's esbuild bundle and leaves the
-    custom element unregistered. The file arrives minified; nothing here needs to
-    touch it.
-  -->
-  <!-- styles.scss registers CEDAR Roboto 400/500 for the page and CEE's shadow roots. -->
-  <script type="text/javascript" src="node_modules/cedar-embeddable-editor/cedar-embeddable-editor.host-fonts.js"></script>
+  <!-- CeeLoader loads the host-font editor on demand; styles.scss supplies its fonts. -->
 </head>
 <body class="mat-typography">
 <app-root></app-root>

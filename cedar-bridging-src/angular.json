@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "statsJson": true,
             "outputPath": {
               "base": "dist/cedar-bridging",
               "browser": ""
@@ -59,8 +60,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1500kb",
-                  "maximumError": "4mb"
+                  "maximumWarning": "900kb",
+                  "maximumError": "930kb"
                 },
                 {
                   "type": "anyComponentStyle",
