@@ -1,5 +1,6 @@
+import { CeeLoader } from '../../../../services/cee-loader.service';
 import { resourceSelector } from "../../../../resource-address";
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {inject, Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CedarPageComponent} from '../../../shared/components/base/cedar-page-component.component';
 import {TranslateService} from '@ngx-translate/core';
@@ -20,6 +21,7 @@ import {serverErrorText} from "../../../shared/util/server-error";
   standalone: false
 })
 export class DataciteCreateInstanceComponent extends CedarPageComponent implements OnInit {
+  private readonly ceeLoader = inject(CeeLoader);
 
   public sourceArtifactId: string | null = null;
   public ceeConfig: object = {};
@@ -65,7 +67,11 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
       "bridgeBaseUrl": globalAppConfig.bridgeUrl,
     }
     const req = this.getDataCiteStartResponse();
-    req.subscribe((response: HttpResponse<DataCiteCreateDOIStartResponse>) => {
+    req.subscribe(async (response: HttpResponse<DataCiteCreateDOIStartResponse>) => {
+        try { await this.ceeLoader.load(); } catch {
+          this.openError = 'Error Opening The DataCite Form - the editor could not be loaded';
+          return;
+        }
         this.template = response.body?.dataCiteTemplate ?? null;
         this.draftDoi = response.body?.draftDoi ?? null;
         this.existingDataCiteMetadata = response.body?.existingDataCiteMetadata ?? null;

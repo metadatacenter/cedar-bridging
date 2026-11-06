@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "statsJson": true,
             "outputPath": {
               "base": "dist/cedar-bridging",
               "browser": ""
@@ -33,7 +34,7 @@
               "src/assets/i18n",
               "src/assets/silent-check-sso.html",
               {
-                "glob": "cedar-embeddable-editor.js",
+                "glob": "cedar-embeddable-editor.host-fonts.js",
                 "input": "node_modules/cedar-embeddable-editor/",
                 "output": "node_modules/cedar-embeddable-editor"
               }
@@ -59,8 +60,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1500kb",
-                  "maximumError": "4mb"
+                  "maximumWarning": "900kb",
+                  "maximumError": "930kb"
                 },
                 {
                   "type": "anyComponentStyle",

@@ -52,6 +52,28 @@ async function openWith(page, open, act = () => [500, {}]) {
 }
 const formDrawn = (page) => expect(page.locator('cedar-embeddable-editor').getByRole('heading', { level: 1 })).toBeVisible();
 
+test('the landing page defers CEE until a DOI form is opened', async ({ page }) => {
+  const downloads = [];
+  page.on('request', request => {
+    if (/cedar-embeddable-editor.*\.js/.test(request.url())) downloads.push(request.url());
+  });
+  await signedIn(page, { 'datacite/create-doi': () => started() });
+  await page.goto('/');
+  await expect(page.locator('mat-card-title', { hasText: 'Create Datacite DOI' })).toBeVisible();
+  expect(downloads).toEqual([]);
+  await page.goto(doiPage);
+  await formDrawn(page);
+  expect(downloads).toHaveLength(1);
+});
+
+test('an editor download failure uses the existing form error and leaves actions absent', async ({ page }) => {
+  await page.route('**/cedar-embeddable-editor.host-fonts.js', route => route.abort());
+  await openWith(page, () => started());
+  await expect(page.locator('.error-doi-container')).toHaveText('Error Opening The DataCite Form - the editor could not be loaded');
+  await expect(page.getByRole('button', { name: 'Create DOI' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Save Draft' })).toHaveCount(0);
+});
+
 const OPENINGS = {
   'nothing started': started(),
   'a draft DOI already started': started({ draftDoi: '10.82658/7xq2-k9d4' }),
