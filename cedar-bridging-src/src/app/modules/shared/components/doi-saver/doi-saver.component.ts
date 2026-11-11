@@ -1,10 +1,9 @@
 import { resourceSelector } from "../../../../resource-address";
-import {Component, Input, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input, OnDestroy, ChangeDetectionStrategy, TemplateRef, ViewChild} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {MessageHandlerService} from "../../../../services/message-handler.service";
 import {globalAppConfig} from "../../../../../environments/global-app-config";
-import {SharedErrorService} from "../../../../services/shared-error.service";
 import { serverErrorText } from '../../util/server-error';
 
 @Component({
@@ -19,6 +18,9 @@ export class DoiSaverComponent implements OnDestroy{
 
   @Input() sourceArtifactId: string = '';
 
+  /** The notices this component reports, which the page draws in a row under the action buttons. */
+  @ViewChild('notices', { static: true }) notices!: TemplateRef<unknown>;
+
   httpPostSubscription = new Subscription();
 
   showProgress = false;
@@ -28,7 +30,7 @@ export class DoiSaverComponent implements OnDestroy{
   successMessage = '';
   errorMessage = '';
 
-  constructor(private httpClient: HttpClient, private messageHandlerService: MessageHandlerService, private sharedErrorService: SharedErrorService) {
+  constructor(private httpClient: HttpClient, private messageHandlerService: MessageHandlerService) {
   }
 
   saveDoi(event:any): void {
@@ -51,7 +53,6 @@ export class DoiSaverComponent implements OnDestroy{
           this.clearProgress();
           this.clearSuccess();
           this.showError = true;
-          this.sharedErrorService.updateShowError(this.showError);
 
           this.errorMessage = "Error Saving A Draft DOI - " + serverErrorText(error);
 
@@ -107,7 +108,6 @@ export class DoiSaverComponent implements OnDestroy{
   clearError(): void {
     this.showError = false;
     this.errorMessage = '';
-    this.sharedErrorService.updateShowError(false);
   }
 
   stopPropagation(event: any): void {

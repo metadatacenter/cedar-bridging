@@ -1,32 +1,33 @@
 <div class="flex-container-doi-requester">
-  <div class="flex-child1">
-    @if (showProgress || showSuccess || showError) {
-      <div class="notify-container">
-        @if (showProgress) {
-          <div class="notify-progress">
-            <mat-spinner [diameter]="16" class="notify-progress-icon"></mat-spinner>{{progressMessage}}
-          </div>
-        }
-        @if (showSuccess) {
-          <div class="notify-success">{{successMessage}}
-            <button type="button" class="close" (click)="clearSuccess()">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        }
-        @if (showError) {
-          <div class="notify-error">
-            <pre>{{errorMessage}}</pre>
-            <button type="button" class="close" (click)="clearError()">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        }
-      </div>
-    }
-  </div>
   <div>
     <button mat-raised-button color="primary" class="create-doi-button" (click)="createDoi($event)">Create DOI</button>
   </div>
 </div>
 
+<!-- The page draws this in a row of its own under the action buttons. -->
+<ng-template #notices>
+  @if (showProgress || showSuccess || showError) {
+    <div class="notify-container">
+      @if (showProgress) {
+        <div class="notify-progress" appScrollIntoView>
+          <mat-spinner [diameter]="16" class="notify-progress-icon" aria-hidden="true"></mat-spinner>{{progressMessage}}
+        </div>
+      }
+      @if (showSuccess) {
+        <div class="notify-success" appScrollIntoView>{{successMessage}}
+          <button type="button" class="close" aria-label="Dismiss notification" (click)="clearSuccess()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      }
+      @if (showError) {
+        <div class="notify-error" appScrollIntoView>
+          <pre>{{errorMessage}}</pre>
+          <button type="button" class="close" aria-label="Dismiss notification" (click)="clearError()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      }
+    </div>
+  }
+</ng-template>

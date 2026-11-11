@@ -1,10 +1,9 @@
 import { resourceSelector } from "../../../../resource-address";
-import {Component, Input, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input, OnDestroy, ChangeDetectionStrategy, TemplateRef, ViewChild} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {MessageHandlerService} from "../../../../services/message-handler.service";
 import {globalAppConfig} from "../../../../../environments/global-app-config";
-import {SharedErrorService} from "../../../../services/shared-error.service";
 import { serverErrorText } from '../../util/server-error';
 
 @Component({
@@ -21,6 +20,9 @@ export class DoiRequesterComponent implements OnDestroy{
   @Input() sourceArtifactId: string = '';
   // @Input() state: string = '';
 
+  /** The notices this component reports, which the page draws in a row under the action buttons. */
+  @ViewChild('notices', { static: true }) notices!: TemplateRef<unknown>;
+
   httpPostSubscription = new Subscription();
 
   showProgress = false;
@@ -30,7 +32,7 @@ export class DoiRequesterComponent implements OnDestroy{
   successMessage = '';
   errorMessage = '';
 
-  constructor(private httpClient: HttpClient, private messageHandlerService: MessageHandlerService, private sharedErrorService: SharedErrorService) {
+  constructor(private httpClient: HttpClient, private messageHandlerService: MessageHandlerService) {
   }
 
   createDoi(event:any): void {
@@ -53,7 +55,6 @@ export class DoiRequesterComponent implements OnDestroy{
           this.clearProgress();
           this.clearSuccess();
           this.showError = true;
-          this.sharedErrorService.updateShowError(this.showError);
 
           this.errorMessage = "Error Creating A DOI - " + serverErrorText(error);
 
@@ -108,7 +109,6 @@ export class DoiRequesterComponent implements OnDestroy{
   clearError(): void {
     this.showError = false;
     this.errorMessage = '';
-    this.sharedErrorService.updateShowError(false);
   }
 
   stopPropagation(event: any): void {

@@ -1,24 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { NETWORK_FAILURE, fixture, signedIn } from './backend.mjs';
+import { NETWORK_FAILURE, signedIn } from './backend.mjs';
+import { ACTIONS, OPENINGS, OUTCOMES, compactAddress, doi, doiPage, formDrawn, openWith, started } from './doi.mjs';
 
 // The DOI form against each answer the bridge can give: first when the form opens, then when the
 // user creates the DOI or saves a draft. Opening shows the form, the draft already started, the DOI
 // that already exists, or why the form could not be opened. Each action reports the DOI the bridge
 // returned, or the error in the bridge's own words. A failure without words is reported by its status.
-
-const uuid = '7c1e2b5a-0d4f-4e8b-9a36-2f5d8c1b7e94';
-const sourceArtifactId = `https://repo.metadatacenter.org/templates/${uuid}`;
-const doiPage = `/doi/datacite/${encodeURIComponent(sourceArtifactId)}`;
-const doi = 'https://doi.org/10.82658/3fz8-q1m6';
-
-const started = (answer = {}) => [200, {
-  sourceArtifactType: 'template',
-  sourceArtifact: { '@id': sourceArtifactId, 'schema:name': 'Study Metadata' },
-  dataCiteTemplate: fixture('datacite-template'),
-  existingDataCiteMetadata: null,
-  draftDoi: null,
-  ...answer,
-}];
 
 /**
  * What the page says about a failed request, as `serverErrorText` words it. A failure of a service behind
@@ -29,28 +16,6 @@ const said = (status, body) =>
     : body?.errorKey === 'upstreamServerError'
       ? `the server answered with status ${body.parameters?.upstreamStatusCode ?? status}`
       : body?.message ?? body?.errorMessage ?? `the server answered with status ${status}`;
-
-/** The bridge's error body for a service behind it that failed. */
-const upstreamFailure = (statusCode, message, parameters = {}) => ({
-  status: statusCode === 404 ? 'NOT_FOUND' : 'BAD_GATEWAY', statusCode, errorKey: 'upstreamServerError',
-  errorReasonKey: null, message, parameters, objects: {},
-});
-
-// The bridge answers the opening GET and the action's POST at one path. Each request it receives is
-// kept, so a test can say what the page asked for.
-async function openWith(page, open, act = () => [500, {}]) {
-  const requests = [];
-  await signedIn(page, {
-    'datacite/create-doi': (request) => {
-      const query = new URL(request.url()).searchParams;
-      requests.push({ method: request.method(), state: query.get('state'), id: query.get('source_artifact_id') });
-      return request.method() === 'GET' ? open() : act();
-    },
-  });
-  await page.goto(doiPage);
-  return requests;
-}
-const formDrawn = (page) => expect(page.locator('cedar-embeddable-editor').getByRole('heading', { level: 1 })).toBeVisible();
 
 test('the landing page defers CEE until a DOI form is opened', async ({ page }) => {
   const downloads = [];
@@ -73,20 +38,6 @@ test('an editor download failure uses the existing form error and leaves actions
   await expect(page.getByRole('button', { name: 'Create DOI' })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Save Draft' })).toHaveCount(0);
 });
-
-const OPENINGS = {
-  'nothing started': started(),
-  'a draft DOI already started': started({ draftDoi: '10.82658/7xq2-k9d4' }),
-  'a DOI already findable': [409, { errorKey: 'doiAlreadyExists', message: `The template(${sourceArtifactId}) already has a DOI: ${doi}`, parameters: { doi } }],
-  401: [401, {}],
-  403: [403, { message: 'You do not have permission to create a DOI for this artifact' }],
-  404: [404, {}],
-  409: [409, { errorKey: 'somethingElse', message: 'The artifact is locked' }],
-  500: [500, { message: 'The bridge could not reach DataCite' }],
-  'a resource read the bridge relays': [404, upstreamFailure(404,
-    `The resource server answered HTTP 404 when asked for the template ${sourceArtifactId}.`)],
-  [NETWORK_FAILURE]: [NETWORK_FAILURE, null],
-};
 
 for (const [name, answer] of Object.entries(OPENINGS))
   test(`the DOI form opened with ${name}`, async ({ page }) => {
@@ -111,25 +62,6 @@ for (const [name, answer] of Object.entries(OPENINGS))
     await expect(notice).toHaveText(`Error Opening The DataCite Form - ${said(status, body)}`);
   });
 
-const ACTIONS = {
-  'Create DOI': { state: 'publish', success: 'DOI created successfully! The DOI is:  ', failure: 'Error Creating A DOI - ' },
-  'Save Draft': { state: 'draft', success: 'Draft DOI saved successfully! The DOI is:  ', failure: 'Error Saving A Draft DOI - ' },
-};
-const OUTCOMES = {
-  success: [200, { doiName: '10.82658/9kq4-2zt7' }],
-  'a validation error': [400, { message: 'The title is required' }],
-  401: [401, {}],
-  403: [403, { message: 'You do not have permission to create a DOI for this artifact' }],
-  409: [409, { errorKey: 'doiAlreadyExists', message: `The template(${sourceArtifactId}) already has a DOI: ${doi}` }],
-  '500 with a message': [500, { message: 'DataCite is unavailable' }],
-  '500 without a message': [500, {}],
-  'DataCite refusing the registration': [409, upstreamFailure(409, 'DataCite refused the request with HTTP 409.',
-    { upstreamStatusCode: 409, upstreamService: 'DataCite' })],
-  'DataCite failing': [502, upstreamFailure(502, 'DataCite failed with HTTP 500.',
-    { upstreamStatusCode: 500, upstreamService: 'DataCite' })],
-  [NETWORK_FAILURE]: [NETWORK_FAILURE, null],
-};
-
 for (const [action, { state, success, failure }] of Object.entries(ACTIONS))
   for (const [name, outcome] of Object.entries(OUTCOMES))
     test(`${action} answered with ${name}`, async ({ page }) => {
@@ -149,7 +81,7 @@ for (const [action, { state, success, failure }] of Object.entries(ACTIONS))
       const posted = requests.filter((request) => request.method === 'POST');
       expect(posted).toHaveLength(1);
       expect(posted[0].state).toBe(state);
-      expect(posted[0].id).toBe(`templates/${uuid}`);
+      expect(posted[0].id).toBe(compactAddress);
     });
 
 for (const [action, { success, failure }] of Object.entries(ACTIONS))
