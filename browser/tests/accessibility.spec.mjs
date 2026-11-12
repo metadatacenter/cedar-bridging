@@ -139,7 +139,7 @@ for (const [kind, [open, find]] of Object.entries(controls)) {
     await open(page);
     const control = find(page);
     // A key press first, so focus is drawn as it is for someone using the keyboard.
-    await page.keyboard.press('Shift');
+    await page.keyboard.press(kind === 'menu item' ? 'ArrowDown' : 'Tab');
     await control.focus();
     await expect.poll(() => control.evaluate((element) => element.matches(':focus-visible'))).toBe(true);
   };
@@ -290,7 +290,8 @@ const SETTLED = [
     measured: 'menu #mat-menu-panel-0',
     reason: "axe cannot tell whether a popup button's aria-controls names its popup. The User button names its open menu.",
   },
-  menuItem('CEDAR', menuStates.filter((state) => state !== 'hovered menu item'), '5.30:1'),
+  menuItem('CEDAR', menuStates.filter((state) => !['hovered menu item', 'focused menu item'].includes(state)), '5.30:1'),
+  menuItem('CEDAR', ['focused menu item'], '4.89:1', ' under the keyboard focus tint'),
   menuItem('CEDAR', ['hovered menu item'], '4.91:1', ' under the hover tint'),
   menuItem('Logout', menuStates, '5.30:1'),
   {

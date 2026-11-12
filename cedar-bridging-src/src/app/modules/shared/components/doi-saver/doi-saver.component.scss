@@ -29,6 +29,8 @@
   justify-content: flex-end;
   align-items: center;
   overflow-wrap: anywhere;
+  // Keep fractional scroll rounding from clipping the notice at the viewport edge in Firefox.
+  scroll-margin-block: var(--cedar-space-1);
 
   pre {
     margin: 0;
