@@ -36,7 +36,12 @@ export async function openWith(page, open, act = () => [500, {}]) {
       return request.method() === 'GET' ? open() : act();
     },
   });
+  // Authentication completes after page.goto. Wait for the opening read to settle before the
+  // form's render assertion starts its own deadline; response() also settles for network failures.
+  const opening = page.waitForRequest(request => request.method() === 'GET'
+    && new URL(request.url()).pathname === '/datacite/create-doi');
   await page.goto(doiPage);
+  await (await opening).response();
   return requests;
 }
 export const formDrawn = (page) => expect(page.locator('cedar-embeddable-editor').getByRole('heading', { level: 1 })).toBeVisible();
