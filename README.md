@@ -44,6 +44,18 @@ Run `ng test` to execute the unit tests with Vitest in headless Chromium.
 The browser tests in `../browser` drive the built application in Chromium with Playwright. Run
 `ng build` here, then `npm install` and `npm test` in `../browser`.
 
+One of them, `accessibility.spec.mjs`, runs axe-core over every state the others reach: each
+registered surface at both widths, the DOI form after each answer the bridge can give, and one
+control of each kind hovered and focused. It applies every rule axe-core tags for WCAG 2.0, 2.1 and
+2.2 at levels A and AA, and Label in Name. A result axe cannot decide passes only when the spec
+settles it with a measurement it repeats on every run. A failure that only a visible change can fix
+is listed in the spec's `EXCEPTIONS` with the change it needs, and an entry that no longer matches
+fails. The embedded editor, CEE, is left out, because its own suite assesses it.
+
+`layout-resilience.spec.mjs` runs the design tokens' shared layout checks over the same states:
+reflow at 320 CSS px, a window zoomed to 200%, WCAG text spacing, and the contrast of placeholders,
+field boundaries, icons, focus indicators and selection marks. Its `EXCEPTIONS` work the same way.
+
 ## Questions
 
 If you have questions about this repository, please subscribe to the

@@ -8907,11 +8907,11 @@
       "format": "esm"
     },
     "src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss": {
-      "bytes": 1070,
+      "bytes": 1085,
       "imports": []
     },
     "src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.ts": {
-      "bytes": 9906,
+      "bytes": 9521,
       "imports": [
         {
           "path": "src/app/services/cee-loader.service.ts",
@@ -8972,11 +8972,6 @@
           "path": "node_modules/@angular/common/fesm2022/http.mjs",
           "kind": "import-statement",
           "original": "@angular/common/http"
-        },
-        {
-          "path": "src/app/services/shared-error.service.ts",
-          "kind": "import-statement",
-          "original": "../../../../services/shared-error.service"
         },
         {
           "path": "node_modules/@angular/common/fesm2022/common.mjs",
@@ -9165,11 +9160,11 @@
       "format": "esm"
     },
     "src/app/modules/shared/components/doi-requester/doi-requester.component.scss": {
-      "bytes": 999,
+      "bytes": 763,
       "imports": []
     },
     "src/app/modules/shared/components/doi-requester/doi-requester.component.ts": {
-      "bytes": 9998,
+      "bytes": 9888,
       "imports": [
         {
           "path": "src/app/resource-address.ts",
@@ -9217,9 +9212,9 @@
           "original": "../../../../services/message-handler.service"
         },
         {
-          "path": "src/app/services/shared-error.service.ts",
+          "path": "src/app/modules/shared/directives/scroll-into-view.directive.ts",
           "kind": "import-statement",
-          "original": "../../../../services/shared-error.service"
+          "original": "../../directives/scroll-into-view.directive"
         },
         {
           "path": "node_modules/@angular/material/fesm2022/button.mjs",
@@ -9235,11 +9230,11 @@
       "format": "esm"
     },
     "src/app/modules/shared/components/doi-saver/doi-saver.component.scss": {
-      "bytes": 1035,
+      "bytes": 799,
       "imports": []
     },
     "src/app/modules/shared/components/doi-saver/doi-saver.component.ts": {
-      "bytes": 9901,
+      "bytes": 9819,
       "imports": [
         {
           "path": "src/app/resource-address.ts",
@@ -9287,9 +9282,9 @@
           "original": "../../../../services/message-handler.service"
         },
         {
-          "path": "src/app/services/shared-error.service.ts",
+          "path": "src/app/modules/shared/directives/scroll-into-view.directive.ts",
           "kind": "import-statement",
-          "original": "../../../../services/shared-error.service"
+          "original": "../../directives/scroll-into-view.directive"
         },
         {
           "path": "node_modules/@angular/material/fesm2022/button.mjs",
@@ -9410,6 +9405,22 @@
       ],
       "format": "esm"
     },
+    "src/app/modules/shared/directives/scroll-into-view.directive.ts": {
+      "bytes": 890,
+      "imports": [
+        {
+          "path": "node_modules/@angular/core/fesm2022/core.mjs",
+          "kind": "import-statement",
+          "original": "@angular/core"
+        },
+        {
+          "path": "node_modules/@angular/core/fesm2022/core.mjs",
+          "kind": "import-statement",
+          "original": "@angular/core"
+        }
+      ],
+      "format": "esm"
+    },
     "src/app/modules/shared/index.ts": {
       "bytes": 33,
       "imports": [
@@ -9426,7 +9437,7 @@
       "imports": []
     },
     "src/app/modules/shared/pages/dashboard/dashboard.component.ts": {
-      "bytes": 2630,
+      "bytes": 2644,
       "imports": [
         {
           "path": "src/app/modules/shared/components/base/cedar-page-component.component.ts",
@@ -9487,7 +9498,7 @@
       "format": "esm"
     },
     "src/app/modules/shared/shared.module.ts": {
-      "bytes": 1641,
+      "bytes": 1617,
       "imports": [
         {
           "path": "src/app/modules/shared/directives/cedar-icon.directive.ts",
@@ -9555,9 +9566,9 @@
           "original": "./components/doi-saver/doi-saver.component"
         },
         {
-          "path": "src/app/services/shared-error.service.ts",
+          "path": "src/app/modules/shared/directives/scroll-into-view.directive.ts",
           "kind": "import-statement",
-          "original": "../../services/shared-error.service"
+          "original": "./directives/scroll-into-view.directive"
         },
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -9656,22 +9667,6 @@
       ],
       "format": "esm"
     },
-    "src/app/services/shared-error.service.ts": {
-      "bytes": 672,
-      "imports": [
-        {
-          "path": "node_modules/@angular/core/fesm2022/core.mjs",
-          "kind": "import-statement",
-          "original": "@angular/core"
-        },
-        {
-          "path": "node_modules/@angular/core/fesm2022/core.mjs",
-          "kind": "import-statement",
-          "original": "@angular/core"
-        }
-      ],
-      "format": "esm"
-    },
     "src/app/services/ui.service.ts": {
       "bytes": 517,
       "imports": [
@@ -9747,7 +9742,7 @@
       "format": "esm"
     },
     "src/styles.scss": {
-      "bytes": 29963,
+      "bytes": 30102,
       "imports": [
         {
           "path": "node_modules/@org.metadatacenter/cedar-design-tokens/dist/custom-properties.css",
@@ -9798,34 +9793,34 @@
       "bytes": 0,
       "ng-component": true
     },
-    "datacite-create-instance.component-XFKBCVTD.css": {
+    "datacite-create-instance.component-JRYXATRQ.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.scss": {
-          "bytesInOutput": 955
+          "bytesInOutput": 966
         }
       },
-      "bytes": 956,
+      "bytes": 967,
       "ng-component": true
     },
-    "doi-requester.component-NE5D5J5Q.css": {
+    "doi-requester.component-6HWERAYM.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/shared/components/doi-requester/doi-requester.component.scss": {
-          "bytesInOutput": 880
+          "bytesInOutput": 656
         }
       },
-      "bytes": 881,
+      "bytes": 657,
       "ng-component": true
     },
-    "doi-saver.component-O52OBP7K.css": {
+    "doi-saver.component-BKIGL5FI.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/shared/components/doi-saver/doi-saver.component.scss": {
-          "bytesInOutput": 912
+          "bytesInOutput": 688
         }
       },
-      "bytes": 913,
+      "bytes": 689,
       "ng-component": true
     },
     "header.component-MQ6C4373.css": {
@@ -9838,7 +9833,7 @@
       "bytes": 292,
       "ng-component": true
     },
-    "main-ZWMXCMT3.js": {
+    "main-LB64FWOB.js": {
       "imports": [],
       "exports": [],
       "entryPoint": "src/main.ts",
@@ -9931,7 +9926,7 @@
           "bytesInOutput": 3332
         },
         "node_modules/@angular/common/fesm2022/_common_module-chunk.mjs": {
-          "bytesInOutput": 13413
+          "bytesInOutput": 12141
         },
         "node_modules/@angular/common/fesm2022/_location-chunk.mjs": {
           "bytesInOutput": 3926
@@ -9952,7 +9947,7 @@
           "bytesInOutput": 0
         },
         "node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs": {
-          "bytesInOutput": 97376
+          "bytesInOutput": 97155
         },
         "node_modules/@angular/core/fesm2022/_effect-chunk.mjs": {
           "bytesInOutput": 4355
@@ -9961,7 +9956,7 @@
           "bytesInOutput": 170
         },
         "node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs": {
-          "bytesInOutput": 26673
+          "bytesInOutput": 26556
         },
         "node_modules/@angular/core/fesm2022/_resource-chunk.mjs": {
           "bytesInOutput": 544
@@ -10384,7 +10379,7 @@
           "bytesInOutput": 167
         },
         "src/app/modules/doi/pages/datacite-create-instance/datacite-create-instance.component.ts": {
-          "bytesInOutput": 4505
+          "bytesInOutput": 4396
         },
         "src/app/modules/material-module.ts": {
           "bytesInOutput": 176
@@ -10399,10 +10394,10 @@
           "bytesInOutput": 852
         },
         "src/app/modules/shared/components/doi-requester/doi-requester.component.ts": {
-          "bytesInOutput": 4923
+          "bytesInOutput": 4516
         },
         "src/app/modules/shared/components/doi-saver/doi-saver.component.ts": {
-          "bytesInOutput": 4955
+          "bytesInOutput": 4548
         },
         "src/app/modules/shared/components/header/header.component.ts": {
           "bytesInOutput": 1895
@@ -10410,14 +10405,17 @@
         "src/app/modules/shared/directives/cedar-icon.directive.ts": {
           "bytesInOutput": 454
         },
+        "src/app/modules/shared/directives/scroll-into-view.directive.ts": {
+          "bytesInOutput": 263
+        },
         "src/app/modules/shared/index.ts": {
           "bytesInOutput": 0
         },
         "src/app/modules/shared/pages/dashboard/dashboard.component.ts": {
-          "bytesInOutput": 859
+          "bytesInOutput": 872
         },
         "src/app/modules/shared/shared.module.ts": {
-          "bytesInOutput": 203
+          "bytesInOutput": 188
         },
         "src/app/modules/shared/util/server-error.ts": {
           "bytesInOutput": 679
@@ -10433,9 +10431,6 @@
         },
         "src/app/services/message-handler.service.ts": {
           "bytesInOutput": 279
-        },
-        "src/app/services/shared-error.service.ts": {
-          "bytesInOutput": 251
         },
         "src/app/services/ui.service.ts": {
           "bytesInOutput": 203
@@ -10453,7 +10448,7 @@
           "bytesInOutput": 104
         }
       },
-      "bytes": 594606
+      "bytes": 592083
     },
     "media/1df1ae79b14180fb1e9284310583ca4c17a861328a726b82068e0ab3ba586458-Z72STTMG.woff2": {
       "imports": [],
@@ -10609,7 +10604,7 @@
       },
       "bytes": 35876
     },
-    "styles-CYMY5CWH.css": {
+    "styles-PGBWZQFS.css": {
       "imports": [
         {
           "path": "media/83572c3ab2cc39e33fb02c9050652e82eb00351564f8fa1581b586372934a754-PRJ7OQMU.woff2",
@@ -10686,10 +10681,10 @@
           "bytesInOutput": 1049
         },
         "src/styles.scss": {
-          "bytesInOutput": 27599
+          "bytesInOutput": 27725
         }
       },
-      "bytes": 34556
+      "bytes": 34682
     }
   }
 }

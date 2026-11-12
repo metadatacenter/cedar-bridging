@@ -10,7 +10,6 @@ import {KeycloakService} from "keycloak-angular";
 import {Observable} from "rxjs";
 import {DataCiteCreateDOIStartResponse} from "../../../shared/model/datacite-create-doi-start-response.model";
 import {globalAppConfig} from "../../../../../environments/global-app-config";
-import {SharedErrorService} from "../../../../services/shared-error.service";
 import {serverErrorText} from "../../../shared/util/server-error";
 
 @Component({
@@ -32,7 +31,6 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
   // Why the form could not be opened, when the reason is anything but a DOI the artifact already has.
   public openError: string | null = null;
   public existingDataCiteMetadata: object | null = null;
-  public showError: boolean = false;
 
   constructor(
     translateService: TranslateService,
@@ -40,13 +38,9 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
     route: ActivatedRoute,
     keycloak: KeycloakService,
     uiService: UiService,
-    private http: HttpClient,
-    private sharedErrorService: SharedErrorService
+    private http: HttpClient
   ) {
     super(translateService, router, route, keycloak, uiService);
-    this.sharedErrorService.showErrorChange.subscribe((showError: boolean) => {
-      this.showError = showError;
-    });
   }
 
 

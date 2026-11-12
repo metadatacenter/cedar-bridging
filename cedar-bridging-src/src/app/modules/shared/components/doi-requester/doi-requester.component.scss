@@ -1,16 +1,10 @@
+@use "@org.metadatacenter/cedar-design-tokens/spacing";
+
 .flex-container-doi-requester {
   display: flex;
   align-items: center;
   margin-top: var(--cedar-space-6);
   float: right;
-}
-
-.flex-child1 {
-  margin-bottom: var(--cedar-space-6);
-}
-
-.notify-container {
-  position: relative;
 }
 
 .create-doi-button{
@@ -20,26 +14,30 @@
   margin: var(--cedar-space-4);
 }
 
-.notify-container .notify-progress,
-.notify-container .notify-success,
-.notify-container .notify-error {
-  position: absolute;
-  bottom: 100%;
-  right: -300px;
-  width: auto;
-  white-space: nowrap;
+// The page draws a notice in the row under the action buttons, against its right edge. Its text
+// wraps rather than running past a narrow window.
+.notify-container {
+  margin-inline: var(--cedar-space-4);
+  margin-bottom: var(--cedar-space-4);
+}
+
+.notify-progress,
+.notify-success,
+.notify-error {
   display: flex;
-  pre{
-    margin:0;
+  justify-content: flex-end;
+  align-items: center;
+  overflow-wrap: anywhere;
+
+  pre {
+    margin: 0;
+    white-space: pre-wrap;
   }
 }
 
-.notify-container .notify-progress .close,
-.notify-container .notify-success .close,
-.notify-container .notify-error .close {
+// The dismiss button's glyph alone would make it smaller than a pointer target may be.
+.close {
+  min-width: spacing.$target-size-minimum;
+  min-height: spacing.$target-size-minimum;
   margin-left: var(--cedar-space-1);
-}
-
-.notify-progress {
-  margin-right: var(--cedar-space-2);
 }

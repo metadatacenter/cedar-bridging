@@ -21,6 +21,10 @@
   }
 }
 
-.move-buttons-down {
-  transform: translateY(100px);
+// The action buttons float right, and the notices they report take a row of their own beneath them.
+// The row keeps the Save Draft float's right margin, and each notice the button's own margin, so a
+// notice ends under the button's right edge. The row is empty while no notice shows.
+.doi-notices {
+  clear: both;
+  margin-right: var(--cedar-space-6);
 }

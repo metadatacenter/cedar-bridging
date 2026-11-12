@@ -5,6 +5,7 @@
 @use '@angular/material' as mat;
 @use '@org.metadatacenter/cedar-design-tokens/tokens' as tokens;
 @use '@org.metadatacenter/cedar-design-tokens/patterns';
+@use '@org.metadatacenter/cedar-design-tokens/controls';
 
 
 // Every type level keeps the font's own spacing. Material's M2 levels each add letter spacing of
@@ -140,4 +141,10 @@ textarea.mat-mdc-input-element {
 // Its rows take the shared control height and padding.
 .mat-mdc-menu-panel .mat-mdc-menu-item {
   @include patterns.menu-item;
+}
+
+// Material takes the outline off a focused menu item and leaves only a tint, about 1.2:1. A menu item
+// focused from the keyboard draws the shared ring instead, as every other button does.
+.mat-mdc-menu-panel .mat-mdc-menu-item:focus-visible {
+  @include controls.focus-ring;
 }

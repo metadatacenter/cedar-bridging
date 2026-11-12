@@ -1,37 +1,43 @@
 <app-header title="Describe your artifact using this DataCite form to request a DOI"></app-header>
 
-@if (draftDoi) {
-  <div class="draft-doi-container">
-    <p class="draft-doi-label">A draft DOI exists: https://doi.org/{{draftDoi}}. Please continue editing your metadata based on this draft.</p>
-  </div>
-}
-@if (doiAlreadyExists) {
-  <div class="error-doi-container">
-    <p class="error-doi-label">A DOI already exists: <a href="{{existingDoi}}" target="_blank">{{existingDoi}}</a>. An artifact can only have one DOI.</p>
-  </div>
-}
-@if (openError) {
-  <div class="error-doi-container">
-    <p class="error-doi-label">{{openError}}</p>
-  </div>
-}
-@if (template !== null) {
-  <cedar-embeddable-editor
-    [config]="ceeConfig"
-    [templateObject]="template"
-    [instanceObject]="existingDataCiteMetadata"
-  ></cedar-embeddable-editor>
-  <div [ngClass]="{'move-buttons-down': showError}">
+<main>
+  @if (draftDoi) {
+    <div class="draft-doi-container">
+      <p class="draft-doi-label">A draft DOI exists: https://doi.org/{{draftDoi}}. Please continue editing your metadata based on this draft.</p>
+    </div>
+  }
+  @if (doiAlreadyExists) {
+    <div class="error-doi-container">
+      <p class="error-doi-label">A DOI already exists: <a href="{{existingDoi}}" target="_blank">{{existingDoi}}</a>. An artifact can only have one DOI.</p>
+    </div>
+  }
+  @if (openError) {
+    <div class="error-doi-container">
+      <p class="error-doi-label">{{openError}}</p>
+    </div>
+  }
+  @if (template !== null) {
+    <cedar-embeddable-editor
+      [config]="ceeConfig"
+      [templateObject]="template"
+      [instanceObject]="existingDataCiteMetadata"
+    ></cedar-embeddable-editor>
     @if (sourceArtifactId != null) {
-      <app-doi-saver
-        [sourceArtifactId]="sourceArtifactId"
-      ></app-doi-saver>
+      <div>
+        <app-doi-saver
+          #saver
+          [sourceArtifactId]="sourceArtifactId"
+        ></app-doi-saver>
+        <app-doi-requester
+          #requester
+          [sourceArtifactId]="sourceArtifactId"
+        ></app-doi-requester>
+        <app-cancel></app-cancel>
+        <div class="doi-notices">
+          <ng-container [ngTemplateOutlet]="requester.notices"></ng-container>
+          <ng-container [ngTemplateOutlet]="saver.notices"></ng-container>
+        </div>
+      </div>
     }
-    @if (sourceArtifactId != null) {
-      <app-doi-requester
-        [sourceArtifactId]="sourceArtifactId"
-      ></app-doi-requester>
-    }
-    <app-cancel></app-cancel>
-  </div>
-}
+  }
+</main>
