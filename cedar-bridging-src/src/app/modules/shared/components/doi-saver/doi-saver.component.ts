@@ -14,7 +14,6 @@ import { serverErrorText } from '../../util/server-error';
   standalone: false
 })
 export class DoiSaverComponent implements OnDestroy{
-  private static readonly SUCCESS_MESSAGE_TIMEOUT = 5000;
 
   @Input() sourceArtifactId: string = '';
 
@@ -58,14 +57,6 @@ export class DoiSaverComponent implements OnDestroy{
 
           if (typeof error === 'object' && error.hasOwnProperty('message')) {
             this.messageHandlerService.errorObject(error['message'], error);
-          }
-        },
-        () => {
-          // remove success message in SUCCESS_MESSAGE_TIMEOUT seconds (
-          if (this.showSuccess) {
-            setTimeout(() => {
-              this.clearSuccess();
-            }, DoiSaverComponent.SUCCESS_MESSAGE_TIMEOUT);
           }
         }
       )

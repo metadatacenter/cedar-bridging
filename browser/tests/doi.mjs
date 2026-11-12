@@ -47,28 +47,11 @@ export async function form(page, act) {
   await formDrawn(page);
 }
 
-/** How long a success notice stays up before it dismisses itself. */
-export const DISMISSAL = 5000;
-
-/**
- * Keep a success notice up until the test ends, however slowly the test runs. Playwright's clock would
- * hold the notice's timer too, but it also holds the animation frames a scan waits on, so this holds
- * every timer of the notice's delay instead. It applies from the next page the test opens.
- */
-export const holdDismissal = (page) =>
-  page.addInitScript((delay) => {
-    const setTimeout = window.setTimeout;
-    window.setTimeout = function (handler, timeout, ...rest) {
-      return setTimeout.call(this, timeout === delay ? () => {} : handler, timeout, ...rest);
-    };
-  }, DISMISSAL);
-
 /**
  * Open the DOI form, take `action`, and wait until the notice that reports `outcome` shows inside the
  * window, where the page scrolls a new notice. A success notice stays up until the test ends.
  */
 export async function answered(page, action, outcome) {
-  if (outcome[0] === 200) await holdDismissal(page);
   await form(page, () => outcome);
   await page.getByRole('button', { name: action, exact: true }).click();
   await expect(page.locator(outcome[0] === 200 ? '.notify-success' : '.notify-error')).toBeInViewport({ ratio: 1 });

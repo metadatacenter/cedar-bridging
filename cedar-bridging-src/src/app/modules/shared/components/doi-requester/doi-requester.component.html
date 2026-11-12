@@ -1,11 +1,13 @@
 <div class="flex-container-doi-requester">
   <div>
-    <button mat-raised-button color="primary" class="create-doi-button" (click)="createDoi($event)">Create DOI</button>
+    <button #action mat-raised-button color="primary" class="create-doi-button" (click)="createDoi($event)">Create DOI</button>
   </div>
 </div>
 
 <!-- The page draws this in a row of its own under the action buttons. -->
 <ng-template #notices>
+  <!-- Present before the response changes its text, so updates have an announcement target. -->
+  <div aria-live="polite" aria-atomic="true">
   @if (showProgress || showSuccess || showError) {
     <div class="notify-container">
       @if (showProgress) {
@@ -15,7 +17,7 @@
       }
       @if (showSuccess) {
         <div class="notify-success" appScrollIntoView>{{successMessage}}
-          <button type="button" class="close" aria-label="Dismiss notification" (click)="clearSuccess()">
+          <button type="button" class="close" aria-label="Dismiss notification" (click)="clearSuccess(); action.focus()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -23,11 +25,12 @@
       @if (showError) {
         <div class="notify-error" appScrollIntoView>
           <pre>{{errorMessage}}</pre>
-          <button type="button" class="close" aria-label="Dismiss notification" (click)="clearError()">
+          <button type="button" class="close" aria-label="Dismiss notification" (click)="clearError(); action.focus()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
       }
     </div>
   }
+  </div>
 </ng-template>
