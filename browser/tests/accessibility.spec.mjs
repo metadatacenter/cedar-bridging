@@ -54,21 +54,17 @@ async function still(page) {
  */
 async function audit(page) {
   await still(page);
-  const builders = [
-    new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']),
-    new AxeBuilder({ page }).withRules([LABEL_IN_NAME]),
-  ];
-  const verdicts = [];
-  // axe runs one analysis at a time in a page.
-  for (const builder of builders) {
-    for (const selector of EMBEDDED) builder.exclude(selector);
-    verdicts.push(await builder.analyze());
-  }
+  // The explicit rule option retains Label in Name alongside tagged rules in a single analysis.
+  const builder = new AxeBuilder({ page })
+    .options({ rules: { [LABEL_IN_NAME]: { enabled: true } } })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']);
+  for (const selector of EMBEDDED) builder.exclude(selector);
+  const verdict = await builder.analyze();
   // A builder that lost the rule would check nothing and fail nothing, so the scan must report it.
-  const evaluated = ['passes', 'violations', 'incomplete', 'inapplicable'].flatMap((kind) => verdicts[1][kind]);
+  const evaluated = ['passes', 'violations', 'incomplete', 'inapplicable'].flatMap((kind) => verdict[kind]);
   expect(evaluated.some((result) => result.id === LABEL_IN_NAME), `${LABEL_IN_NAME} did not run`).toBe(true);
   const nodes = (kind) =>
-    verdicts.flatMap((verdict) => verdict[kind].flatMap((result) => result.nodes.map((node) => ({ rule: result.id, node }))));
+    verdict[kind].flatMap((result) => result.nodes.map((node) => ({ rule: result.id, node })));
   return { violations: nodes('violations'), undecided: nodes('incomplete') };
 }
 
