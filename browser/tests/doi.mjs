@@ -44,7 +44,12 @@ export async function openWith(page, open, act = () => [500, {}]) {
   await (await opening).response();
   return requests;
 }
-export const formDrawn = (page) => expect(page.locator('cedar-embeddable-editor').getByRole('heading', { level: 1 })).toBeVisible();
+export async function formDrawn(page) {
+  // The editor is lazy-loaded after the opening response. Let that bootstrap finish before
+  // measuring rendering; both waits remain bounded by the existing overall test deadline.
+  await page.evaluate(() => customElements.whenDefined('cedar-embeddable-editor').then(() => undefined));
+  await expect(page.locator('cedar-embeddable-editor').getByRole('heading', { level: 1 })).toBeVisible();
+}
 
 /** Open the DOI form with nothing started, and wait until it is drawn. */
 export async function form(page, act) {
