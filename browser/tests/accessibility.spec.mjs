@@ -54,21 +54,17 @@ async function still(page) {
  */
 async function audit(page) {
   await still(page);
-  const builders = [
-    new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']),
-    new AxeBuilder({ page }).withRules([LABEL_IN_NAME]),
-  ];
-  const verdicts = [];
-  // axe runs one analysis at a time in a page.
-  for (const builder of builders) {
-    for (const selector of EMBEDDED) builder.exclude(selector);
-    verdicts.push(await builder.analyze());
-  }
+  // The explicit rule option retains Label in Name alongside tagged rules in a single analysis.
+  const builder = new AxeBuilder({ page })
+    .options({ rules: { [LABEL_IN_NAME]: { enabled: true } } })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']);
+  for (const selector of EMBEDDED) builder.exclude(selector);
+  const verdict = await builder.analyze();
   // A builder that lost the rule would check nothing and fail nothing, so the scan must report it.
-  const evaluated = ['passes', 'violations', 'incomplete', 'inapplicable'].flatMap((kind) => verdicts[1][kind]);
+  const evaluated = ['passes', 'violations', 'incomplete', 'inapplicable'].flatMap((kind) => verdict[kind]);
   expect(evaluated.some((result) => result.id === LABEL_IN_NAME), `${LABEL_IN_NAME} did not run`).toBe(true);
   const nodes = (kind) =>
-    verdicts.flatMap((verdict) => verdict[kind].flatMap((result) => result.nodes.map((node) => ({ rule: result.id, node }))));
+    verdict[kind].flatMap((result) => result.nodes.map((node) => ({ rule: result.id, node })));
   return { violations: nodes('violations'), undecided: nodes('incomplete') };
 }
 
@@ -139,7 +135,7 @@ for (const [kind, [open, find]] of Object.entries(controls)) {
     await open(page);
     const control = find(page);
     // A key press first, so focus is drawn as it is for someone using the keyboard.
-    await page.keyboard.press('Shift');
+    await page.keyboard.press(kind === 'menu item' ? 'ArrowDown' : 'Tab');
     await control.focus();
     await expect.poll(() => control.evaluate((element) => element.matches(':focus-visible'))).toBe(true);
   };
@@ -290,7 +286,8 @@ const SETTLED = [
     measured: 'menu #mat-menu-panel-0',
     reason: "axe cannot tell whether a popup button's aria-controls names its popup. The User button names its open menu.",
   },
-  menuItem('CEDAR', menuStates.filter((state) => state !== 'hovered menu item'), '5.30:1'),
+  menuItem('CEDAR', menuStates.filter((state) => !['hovered menu item', 'focused menu item'].includes(state)), '5.30:1'),
+  menuItem('CEDAR', ['focused menu item'], '4.89:1', ' under the keyboard focus tint'),
   menuItem('CEDAR', ['hovered menu item'], '4.91:1', ' under the hover tint'),
   menuItem('Logout', menuStates, '5.30:1'),
   {

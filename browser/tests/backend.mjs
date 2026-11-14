@@ -35,7 +35,7 @@ const cors = (request) => ({
   'access-control-allow-methods': 'GET, POST, PUT, OPTIONS',
 });
 
-function keycloak(route) {
+function keycloak(route, keycloakUrl) {
   const request = route.request();
   const url = new URL(request.url());
   if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors(request) });
@@ -56,13 +56,14 @@ function keycloak(route) {
     case `${realm}/protocol/openid-connect/auth`: {
       const query = url.searchParams;
       const answer = new URLSearchParams({ state: query.get('state'), session_state: session, code: `stub.${query.get('nonce')}` });
-      return route.fulfill({ status: 302, headers: { location: `${query.get('redirect_uri')}#${answer}` } });
+      // WebKit's routing API cannot fulfill a 302. Navigate the iframe to the same callback instead.
+      return route.fulfill(html(`location.replace(${JSON.stringify(`${query.get('redirect_uri')}#${answer}`)});`));
     }
     case `${realm}/protocol/openid-connect/token`: {
       const code = new URLSearchParams(request.postData() ?? '').get('code') ?? '';
       const now = Math.floor(Date.now() / 1000);
       const claims = {
-        exp: now + 3600, iat: now, auth_time: now, iss: new URL(realm, config.keycloakUrl).href,
+        exp: now + 3600, iat: now, auth_time: now, iss: new URL(realm, keycloakUrl).href,
         aud: 'cedar-frontend-bridging', azp: 'cedar-frontend-bridging', sub: user.id, typ: 'Bearer',
         nonce: code.replace(/^stub\./, ''), session_state: session, sid: session, scope: 'openid email profile',
         realm_access: { roles: [] }, resource_access: {},
@@ -109,10 +110,16 @@ export const NETWORK_FAILURE = 'a network failure';
 // the bridge and gives a function of the request that returns a status and a body. The bridge
 // answers any other path with a 404.
 export async function signedIn(page, bridge = {}) {
-  const app = new URL(test.info().project.use.baseURL).host;
+  const origin = new URL(test.info().project.use.baseURL).origin;
+  const app = new URL(origin).host;
+  // Keep the mock identity provider on the fixture server. A scripted redirect from an invented
+  // HTTPS origin to loopback is blocked by some engines' local-network protections. This still
+  // exercises the client's authorization-code, nonce and token exchange, not real authentication.
+  const localConfig = { ...config, keycloakUrl: `${origin}/` };
   await page.route((url) => url.host !== app, (route) => route.abort());
-  await page.route('**/assets/data/appConfig.json', (route) => route.fulfill({ json: config }));
-  await page.route((url) => url.origin === new URL(config.keycloakUrl).origin, keycloak);
+  await page.route('**/assets/data/appConfig.json', (route) => route.fulfill({ json: localConfig }));
+  await page.route((url) => url.origin === origin && url.pathname.startsWith(`${realm}/`),
+    (route) => keycloak(route, localConfig.keycloakUrl));
   await page.route(`${config.terminologyBaseUrl}bioportal/integrated-search`, terminology);
   await page.route((url) => url.origin === new URL(config.bridgeUrl).origin, (route) => {
     const request = route.request();
