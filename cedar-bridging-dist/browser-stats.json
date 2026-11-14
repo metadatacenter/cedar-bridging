@@ -9160,11 +9160,11 @@
       "format": "esm"
     },
     "src/app/modules/shared/components/doi-requester/doi-requester.component.scss": {
-      "bytes": 763,
+      "bytes": 808,
       "imports": []
     },
     "src/app/modules/shared/components/doi-requester/doi-requester.component.ts": {
-      "bytes": 9888,
+      "bytes": 9794,
       "imports": [
         {
           "path": "src/app/resource-address.ts",
@@ -9230,11 +9230,11 @@
       "format": "esm"
     },
     "src/app/modules/shared/components/doi-saver/doi-saver.component.scss": {
-      "bytes": 799,
+      "bytes": 844,
       "imports": []
     },
     "src/app/modules/shared/components/doi-saver/doi-saver.component.ts": {
-      "bytes": 9819,
+      "bytes": 9801,
       "imports": [
         {
           "path": "src/app/resource-address.ts",
@@ -9742,7 +9742,7 @@
       "format": "esm"
     },
     "src/styles.scss": {
-      "bytes": 30102,
+      "bytes": 30174,
       "imports": [
         {
           "path": "node_modules/@org.metadatacenter/cedar-design-tokens/dist/custom-properties.css",
@@ -9803,24 +9803,24 @@
       "bytes": 967,
       "ng-component": true
     },
-    "doi-requester.component-6HWERAYM.css": {
+    "doi-requester.component-UGAY4DVD.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/shared/components/doi-requester/doi-requester.component.scss": {
-          "bytesInOutput": 656
+          "bytesInOutput": 697
         }
       },
-      "bytes": 657,
+      "bytes": 698,
       "ng-component": true
     },
-    "doi-saver.component-BKIGL5FI.css": {
+    "doi-saver.component-HAWLBLM6.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/shared/components/doi-saver/doi-saver.component.scss": {
-          "bytesInOutput": 688
+          "bytesInOutput": 729
         }
       },
-      "bytes": 689,
+      "bytes": 730,
       "ng-component": true
     },
     "header.component-MQ6C4373.css": {
@@ -9833,7 +9833,7 @@
       "bytes": 292,
       "ng-component": true
     },
-    "main-LB64FWOB.js": {
+    "main-ETQLNYC6.js": {
       "imports": [],
       "exports": [],
       "entryPoint": "src/main.ts",
@@ -10394,10 +10394,10 @@
           "bytesInOutput": 852
         },
         "src/app/modules/shared/components/doi-requester/doi-requester.component.ts": {
-          "bytesInOutput": 4516
+          "bytesInOutput": 4557
         },
         "src/app/modules/shared/components/doi-saver/doi-saver.component.ts": {
-          "bytesInOutput": 4548
+          "bytesInOutput": 4589
         },
         "src/app/modules/shared/components/header/header.component.ts": {
           "bytesInOutput": 1895
@@ -10448,7 +10448,7 @@
           "bytesInOutput": 104
         }
       },
-      "bytes": 592083
+      "bytes": 592165
     },
     "media/1df1ae79b14180fb1e9284310583ca4c17a861328a726b82068e0ab3ba586458-Z72STTMG.woff2": {
       "imports": [],
@@ -10604,7 +10604,7 @@
       },
       "bytes": 35876
     },
-    "styles-PGBWZQFS.css": {
+    "styles-IWEIK7SC.css": {
       "imports": [
         {
           "path": "media/83572c3ab2cc39e33fb02c9050652e82eb00351564f8fa1581b586372934a754-PRJ7OQMU.woff2",
@@ -10681,10 +10681,10 @@
           "bytesInOutput": 1049
         },
         "src/styles.scss": {
-          "bytesInOutput": 27725
+          "bytesInOutput": 27794
         }
       },
-      "bytes": 34682
+      "bytes": 34751
     }
   }
 }
