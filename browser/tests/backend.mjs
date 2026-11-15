@@ -107,7 +107,8 @@ function terminology(route) {
 export const NETWORK_FAILURE = 'a network failure';
 
 // This signs the page in and answers the services. Each entry of `bridge` identifies a path under
-// the bridge and gives a function of the request that returns a status and a body. The bridge
+// the bridge and gives a function of the request that returns a status and a body, or a promise of
+// them for an answer the test holds back. The bridge
 // answers any other path with a 404.
 export async function signedIn(page, bridge = {}) {
   const origin = new URL(test.info().project.use.baseURL).origin;
@@ -121,11 +122,11 @@ export async function signedIn(page, bridge = {}) {
   await page.route((url) => url.origin === origin && url.pathname.startsWith(`${realm}/`),
     (route) => keycloak(route, localConfig.keycloakUrl));
   await page.route(`${config.terminologyBaseUrl}bioportal/integrated-search`, terminology);
-  await page.route((url) => url.origin === new URL(config.bridgeUrl).origin, (route) => {
+  await page.route((url) => url.origin === new URL(config.bridgeUrl).origin, async (route) => {
     const request = route.request();
     if (request.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors(request) });
     const answer = bridge[new URL(request.url()).pathname.slice(1)];
-    const [status, body] = answer ? answer(request) : [404, {}];
+    const [status, body] = answer ? await answer(request) : [404, {}];
     if (status === NETWORK_FAILURE) return route.abort('failed');
     return route.fulfill({ status, headers: cors(request), json: body });
   });

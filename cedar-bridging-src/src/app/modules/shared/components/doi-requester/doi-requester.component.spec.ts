@@ -80,4 +80,17 @@ describe('DoiRequesterComponent request', () => {
     request.flush({ doiName: '10.82658/9kq4-2zt7' });
     expect(fixture.componentInstance.successMessage).toBe('DOI created successfully! The DOI is:  10.82658/9kq4-2zt7');
   });
+
+  // A DOI is registered once: a click while the request is pending asks the bridge nothing more.
+  it('sends nothing more while its request is pending, and again once it is answered', () => {
+    const fixture = TestBed.createComponent(DoiRequesterComponent);
+    const backend = TestBed.inject(HttpTestingController);
+    fixture.componentInstance.sourceArtifactId = source;
+    fixture.componentInstance.createDoi({ stopPropagation() {} });
+    fixture.componentInstance.createDoi({ stopPropagation() {} });
+    backend.expectOne(() => true).flush({ message: 'DataCite is unavailable' }, { status: 500, statusText: 'Server Error' });
+    fixture.componentInstance.createDoi({ stopPropagation() {} });
+    backend.expectOne(() => true).flush({ doiName: '10.82658/9kq4-2zt7' });
+    expect(fixture.componentInstance.showSuccess).toBe(true);
+  });
 });

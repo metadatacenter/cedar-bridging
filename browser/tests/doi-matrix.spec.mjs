@@ -100,3 +100,33 @@ for (const [action, { success, failure }] of Object.entries(ACTIONS))
     await expect(page.locator('.notify-success')).toContainText(`${success}10.82658/9kq4-2zt7`);
     await expect(page.locator('.notify-error')).toHaveCount(0);
   });
+
+// A DOI is registered once. While an action's request is pending, clicking the action again sends nothing
+// more. The page's requests are counted as it sends them, so a repeat counts at the click that sends it.
+for (const [action, { state, success }] of Object.entries(ACTIONS))
+  test(`${action} clicked again while its request is pending asks the bridge once`, async ({ page }) => {
+    await page.addInitScript(() => {
+      const { open, send } = XMLHttpRequest.prototype;
+      window.doiPosts = 0;
+      XMLHttpRequest.prototype.open = function (method, url, ...rest) {
+        this.doiPost = method === 'POST' && String(url).includes('datacite/create-doi');
+        return open.call(this, method, url, ...rest);
+      };
+      XMLHttpRequest.prototype.send = function (...rest) {
+        if (this.doiPost) window.doiPosts++;
+        return send.apply(this, rest);
+      };
+    });
+    let release;
+    const held = new Promise((resolve) => { release = resolve; });
+    const requests = await openWith(page, () => started(), async () => { await held; return [200, { doiName: '10.82658/9kq4-2zt7' }]; });
+    await formDrawn(page);
+    const button = page.getByRole('button', { name: action });
+    await button.click();
+    await expect(page.locator('.notify-progress')).toBeVisible();
+    await button.click();
+    expect(await page.evaluate(() => window.doiPosts)).toBe(1);
+    release();
+    await expect(page.locator('.notify-success')).toContainText(success + '10.82658/9kq4-2zt7');
+    expect(requests.filter((request) => request.method === 'POST' && request.state === state)).toHaveLength(1);
+  });
