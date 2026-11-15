@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { NETWORK_FAILURE, signedIn } from './backend.mjs';
-import { ACTIONS, OPENINGS, OUTCOMES, compactAddress, doi, doiPage, formDrawn, openWith, started } from './doi.mjs';
+import { NETWORK_FAILURE, fixture, signedIn } from './backend.mjs';
+import { ACTIONS, OPENINGS, OUTCOMES, authored, compactAddress, doi, doiPage, formDrawn, openWith, started } from './doi.mjs';
 
 // The DOI form against each answer the bridge can give: first when the form opens, then when the
 // user creates the DOI or saves a draft. Opening shows the form, the draft already started, the DOI
@@ -67,6 +67,7 @@ for (const [action, { state, success, failure }] of Object.entries(ACTIONS))
     test(`${action} answered with ${name}`, async ({ page }) => {
       const requests = await openWith(page, () => started(), () => outcome);
       await formDrawn(page);
+      const metadata = await authored(page);
       await page.getByRole('button', { name: action }).click();
       const [status, body] = outcome;
       if (status === 200) {
@@ -77,11 +78,15 @@ for (const [action, { state, success, failure }] of Object.entries(ACTIONS))
         await expect(page.locator('.notify-success')).toHaveCount(0);
       }
       await expect(page.locator('.notify-progress')).toHaveCount(0);
-      // The action asks for the right state, for the artifact by its compact address.
+      // The action asks for the right state, for the artifact by its compact address, and sends the
+      // metadata the author entered: the editor's instance of the DataCite template.
       const posted = requests.filter((request) => request.method === 'POST');
       expect(posted).toHaveLength(1);
       expect(posted[0].state).toBe(state);
       expect(posted[0].id).toBe(compactAddress);
+      expect(posted[0].body).toEqual(metadata);
+      expect(posted[0].body.publisher).toEqual(expect.objectContaining({ '@value': 'Typed publisher' }));
+      expect(posted[0].body['schema:isBasedOn']).toBe(fixture('datacite-template')['@id']);
     });
 
 for (const [action, { success, failure }] of Object.entries(ACTIONS))

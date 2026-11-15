@@ -1,7 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { throwError } from 'rxjs';
 import { vi } from 'vitest';
+
+import { globalAppConfig } from '../../../../../environments/global-app-config';
+import { resourceSelector } from '../../../../resource-address';
 
 import { DoiRequesterComponent } from './doi-requester.component';
 
@@ -37,4 +41,43 @@ describe('DoiRequestorComponent', () => {
       expect(component.showError).toBe(true);
     });
   }
+});
+
+// The action sends the metadata the editor holds when it is taken, for the artifact by its compact address.
+describe('DoiRequesterComponent request', () => {
+  const metadata = { 'schema:isBasedOn': 'https://repo.metadatacenter.org/templates/datacite', publisher: { '@value': 'Typed publisher' } };
+  const source = 'https://repo.metadatacenter.org/templates/7c1e2b5a-0d4f-4e8b-9a36-2f5d8c1b7e94';
+  let editor: HTMLElement;
+  let bridgeUrl: string;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({ declarations: [DoiRequesterComponent], providers: [provideHttpClient(), provideHttpClientTesting()] });
+    editor = document.createElement('cedar-embeddable-editor');
+    Object.defineProperty(editor, 'currentMetadata', { get: () => metadata });
+    document.body.append(editor);
+    bridgeUrl = globalAppConfig.bridgeUrl;
+    globalAppConfig.bridgeUrl = 'https://bridge.test/';
+  });
+
+  afterEach(() => {
+    editor.remove();
+    globalAppConfig.bridgeUrl = bridgeUrl;
+    TestBed.inject(HttpTestingController).verify();
+  });
+
+  it('creates the DOI from the editor\'s current metadata', () => {
+    const fixture = TestBed.createComponent(DoiRequesterComponent);
+    fixture.componentInstance.sourceArtifactId = source;
+    fixture.componentInstance.createDoi({ stopPropagation() {} });
+    const request = TestBed.inject(HttpTestingController).expectOne(() => true);
+    expect(request.request.method).toBe('POST');
+    // The browser suite pins the compact address a configured deployment gives; here none is configured.
+    const url = new URL(request.request.url);
+    expect(url.origin + url.pathname).toBe('https://bridge.test/datacite/create-doi');
+    expect(url.searchParams.get('source_artifact_id')).toBe(resourceSelector(source));
+    expect(url.searchParams.get('state')).toBe('publish');
+    expect(request.request.body).toEqual(metadata);
+    request.flush({ doiName: '10.82658/9kq4-2zt7' });
+    expect(fixture.componentInstance.successMessage).toBe('DOI created successfully! The DOI is:  10.82658/9kq4-2zt7');
+  });
 });
