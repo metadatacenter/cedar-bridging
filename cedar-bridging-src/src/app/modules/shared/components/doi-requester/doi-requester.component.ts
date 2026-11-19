@@ -22,6 +22,8 @@ export class DoiRequesterComponent implements OnDestroy{
   @ViewChild('notices', { static: true }) notices!: TemplateRef<unknown>;
 
   httpPostSubscription = new Subscription();
+  /** Whether the action's request has been sent and not yet answered. */
+  private pending = false;
 
   showProgress = false;
   showSuccess = false;
@@ -34,10 +36,17 @@ export class DoiRequesterComponent implements OnDestroy{
   }
 
   createDoi(event:any): void {
+    this.stopPropagation(event);
+    // While the request is pending, another click sends nothing more, so one click asks the bridge once.
+    if (this.pending) {
+      return;
+    }
+    this.pending = true;
     this.httpPostSubscription.add(
       this.httpRequest().subscribe(
         (data: any) => {
           if (data instanceof HttpResponse) {
+            this.pending = false;
             this.clearProgress();
             this.clearError();
             this.showSuccess = true;
@@ -50,6 +59,7 @@ export class DoiRequesterComponent implements OnDestroy{
           }
         },
         (error: any) => {
+          this.pending = false;
           this.clearProgress();
           this.clearSuccess();
           this.showError = true;
@@ -62,7 +72,6 @@ export class DoiRequesterComponent implements OnDestroy{
         }
       )
     );
-    this.stopPropagation(event);
   }
 
   private httpRequest(): Observable<any> {

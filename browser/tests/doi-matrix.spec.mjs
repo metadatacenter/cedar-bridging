@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { NETWORK_FAILURE, signedIn } from './backend.mjs';
-import { ACTIONS, OPENINGS, OUTCOMES, compactAddress, doi, doiPage, formDrawn, openWith, started } from './doi.mjs';
+import { NETWORK_FAILURE, fixture, signedIn } from './backend.mjs';
+import { ACTIONS, OPENINGS, OUTCOMES, authored, compactAddress, doi, doiPage, formDrawn, openWith, started } from './doi.mjs';
 
 // The DOI form against each answer the bridge can give: first when the form opens, then when the
 // user creates the DOI or saves a draft. Opening shows the form, the draft already started, the DOI
@@ -67,6 +67,7 @@ for (const [action, { state, success, failure }] of Object.entries(ACTIONS))
     test(`${action} answered with ${name}`, async ({ page }) => {
       const requests = await openWith(page, () => started(), () => outcome);
       await formDrawn(page);
+      const metadata = await authored(page);
       await page.getByRole('button', { name: action }).click();
       const [status, body] = outcome;
       if (status === 200) {
@@ -77,11 +78,15 @@ for (const [action, { state, success, failure }] of Object.entries(ACTIONS))
         await expect(page.locator('.notify-success')).toHaveCount(0);
       }
       await expect(page.locator('.notify-progress')).toHaveCount(0);
-      // The action asks for the right state, for the artifact by its compact address.
+      // The action asks for the right state, for the artifact by its compact address, and sends the
+      // metadata the author entered: the editor's instance of the DataCite template.
       const posted = requests.filter((request) => request.method === 'POST');
       expect(posted).toHaveLength(1);
       expect(posted[0].state).toBe(state);
       expect(posted[0].id).toBe(compactAddress);
+      expect(posted[0].body).toEqual(metadata);
+      expect(posted[0].body.publisher).toEqual(expect.objectContaining({ '@value': 'Typed publisher' }));
+      expect(posted[0].body['schema:isBasedOn']).toBe(fixture('datacite-template')['@id']);
     });
 
 for (const [action, { success, failure }] of Object.entries(ACTIONS))
@@ -94,4 +99,34 @@ for (const [action, { success, failure }] of Object.entries(ACTIONS))
     await page.getByRole('button', { name: action }).click();
     await expect(page.locator('.notify-success')).toContainText(`${success}10.82658/9kq4-2zt7`);
     await expect(page.locator('.notify-error')).toHaveCount(0);
+  });
+
+// A DOI is registered once. While an action's request is pending, clicking the action again sends nothing
+// more. The page's requests are counted as it sends them, so a repeat counts at the click that sends it.
+for (const [action, { state, success }] of Object.entries(ACTIONS))
+  test(`${action} clicked again while its request is pending asks the bridge once`, async ({ page }) => {
+    await page.addInitScript(() => {
+      const { open, send } = XMLHttpRequest.prototype;
+      window.doiPosts = 0;
+      XMLHttpRequest.prototype.open = function (method, url, ...rest) {
+        this.doiPost = method === 'POST' && String(url).includes('datacite/create-doi');
+        return open.call(this, method, url, ...rest);
+      };
+      XMLHttpRequest.prototype.send = function (...rest) {
+        if (this.doiPost) window.doiPosts++;
+        return send.apply(this, rest);
+      };
+    });
+    let release;
+    const held = new Promise((resolve) => { release = resolve; });
+    const requests = await openWith(page, () => started(), async () => { await held; return [200, { doiName: '10.82658/9kq4-2zt7' }]; });
+    await formDrawn(page);
+    const button = page.getByRole('button', { name: action });
+    await button.click();
+    await expect(page.locator('.notify-progress')).toBeVisible();
+    await button.click();
+    expect(await page.evaluate(() => window.doiPosts)).toBe(1);
+    release();
+    await expect(page.locator('.notify-success')).toContainText(success + '10.82658/9kq4-2zt7');
+    expect(requests.filter((request) => request.method === 'POST' && request.state === state)).toHaveLength(1);
   });

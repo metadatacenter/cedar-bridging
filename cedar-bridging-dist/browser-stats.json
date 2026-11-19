@@ -9164,7 +9164,7 @@
       "imports": []
     },
     "src/app/modules/shared/components/doi-requester/doi-requester.component.ts": {
-      "bytes": 9794,
+      "bytes": 10173,
       "imports": [
         {
           "path": "src/app/resource-address.ts",
@@ -9234,7 +9234,7 @@
       "imports": []
     },
     "src/app/modules/shared/components/doi-saver/doi-saver.component.ts": {
-      "bytes": 9801,
+      "bytes": 10180,
       "imports": [
         {
           "path": "src/app/resource-address.ts",
@@ -9833,7 +9833,7 @@
       "bytes": 292,
       "ng-component": true
     },
-    "main-ETQLNYC6.js": {
+    "main-FC4YGN73.js": {
       "imports": [],
       "exports": [],
       "entryPoint": "src/main.ts",
@@ -10394,10 +10394,10 @@
           "bytesInOutput": 852
         },
         "src/app/modules/shared/components/doi-requester/doi-requester.component.ts": {
-          "bytesInOutput": 4557
+          "bytesInOutput": 4638
         },
         "src/app/modules/shared/components/doi-saver/doi-saver.component.ts": {
-          "bytesInOutput": 4589
+          "bytesInOutput": 4670
         },
         "src/app/modules/shared/components/header/header.component.ts": {
           "bytesInOutput": 1895
@@ -10448,7 +10448,7 @@
           "bytesInOutput": 104
         }
       },
-      "bytes": 592165
+      "bytes": 592327
     },
     "media/1df1ae79b14180fb1e9284310583ca4c17a861328a726b82068e0ab3ba586458-Z72STTMG.woff2": {
       "imports": [],

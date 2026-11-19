@@ -26,13 +26,14 @@ const upstreamFailure = (statusCode, message, parameters = {}) => ({
 });
 
 // The bridge answers the opening GET and the action's POST at one path. Each request it receives is
-// kept, so a test can say what the page asked for.
+// kept, with the body an action sends, so a test can say what the page asked for.
 export async function openWith(page, open, act = () => [500, {}]) {
   const requests = [];
   await signedIn(page, {
     'datacite/create-doi': (request) => {
       const query = new URL(request.url()).searchParams;
-      requests.push({ method: request.method(), state: query.get('state'), id: query.get('source_artifact_id') });
+      requests.push({ method: request.method(), state: query.get('state'), id: query.get('source_artifact_id'),
+        body: request.method() === 'POST' ? request.postDataJSON() : undefined });
       return request.method() === 'GET' ? open() : act();
     },
   });
@@ -44,6 +45,17 @@ export async function openWith(page, open, act = () => [500, {}]) {
   await (await opening).response();
   return requests;
 }
+/**
+ * Type into the form's Publisher field and wait until the editor holds the value, so the metadata an
+ * action sends must carry what the author entered. Answers the metadata the editor then holds.
+ */
+export async function authored(page, publisher = 'Typed publisher') {
+  const editor = page.locator('cedar-embeddable-editor');
+  await editor.getByRole('textbox', { name: 'Publisher' }).fill(publisher);
+  await expect.poll(() => editor.evaluate((element) => element.currentMetadata?.publisher?.['@value'])).toBe(publisher);
+  return editor.evaluate((element) => element.currentMetadata);
+}
+
 export async function formDrawn(page) {
   // The editor is lazy-loaded after the opening response. Let that bootstrap finish before
   // measuring rendering; both waits remain bounded by the existing overall test deadline.
