@@ -22,7 +22,7 @@ test('the landing page defers CEE until a DOI form is opened', async ({ page }) 
   page.on('request', request => {
     if (/cedar-embeddable-editor.*\.js/.test(request.url())) downloads.push(request.url());
   });
-  await signedIn(page, { 'datacite/create-doi': () => started() });
+  await signedIn(page, { 'datacite/doi-form': () => started() });
   await page.goto('/');
   await expect(page.locator('mat-card-title', { hasText: 'Create Datacite DOI' })).toBeVisible();
   expect(downloads).toEqual([]);

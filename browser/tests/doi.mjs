@@ -25,22 +25,24 @@ const upstreamFailure = (statusCode, message, parameters = {}) => ({
   errorReasonKey: null, message, parameters, objects: {},
 });
 
-// The bridge answers the opening GET and the action's POST at one path. Each request it receives is
-// kept, with the body an action sends, so a test can say what the page asked for.
+// The bridge answers the opening GET at doi-form and the action's POST at create-doi. Each request it
+// receives is kept, with the body an action sends, so a test can say what the page asked for.
 export async function openWith(page, open, act = () => [500, {}]) {
   const requests = [];
+  const kept = (answer) => (request) => {
+    const query = new URL(request.url()).searchParams;
+    requests.push({ method: request.method(), state: query.get('state'), id: query.get('source_artifact_id'),
+      body: request.method() === 'POST' ? request.postDataJSON() : undefined });
+    return answer();
+  };
   await signedIn(page, {
-    'datacite/create-doi': (request) => {
-      const query = new URL(request.url()).searchParams;
-      requests.push({ method: request.method(), state: query.get('state'), id: query.get('source_artifact_id'),
-        body: request.method() === 'POST' ? request.postDataJSON() : undefined });
-      return request.method() === 'GET' ? open() : act();
-    },
+    'datacite/doi-form': kept(open),
+    'datacite/create-doi': kept(act),
   });
   // Authentication completes after page.goto. Wait for the opening read to settle before the
   // form's render assertion starts its own deadline; response() also settles for network failures.
   const opening = page.waitForRequest(request => request.method() === 'GET'
-    && new URL(request.url()).pathname === '/datacite/create-doi');
+    && new URL(request.url()).pathname === '/datacite/doi-form');
   await page.goto(doiPage);
   await (await opening).response();
   return requests;

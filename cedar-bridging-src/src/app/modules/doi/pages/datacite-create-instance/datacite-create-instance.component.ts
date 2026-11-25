@@ -45,7 +45,7 @@ export class DataciteCreateInstanceComponent extends CedarPageComponent implemen
 
 
   getDataCiteStartResponse(): Observable<HttpResponse<DataCiteCreateDOIStartResponse>> {
-    const url = globalAppConfig.bridgeUrl + 'datacite/create-doi?source_artifact_id=' +
+    const url = globalAppConfig.bridgeUrl + 'datacite/doi-form?source_artifact_id=' +
       encodeURIComponent(resourceSelector(this.sourceArtifactId ?? ''));
     return this.http.get<DataCiteCreateDOIStartResponse>(
       url, {observe: 'response'});
